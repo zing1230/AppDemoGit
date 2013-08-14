@@ -57,15 +57,17 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    NSLog(@"touchesEnded");
        _tipLabel.text = @"点按并说出您的需求";
     if ([_delegate respondsToSelector:@selector(touchEnded:)]) {
         [_delegate touchEnded:self];
     }
-    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+        NSLog(@"touchesMoved");
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     float endY = point.y;
@@ -81,6 +83,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+            NSLog(@"touchesCancelled");
     _tipLabel.text = @"点按并说出您的需求";
     if ([_delegate respondsToSelector:@selector(touchCanceled:)]) {
         [_delegate touchCanceled:self];

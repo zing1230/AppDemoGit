@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  AppDemo
 //
-//  Created by sun pan on 13-7-18.
+//  Created by sidney on 13-7-18.
 //  Copyright (c) 2013年 BH. All rights reserved.
 //
 
@@ -18,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //这是在其他帐号上同步的代码...
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     _rootViewCtrller = [[RootViewController alloc] init];

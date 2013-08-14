@@ -58,6 +58,8 @@
 - (void)carPressed:(UIButton *)btn
 {
 //    CarDetailViewController * detail = [[CarDetailViewController alloc] init];
+    
+    
     ModelDetailViewController * detail = [[ModelDetailViewController alloc] init];
     [self.navigationController pushViewController:detail animated:YES];
 }

@@ -26,7 +26,8 @@
 
 
 @interface RootViewController : UIViewController
-<iFlyMSCDelegate,QuadCurveMenuDelegate,CustomSpeakerViewDelegate>
+<iFlyMSCDelegate,QuadCurveMenuDelegate,
+CustomSpeakerViewDelegate,InputTextViewDelegate>
 
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;
