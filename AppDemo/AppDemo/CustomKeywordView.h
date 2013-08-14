@@ -14,9 +14,6 @@
 
 @property (nonatomic,strong) UIImageView * keywordImgView;
 
-- (void)pauseAnimation;
-- (void)continuAnimation;
-
 - (void)setImageName:(NSString *)imgName;
 - (void)startAnimation;
 - (void)stopAnimation;

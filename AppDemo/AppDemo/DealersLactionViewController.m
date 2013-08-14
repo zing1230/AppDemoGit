@@ -34,7 +34,7 @@ static MKMapView * mapView;
     [self setTitle:@"经销商"];
     
     mapView = [[MKMapView alloc] initWithFrame:self.childFrame];
-    mapView.delegate = self;
+//    mapView.delegate = self;
     [mapView setShowsUserLocation:YES];
     mapView.mapType = MKMapTypeStandard;
     [self.view addSubview:mapView];
@@ -42,13 +42,14 @@ static MKMapView * mapView;
     [self initDealersView];
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    NSLog(@"%s %d", __FUNCTION__, __LINE__);
-    CLLocationCoordinate2D coordinate = mapView.userLocation.coordinate;
-    [mapView setCenterCoordinate:coordinate];
-    [mapView setRegion:MKCoordinateRegionMake(coordinate,MKCoordinateSpanMake(0.1f,0.1f)) animated:YES];
-}
+
+//- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+//{
+//    NSLog(@"%s %d", __FUNCTION__, __LINE__);
+//    CLLocationCoordinate2D coordinate = mapView.userLocation.coordinate;
+//    [mapView setCenterCoordinate:coordinate];
+//    [mapView setRegion:MKCoordinateRegionMake(coordinate,MKCoordinateSpanMake(0.1f,0.1f)) animated:YES];
+//}
 
 
 - (void)initDealersView

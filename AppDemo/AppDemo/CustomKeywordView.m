@@ -75,16 +75,6 @@
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToLeft) object:nil];
 }
 
-- (void)pauseAnimation
-{
-    _isContinue = NO;
-}
-
-- (void)continuAnimation
-{
-    _isContinue = YES;
-}
-
 - (void)moveToLeft
 {
     NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);

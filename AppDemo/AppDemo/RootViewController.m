@@ -24,6 +24,7 @@
 @property (nonatomic,strong) UILabel * speakerTipLabel;
 @property (nonatomic,strong) QuadCurveMenu *menu;
 
+@property (nonatomic,strong) UIImageView * buyCarImgView;
 
 @property (nonatomic,assign) CGRect lastFrame;
 @property (nonatomic,strong) UIButton * lastSelectBtn;
@@ -47,7 +48,7 @@ static NSArray * speakerKeywords;
     UIImageView * roundbgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 90, 182, 279)];
     roundbgImg.image = [UIImage imageNamed:@"image_bg_round.png"];
     [self.view addSubview:roundbgImg];
-//    roundbgImg.transform = CGAffineTransformMakeTranslation(10, 10);
+    //    roundbgImg.transform = CGAffineTransformMakeTranslation(10, 10);
     
     _iflyMSC = [iFlyMSC shareInstance];
     _iflyMSC.delegate = self;
@@ -72,7 +73,6 @@ static NSArray * speakerKeywords;
     keywordView.hidden = YES;
     for (int i = 0; i < [_allKeywords count]; i ++) {
         CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-        [keywordView pauseAnimation];
         
         [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
     }
@@ -109,19 +109,19 @@ static NSArray * speakerKeywords;
     int offsetW = 0;
     for (int i = 0; i < 5; i ++) {
         if (i < 3) {
-            offsetW += 30;
+            offsetW += 20;
         }else{
-            offsetW -= 30;
+            offsetW -= 20;
         }
         
-        CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(5, originY + 50 * i, 90 + offsetW, 50)];
+        CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(10, originY + 50 * i, 90 + offsetW, 50)];
         keywordView.tag = i;
         [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
         keywordView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:keywordView];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
         [keywordView addGestureRecognizer:tap];
-        [keywordView startAnimation];
+//        [keywordView startAnimation];
         [_allKeywords addObject:keywordView];
     }
 }
@@ -138,7 +138,7 @@ static NSArray * speakerKeywords;
 //    if (startNum > endNum) {
 //        return endNum;
 //    }
-//    
+//
 //    int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
 //    return x;
 //}
@@ -250,6 +250,12 @@ static NSArray * speakerKeywords;
     [_backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_backBtn];
     
+    _backBtn.alpha = 0;
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        _backBtn.alpha = 1;
+    }];
+    
 }
 
 - (void)resetViewStatus
@@ -258,9 +264,18 @@ static NSArray * speakerKeywords;
         [_menu removeFromSuperview];
         _menu = nil;
     }
+    
+    if (_buyCarImgView) {
+        [UIView animateWithDuration:0.6f animations:^{
+            _buyCarImgView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [_buyCarImgView removeFromSuperview];
+            _buyCarImgView = nil;
+        }];
+    }
     _curSelectedView.hidden = NO;
     
-
+    
     [UIView animateWithDuration:0.6f animations:^{
         CGRect frame = CGRectMake(CGRectGetMinX(_curSelectedView.frame), CGRectGetMinY(_curSelectedView.frame), CGRectGetWidth(_curSelectedView.keywordImgView.frame), CGRectGetHeight(_curSelectedView.keywordImgView.frame));
         _curShowKeywordImgView.alpha = 0;
@@ -272,7 +287,6 @@ static NSArray * speakerKeywords;
     
     for (int i = 0; i < [_allKeywords count]; i ++) {
         CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-        [keywordView continuAnimation];
         [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
     }
 }
@@ -281,6 +295,7 @@ static NSArray * speakerKeywords;
 - (void)backBtnPressed:(UIButton *)sender
 {
     [_menu openMenu];
+    
     [UIView animateWithDuration:0.6f animations:^{
         sender.alpha = 0;
     } completion:^(BOOL finished) {
@@ -293,49 +308,49 @@ static NSArray * speakerKeywords;
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
     NSLog(@"Select the index : %d",idx);
-//    [self backBtnPressed:_backBtn];
+    //    [self backBtnPressed:_backBtn];
     [UIView animateWithDuration:0.6f animations:^{
         _backBtn.alpha = 0;
     } completion:^(BOOL finished) {
         [_backBtn removeFromSuperview];
         [self resetViewStatus];
     }];
-//    return;
-        switch (idx) {
-            case 0:
-            {
-                [self enterIntoBookingCarViewCtrller];
-            }
-                break;
-            case 1:
-            {
-                [self enterIntoTestDrivingViewCtrller];
-            }
-                break;
-            case 2:
-            {
-                [self enterIntoDealersViewCtrller];
-            }
-                break;
-            case 3:
-            {
-                [self enterIntoSpecialOffersViewCtrller];
-            }
-                break;
-            case 4:
-            {
-                [self enterIntoCalculatorViewCtrller];
-            }
-                break;
-            case 5:
-            {
-                [self enterIntoCarModelsViewCtrller];
-            }
-                break;
-            default:
-                break;
+    //    return;
+    switch (idx) {
+        case 0:
+        {
+            [self enterIntoBookingCarViewCtrller];
         }
-
+            break;
+        case 1:
+        {
+            [self enterIntoTestDrivingViewCtrller];
+        }
+            break;
+        case 2:
+        {
+            [self enterIntoDealersViewCtrller];
+        }
+            break;
+        case 3:
+        {
+            [self enterIntoSpecialOffersViewCtrller];
+        }
+            break;
+        case 4:
+        {
+            [self enterIntoCalculatorViewCtrller];
+        }
+            break;
+        case 5:
+        {
+            [self enterIntoCarModelsViewCtrller];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 
@@ -435,6 +450,9 @@ static NSArray * speakerKeywords;
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
     [self touchCanceled:view];
     [self initInputTextView];
+    
+
+    
 }
 
 - (void)touchCanceled:(CustomSpeakerView *)view
@@ -443,6 +461,8 @@ static NSArray * speakerKeywords;
         [_speakerBackView removeFromSuperview];
         _speakerBackView = nil;
     }
+    
+    [_iflyMSC stopRecongnizer];
     [_iflyMSC cancelRecongnizer];
 }
 
@@ -453,10 +473,69 @@ static NSArray * speakerKeywords;
         _inputTextView = nil;
     }
     
+    for (int i = 0; i < [_allKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+        [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
+    }
+    
     _inputTextView = [[CustomInputTextView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, SCREEN_HEIGHT - 55)];
+    _inputTextView.delegate = self;
     [self.view addSubview:_inputTextView];
     [_inputTextView slideInFrom:kFTAnimationRight duration:0.618f delegate:nil startSelector:nil stopSelector:nil];
     
+}
+
+#pragma mark InputTextViewDelegate
+- (void)inputTextViewRemoved
+{
+    for (int i = 0; i < [_allKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+        [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
+    }
+    
+}
+
+- (void)inputTextViewCommit:(NSString *)inputTxt
+{
+
+    if ([inputTxt isEqualToString:@"买车"]) {
+
+        
+        [self initBuyCarView];
+    }else{
+        for (int i = 0; i < [_allKeywords count]; i ++) {
+            CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+            [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
+        }
+        
+        
+    }
+}
+
+- (void)initBuyCarView
+{
+    
+    if (_buyCarImgView) {
+        [_buyCarImgView removeFromSuperview];
+        _buyCarImgView = nil;
+    }
+    
+    UIImage * image = [UIImage imageNamed:@"keyword_9.png"];
+    int imgWidth = image.size.width;
+    int imgHeight = image.size.height;
+    _buyCarImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 150, imgWidth * 0.7f, imgHeight * 0.7f)];
+    _buyCarImgView.image = image;
+    [self.view addSubview:_buyCarImgView];
+    _buyCarImgView.alpha = 0;
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        _buyCarImgView.alpha = 1;
+        
+    }];
+    
+    [self initMenuView];
+    
+
 }
 
 
@@ -557,6 +636,8 @@ static NSArray * speakerKeywords;
 }
 
 
+
+
 - (void)initResultNoneView
 {
     
@@ -566,7 +647,16 @@ static NSArray * speakerKeywords;
 
 - (void)initShowResultView:(NSString *)result
 {
+    for (int i = 0; i < [_allKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+        [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
+    }
     
+    if ([result isEqualToString:@"买车"]) {
+        [self initBuyCarView];
+    }else{
+        
+    }
     
     
 }

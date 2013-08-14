@@ -7,6 +7,12 @@
 //
 
 #import "CustomInputTextView.h"
+@interface CustomInputTextView()
+
+
+@property (nonatomic,strong) UIImageView * tipImgView;
+@end
+
 
 @implementation CustomInputTextView
 
@@ -32,25 +38,70 @@
         [commitBtn.titleLabel setFont:font];
         [commitBtn setTitle:@"提交" forState:UIControlStateNormal];
         [commitBtn addTarget:self action:@selector(commitBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:commitBtn];        
+        [self addSubview:commitBtn];
         
-
         txtField = [[UITextField alloc] initWithFrame:CGRectMake(75, 8, 167, 24)];
         [txtField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-
-//        [txtField.layer setBorderColor:[UIColor darkGrayColor].CGColor];
-//        [txtField.layer setBorderWidth:1];
+        txtField.delegate = self;
+        txtField.returnKeyType = UIReturnKeySearch;
         txtField.textColor = [UIColor whiteColor];
         txtField.font = [UIFont systemFontOfSize:14];
-//        [txtField.layer setCornerRadius:5];
         [txtField becomeFirstResponder];
         
         [self addSubview:txtField];
     }
     return self;
 }
+
+
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSLog(@"string:%@",textField.text);
+    if ([textField.text isEqualToString:@"买车"]) {
+        if (!_tipImgView) {
+            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
+            _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
+        }
+        [self addSubview:_tipImgView];
+        
+    }else{
+        [_tipImgView removeFromSuperview];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    if ([textField.text isEqualToString:@"买车"]) {
+        if (!_tipImgView) {
+            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
+            _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
+        }
+        [self addSubview:_tipImgView];
+        
+    }else{
+        [_tipImgView removeFromSuperview];
+    }
+    [txtField resignFirstResponder];
+    
+    
+    [self commitBtnPressed:nil];
+    
+    return YES;
+    
+}
+
+
 - (void)commitBtnPressed:(id)sender
 {
+    [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
+    
+    if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
+        [_delegate inputTextViewCommit:txtField.text];
+    }
     
 }
 
@@ -58,6 +109,10 @@
 - (void)backBtnPressed:(id)sender
 {
     [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
+    if ([_delegate respondsToSelector:@selector(inputTextViewRemoved)]) {
+        [_delegate inputTextViewRemoved];
+    }
+    
 }
 
 - (void)endAnimation
