@@ -24,6 +24,24 @@
 //- (void)setImageName:(NSString *)imgName;
 //- (void)startAnimation;
 //- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
+//- (void)setImageName:(NSString *)imgName;
+//- (void)startAnimation;
+//- (void)stopAnimation;
 
 
 @end
