@@ -25,6 +25,8 @@
 @property (nonatomic,strong) QuadCurveMenu *menu;
 
 @property (nonatomic,strong) UIImageView * buyCarImgView;
+@property (nonatomic,strong) UIView * noResultView;
+
 
 @property (nonatomic,assign) CGRect lastFrame;
 @property (nonatomic,strong) UIButton * lastSelectBtn;
@@ -121,7 +123,7 @@ static NSArray * speakerKeywords;
         [self.view addSubview:keywordView];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
         [keywordView addGestureRecognizer:tap];
-//        [keywordView startAnimation];
+        [keywordView startAnimation];
         [_allKeywords addObject:keywordView];
     }
 }
@@ -451,7 +453,7 @@ static NSArray * speakerKeywords;
     [self touchCanceled:view];
     [self initInputTextView];
     
-
+    
     
 }
 
@@ -495,20 +497,16 @@ static NSArray * speakerKeywords;
     
 }
 
+
+
+
 - (void)inputTextViewCommit:(NSString *)inputTxt
 {
-
+    
     if ([inputTxt isEqualToString:@"买车"]) {
-
-        
         [self initBuyCarView];
     }else{
-        for (int i = 0; i < [_allKeywords count]; i ++) {
-            CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-            [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
-        }
-        
-        
+        [self initResultNoneView];
     }
 }
 
@@ -535,7 +533,7 @@ static NSArray * speakerKeywords;
     
     [self initMenuView];
     
-
+    
 }
 
 
@@ -630,6 +628,10 @@ static NSArray * speakerKeywords;
     if ([speakerKeywords containsObject:result]) {
         [self initShowResultView:result];
     }else{
+        for (int i = 0; i < [_allKeywords count]; i ++) {
+            CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+            [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
+        }
         [self initResultNoneView];
     }
     
@@ -640,9 +642,37 @@ static NSArray * speakerKeywords;
 
 - (void)initResultNoneView
 {
+    if (!_noResultView) {
+        _noResultView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _noResultView.backgroundColor = [UIColor colorWithWhite:0.3f alpha:0.3f];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noResultViewTaped:)];
+        [_noResultView addGestureRecognizer:tap];
+        
+        UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 102, 202)];
+        noResultImgView.image = [UIImage imageNamed:@"image_error_tip.png"];
+        [_noResultView addSubview:noResultImgView];
+    }
+    
+    [self.view addSubview:_noResultView];
+    [UIView animateWithDuration:0.6f animations:^{
+        _noResultView.alpha = 1;
+    }];
+}
+
+- (void)noResultViewTaped:(UITapGestureRecognizer *)tap
+{
+    for (int i = 0; i < [_allKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+        [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
+    }
     
     
-    
+    [UIView animateWithDuration:0.6f animations:^{
+        _noResultView.alpha = 0;
+    } completion:^(BOOL finished) {
+        _noResultView.alpha = 1;
+        [_noResultView removeFromSuperview];
+    }];
 }
 
 - (void)initShowResultView:(NSString *)result
