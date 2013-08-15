@@ -99,14 +99,14 @@
 		65F3D11717BA3C26003D220F /* UINavigationController+rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D11617BA3C25003D220F /* UINavigationController+rotation.m */; };
 		65F3D11917BA3D3E003D220F /* calculator_2_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11817BA3D3E003D220F /* calculator_2_bg.png */; };
 		65F3D12417BA3DC8003D220F /* keyword_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11A17BA3DBE003D220F /* keyword_1.png */; };
-		65F3D12517BA3DC8003D220F /* keyword_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11B17BA3DBF003D220F /* keyword_2.png */; };
+		65F3D12517BA3DC8003D220F /* keyword_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11B17BA3DBF003D220F /* keyword_9.png */; };
 		65F3D12617BA3DC8003D220F /* keyword_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11C17BA3DBF003D220F /* keyword_3.png */; };
 		65F3D12717BA3DC8003D220F /* keyword_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11D17BA3DC0003D220F /* keyword_4.png */; };
 		65F3D12817BA3DC8003D220F /* keyword_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11E17BA3DC0003D220F /* keyword_5.png */; };
 		65F3D12917BA3DC8003D220F /* keyword_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11F17BA3DC2003D220F /* keyword_6.png */; };
 		65F3D12A17BA3DC8003D220F /* keyword_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12017BA3DC3003D220F /* keyword_7.png */; };
 		65F3D12B17BA3DC8003D220F /* keyword_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12117BA3DC4003D220F /* keyword_8.png */; };
-		65F3D12C17BA3DC8003D220F /* keyword_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12217BA3DC5003D220F /* keyword_9.png */; };
+		65F3D12C17BA3DC8003D220F /* keyword_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12217BA3DC5003D220F /* keyword_2.png */; };
 		65F3D12D17BA3DC8003D220F /* keyword_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12317BA3DC6003D220F /* keyword_10.png */; };
 		65F3D12F17BA4006003D220F /* dealers_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12E17BA4006003D220F /* dealers_2.png */; };
 		65F3D13117BA4025003D220F /* dealers_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D13017BA4025003D220F /* dealers_1.png */; };
@@ -266,14 +266,14 @@
 		65F3D11617BA3C25003D220F /* UINavigationController+rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+rotation.m"; sourceTree = "<group>"; };
 		65F3D11817BA3D3E003D220F /* calculator_2_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator_2_bg.png; sourceTree = "<group>"; };
 		65F3D11A17BA3DBE003D220F /* keyword_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_1.png; sourceTree = "<group>"; };
-		65F3D11B17BA3DBF003D220F /* keyword_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_2.png; sourceTree = "<group>"; };
+		65F3D11B17BA3DBF003D220F /* keyword_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_9.png; sourceTree = "<group>"; };
 		65F3D11C17BA3DBF003D220F /* keyword_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_3.png; sourceTree = "<group>"; };
 		65F3D11D17BA3DC0003D220F /* keyword_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_4.png; sourceTree = "<group>"; };
 		65F3D11E17BA3DC0003D220F /* keyword_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_5.png; sourceTree = "<group>"; };
 		65F3D11F17BA3DC2003D220F /* keyword_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_6.png; sourceTree = "<group>"; };
 		65F3D12017BA3DC3003D220F /* keyword_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_7.png; sourceTree = "<group>"; };
 		65F3D12117BA3DC4003D220F /* keyword_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_8.png; sourceTree = "<group>"; };
-		65F3D12217BA3DC5003D220F /* keyword_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_9.png; sourceTree = "<group>"; };
+		65F3D12217BA3DC5003D220F /* keyword_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_2.png; sourceTree = "<group>"; };
 		65F3D12317BA3DC6003D220F /* keyword_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_10.png; sourceTree = "<group>"; };
 		65F3D12E17BA4006003D220F /* dealers_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_2.png; sourceTree = "<group>"; };
 		65F3D13017BA4025003D220F /* dealers_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_1.png; sourceTree = "<group>"; };
@@ -483,14 +483,14 @@
 			children = (
 				65FAEBE517B901300026C485 /* bg */,
 				65F3D11A17BA3DBE003D220F /* keyword_1.png */,
-				65F3D11B17BA3DBF003D220F /* keyword_2.png */,
+				65F3D12217BA3DC5003D220F /* keyword_2.png */,
 				65F3D11C17BA3DBF003D220F /* keyword_3.png */,
 				65F3D11D17BA3DC0003D220F /* keyword_4.png */,
 				65F3D11E17BA3DC0003D220F /* keyword_5.png */,
 				65F3D11F17BA3DC2003D220F /* keyword_6.png */,
 				65F3D12017BA3DC3003D220F /* keyword_7.png */,
 				65F3D12117BA3DC4003D220F /* keyword_8.png */,
-				65F3D12217BA3DC5003D220F /* keyword_9.png */,
+				65F3D11B17BA3DBF003D220F /* keyword_9.png */,
 				65F3D12317BA3DC6003D220F /* keyword_10.png */,
 				6597090817B63C7300C6260F /* icon_1_1@2x.png */,
 				6597090917B63C7500C6260F /* icon_1_2@2x.png */,
@@ -710,14 +710,14 @@
 				65FAEC0517B910570026C485 /* image_car.png in Resources */,
 				65F3D11917BA3D3E003D220F /* calculator_2_bg.png in Resources */,
 				65F3D12417BA3DC8003D220F /* keyword_1.png in Resources */,
-				65F3D12517BA3DC8003D220F /* keyword_2.png in Resources */,
+				65F3D12517BA3DC8003D220F /* keyword_9.png in Resources */,
 				65F3D12617BA3DC8003D220F /* keyword_3.png in Resources */,
 				65F3D12717BA3DC8003D220F /* keyword_4.png in Resources */,
 				65F3D12817BA3DC8003D220F /* keyword_5.png in Resources */,
 				65F3D12917BA3DC8003D220F /* keyword_6.png in Resources */,
 				65F3D12A17BA3DC8003D220F /* keyword_7.png in Resources */,
 				65F3D12B17BA3DC8003D220F /* keyword_8.png in Resources */,
-				65F3D12C17BA3DC8003D220F /* keyword_9.png in Resources */,
+				65F3D12C17BA3DC8003D220F /* keyword_2.png in Resources */,
 				65F3D12D17BA3DC8003D220F /* keyword_10.png in Resources */,
 				65F3D12F17BA4006003D220F /* dealers_2.png in Resources */,
 				65F3D13117BA4025003D220F /* dealers_1.png in Resources */,

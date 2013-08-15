@@ -26,6 +26,15 @@
     return self;
 }
 
+- (void)setCurFrame:(CGRect)frame
+{
+    self.frame = frame;
+    UIImage * image = _keywordImgView.image;
+    float width = image.size.width * 0.3f;
+    float height = image.size.height * 0.3f;
+    _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
+}
+
 - (void)setImageName:(NSString *)imgName
 {
     UIImage * image = [UIImage imageNamed:imgName];
@@ -55,22 +64,30 @@
     }
 }
 
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//
-//    if (_isContinue) {
-//        [self stopAnimation];
-//        _keywordImgView.frame = _imgViewFrame;
-//    }else{
-//        [self startAnimation];
-//    }
-//
-//    _isContinue = !_isContinue;
-//}
+- (void)startReplaceCurView
+{
+    int x =  [self genertateRandomNumberStartNum:15 endNum:601];
+    [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
+}
+
+- (void)doDelegate
+{
+    if ([_delegate respondsToSelector:@selector(startReplaceOtherKeyworkd:curIndex:)]) {
+        [_delegate startReplaceOtherKeyworkd:self curIndex:self.tag];
+    }
+}
+
+- (void)stopReplaceCurView
+{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(doDelegate) object:nil];
+}
 
 - (void)stopAnimation
 {
     _isContinue = NO;
+    
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(startReplace) object:nil];
+    
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToRight) object:nil];
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToLeft) object:nil];
 }
