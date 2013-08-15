@@ -15,7 +15,9 @@
 @property (nonatomic,strong) CustomSpeakerView * speakerView;
 @property (nonatomic,strong) CustomInputTextView * inputTextView;
 
+@property (nonatomic,strong) NSMutableArray * allCurShowKeywords;
 @property (nonatomic,strong) NSMutableArray * allKeywords;
+
 @property (nonatomic,strong) CustomKeywordView * curSelectedView;
 @property (nonatomic,strong) UIImageView * curShowKeywordImgView;
 
@@ -59,7 +61,9 @@ static NSArray * speakerKeywords;
     _speakerView.delegate = self;
     [self.view addSubview:_speakerView];
     
+    _allCurShowKeywords = [[NSMutableArray alloc] init];
     _allKeywords = [[NSMutableArray alloc] init];
+    
     [self initKeywordView];
 }
 
@@ -73,10 +77,10 @@ static NSArray * speakerKeywords;
     
     int index = keywordView.tag;
     keywordView.hidden = YES;
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-        
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
         [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
+        [keywordView stopReplaceCurView];
     }
     
     NSString * imgName = [NSString stringWithFormat:@"keyword_%d.png",index + 1];
@@ -107,8 +111,20 @@ static NSArray * speakerKeywords;
 
 - (void)initKeywordView
 {
-    float originY = 105;
+    float originY = 102;
     int offsetW = 0;
+    for (int i = 0; i < 10; i ++) {
+        CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(10, originY , 100, 50)];
+        keywordView.delegate = self;
+        keywordView.tag = i;
+        [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
+        keywordView.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
+        [keywordView addGestureRecognizer:tap];
+        [_allKeywords addObject:keywordView];
+    }
+    
+    
     for (int i = 0; i < 5; i ++) {
         if (i < 3) {
             offsetW += 20;
@@ -116,34 +132,91 @@ static NSArray * speakerKeywords;
             offsetW -= 20;
         }
         
-        CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(10, originY + 50 * i, 90 + offsetW, 50)];
-        keywordView.tag = i;
-        [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
-        keywordView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:keywordView];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
-        [keywordView addGestureRecognizer:tap];
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
         [keywordView startAnimation];
-        [_allKeywords addObject:keywordView];
+        [keywordView startReplaceCurView];
+        
+        keywordView.frame = CGRectMake(10, originY + 51 * i, 90 + offsetW, 50);
+        [self.view addSubview:keywordView];
+//        CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(10, originY + 51 * i, 90 + offsetW, 50)];
+//        keywordView.tag = i;
+//        [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
+//        keywordView.backgroundColor = [UIColor purpleColor];
+//        [self.view addSubview:keywordView];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
+//        [keywordView addGestureRecognizer:tap];
+//        [keywordView startAnimation];
+        [_allCurShowKeywords addObject:keywordView];
     }
 }
 
-//- (CGSize)getSizeOfStr:(NSString *)txt font:(UIFont *)font constroSize:(CGSize)size
-//{
-//    CGSize s = [txt sizeWithFont:font
-//               constrainedToSize:size];
-//    return s;
-//}
-//
-//- (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum
-//{
-//    if (startNum > endNum) {
-//        return endNum;
-//    }
-//
-//    int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
-//    return x;
-//}
+#pragma mark CustomKeywordViewDelegate
+- (void)startReplaceOtherKeyworkd:(CustomKeywordView *)view curIndex:(int)index
+{
+    if (index != 1) {
+        NSLog(@"__FUNCTION__:%s __LINE__:%d index:%d",__FUNCTION__,__LINE__,index);
+
+        NSMutableArray * data = [[NSMutableArray alloc] init];
+        for (CustomKeywordView * keyview in _allCurShowKeywords) {
+            [data addObject:[NSNumber numberWithInt:keyview.tag]];
+        }
+        int generateIndex = [self genertateRandomNumberStartNum:0 endNum:9 cannotContainsKey:data];
+        NSLog(@"generateIndex:%d",generateIndex);
+        CGRect frame = view.frame;
+
+        int curIndex = [self getCurIndexInArray:view];
+        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:generateIndex];
+        [keywordView setCurFrame:frame];
+         keywordView.alpha = 0;
+        
+        [UIView animateWithDuration:1.0f animations:^{
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view stopAnimation];
+            [view removeFromSuperview];
+            view.alpha = 1;
+        }];
+        
+        [self.view addSubview:keywordView];
+        [keywordView startAnimation];
+        [keywordView startReplaceCurView];
+
+        [UIView animateWithDuration:0.7f animations:^{
+            keywordView.alpha = 1;
+        }];
+        
+
+        [_allCurShowKeywords replaceObjectAtIndex:curIndex withObject:keywordView];
+    }
+}
+
+- (int)getCurIndexInArray:(CustomKeywordView *)view
+{
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+        if (keywordView == view) {
+            return i;
+        }
+    }
+}
+
+- (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum cannotContainsKey:(NSArray *)contaisKey
+{
+    if (startNum > endNum) {
+        return endNum;
+    }
+    for (int i = startNum; i < endNum; i ++) {
+        int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
+        NSLog(@"x:%d",x);
+        NSNumber * number = [NSNumber numberWithInt:x];
+        if (![contaisKey containsObject:number]) {
+            return x;
+        }else{
+            i = i - 1; //发现有重复则-1
+        }
+    }    
+    return startNum;
+}
 
 - (void)initTitleView
 {
@@ -287,8 +360,9 @@ static NSArray * speakerKeywords;
         _curShowKeywordImgView = nil;
     }];
     
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+        [keywordView startReplaceCurView];
         [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
     }
 }
@@ -475,8 +549,9 @@ static NSArray * speakerKeywords;
         _inputTextView = nil;
     }
     
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+                        [keywordView stopReplaceCurView];
         [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
     }
     
@@ -490,8 +565,9 @@ static NSArray * speakerKeywords;
 #pragma mark InputTextViewDelegate
 - (void)inputTextViewRemoved
 {
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+                [keywordView startReplaceCurView];
         [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
     }
     
@@ -518,7 +594,7 @@ static NSArray * speakerKeywords;
         _buyCarImgView = nil;
     }
     
-    UIImage * image = [UIImage imageNamed:@"keyword_9.png"];
+    UIImage * image = [UIImage imageNamed:@"keyword_2.png"];
     int imgWidth = image.size.width;
     int imgHeight = image.size.height;
     _buyCarImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 150, imgWidth * 0.7f, imgHeight * 0.7f)];
@@ -628,8 +704,9 @@ static NSArray * speakerKeywords;
     if ([speakerKeywords containsObject:result]) {
         [self initShowResultView:result];
     }else{
-        for (int i = 0; i < [_allKeywords count]; i ++) {
-            CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+        for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+            CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+            [keywordView stopReplaceCurView];
             [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
         }
         [self initResultNoneView];
@@ -661,8 +738,9 @@ static NSArray * speakerKeywords;
 
 - (void)noResultViewTaped:(UITapGestureRecognizer *)tap
 {
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+        [keywordView startReplaceCurView];
         [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
     }
     
@@ -677,8 +755,9 @@ static NSArray * speakerKeywords;
 
 - (void)initShowResultView:(NSString *)result
 {
-    for (int i = 0; i < [_allKeywords count]; i ++) {
-        CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
+    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
+        CustomKeywordView * keywordView = [_allCurShowKeywords objectAtIndex:i];
+        [keywordView stopReplaceCurView];
         [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
     }
     
