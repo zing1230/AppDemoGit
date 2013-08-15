@@ -61,7 +61,7 @@
     NSLog(@"string:%@",textField.text);
     if ([textField.text isEqualToString:@"买车"]) {
         if (!_tipImgView) {
-            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
+            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 102)];
             _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
         }
         [self addSubview:_tipImgView];
