@@ -20,7 +20,6 @@
 - (void)setImageName:(NSString *)imgName;
 - (void)startAnimation;
 - (void)stopAnimation;
-- (void)setCurFrame:(CGRect)frame;
 
 - (void)startReplaceCurView;
 - (void)stopReplaceCurView;

@@ -22,34 +22,33 @@
     self = [super initWithFrame:frame];
     if (self) {
         _isContinue = YES;
+        _keywordImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
     }
     return self;
 }
 
-- (void)setCurFrame:(CGRect)frame
-{
-    self.frame = frame;
-    UIImage * image = _keywordImgView.image;
-    float width = image.size.width * 0.3f;
-    float height = image.size.height * 0.3f;
-    _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
-}
-
 - (void)setImageName:(NSString *)imgName
 {
+    if (_keywordImgView.image) {
+        _keywordImgView.image = nil;
+    }
+    
     UIImage * image = [UIImage imageNamed:imgName];
-    float width = image.size.width * 0.3f;
-    float height = image.size.height * 0.3f;
+    float width = image.size.width * 0.35f;
+    float height = image.size.height * 0.35f;
+    
     _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
-    _keywordImgView = [[UIImageView alloc] initWithFrame:_imgViewFrame];
+    _keywordImgView.frame = _imgViewFrame;
     _keywordImgView.image = image;
+    _keywordImgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_keywordImgView];
+    
 }
 
 - (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum
 {
     int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
-    NSLog(@"x:%d",x);
+//    NSLog(@"x:%d",x);
     return x;
 }
 
@@ -64,9 +63,10 @@
     }
 }
 
+
 - (void)startReplaceCurView
 {
-    int x =  [self genertateRandomNumberStartNum:15 endNum:601];
+    int x =  [self genertateRandomNumberStartNum:8 endNum:30];
     [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
 }
 

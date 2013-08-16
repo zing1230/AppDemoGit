@@ -14,9 +14,11 @@ static ConfigData * _instance;
 
 + (id)shareInstance
 {
-    if (!_instance) {
-        _instance = [[ConfigData alloc] init];
-        [_instance setNeedRotation:NO];
+    @synchronized(self){
+        if (!_instance) {
+            _instance = [[ConfigData alloc] init];
+            [_instance setNeedRotation:NO];
+        }
     }
     return _instance;
 }
