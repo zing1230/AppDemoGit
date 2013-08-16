@@ -96,7 +96,6 @@
 		659F14B017981FC8004C69E5 /* MessageAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F14AF17981FC3004C69E5 /* MessageAlertViewController.m */; };
 		65F023A31799732F002216D2 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F023A21799732F002216D2 /* MLNavigationController.m */; };
 		65F023A517997504002216D2 /* leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F023A417997504002216D2 /* leftside_shadow_bg@2x.png */; };
-		65F3D11717BA3C26003D220F /* UINavigationController+rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D11617BA3C25003D220F /* UINavigationController+rotation.m */; };
 		65F3D11917BA3D3E003D220F /* calculator_2_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11817BA3D3E003D220F /* calculator_2_bg.png */; };
 		65F3D12417BA3DC8003D220F /* keyword_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11A17BA3DBE003D220F /* keyword_1.png */; };
 		65F3D12517BA3DC8003D220F /* keyword_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11B17BA3DBF003D220F /* keyword_9.png */; };
@@ -262,8 +261,6 @@
 		65F023A11799732F002216D2 /* MLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNavigationController.h; sourceTree = "<group>"; };
 		65F023A21799732F002216D2 /* MLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNavigationController.m; sourceTree = "<group>"; };
 		65F023A417997504002216D2 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
-		65F3D11517BA3C25003D220F /* UINavigationController+rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+rotation.h"; sourceTree = "<group>"; };
-		65F3D11617BA3C25003D220F /* UINavigationController+rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+rotation.m"; sourceTree = "<group>"; };
 		65F3D11817BA3D3E003D220F /* calculator_2_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator_2_bg.png; sourceTree = "<group>"; };
 		65F3D11A17BA3DBE003D220F /* keyword_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_1.png; sourceTree = "<group>"; };
 		65F3D11B17BA3DBF003D220F /* keyword_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_9.png; sourceTree = "<group>"; };
@@ -373,8 +370,6 @@
 				65F023A21799732F002216D2 /* MLNavigationController.m */,
 				397136161797AAD000B09C64 /* RootViewController.h */,
 				397136171797AAD000B09C64 /* RootViewController.m */,
-				65F3D11517BA3C25003D220F /* UINavigationController+rotation.h */,
-				65F3D11617BA3C25003D220F /* UINavigationController+rotation.m */,
 				659708C417B614C500C6260F /* CustomSpeakerView.h */,
 				659708C517B614C500C6260F /* CustomSpeakerView.m */,
 				65F62ECE17B8CF3800866543 /* CustomKeywordView.h */,
@@ -770,7 +765,6 @@
 				6597090717B6360B00C6260F /* RNExpandingButtonBar.m in Sources */,
 				65F62ED017B8CF3800866543 /* CustomKeywordView.m in Sources */,
 				65FAEC0817B912E10026C485 /* CarDetailViewController.m in Sources */,
-				65F3D11717BA3C26003D220F /* UINavigationController+rotation.m in Sources */,
 				65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */,
 				65F3D13B17BA7661003D220F /* ConfigData.m in Sources */,
 				65F3D14117BB10A0003D220F /* Show360ViewController.m in Sources */,
