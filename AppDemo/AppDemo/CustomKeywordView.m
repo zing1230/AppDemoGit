@@ -22,6 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _isContinue = YES;
+        _keywordImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
     }
     return self;
 }
@@ -37,7 +38,7 @@
     float height = image.size.height * 0.35f;
     
     _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
-    _keywordImgView = [[UIImageView alloc] initWithFrame:_imgViewFrame];
+    _keywordImgView.frame = _imgViewFrame;
     _keywordImgView.image = image;
     _keywordImgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_keywordImgView];
