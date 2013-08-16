@@ -255,7 +255,7 @@
     [item.layer addAnimation:animationgroup forKey:@"Expand"];
     item.center = item.endPoint;
     
-    [item performSelector:@selector(setItemHidden:) withObject:[NSNumber numberWithBool:NO] afterDelay:0.1f];
+    [item performSelector:@selector(setItemHidden:) withObject:[NSNumber numberWithBool:NO] afterDelay:0.21f];
     _flag ++;
 
 }
@@ -297,7 +297,7 @@
     [item.layer addAnimation:animationgroup forKey:@"Close"];
     item.center = item.startPoint;
     _flag --;
-    [item performSelector:@selector(setItemHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.4f];
+    [item performSelector:@selector(setItemHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.35f];
 }
 
 - (CAAnimationGroup *)_blowupAnimationAtPoint:(CGPoint)p
