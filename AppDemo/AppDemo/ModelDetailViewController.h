@@ -7,7 +7,9 @@
 //
 
 #import "SecondLevelViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface ModelDetailViewController : SecondLevelViewController
+
 
 @end

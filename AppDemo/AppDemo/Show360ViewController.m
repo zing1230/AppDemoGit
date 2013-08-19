@@ -8,6 +8,11 @@
 
 #import "Show360ViewController.h"
 #import "RNExpandingButtonBar.h"
+#import "TestDrivingViewController.h"
+#import "BookingCarViewController.h"
+#import "CalculatorViewController.h"
+#import "DealersLactionViewController.h"
+
 
 @interface Show360ViewController ()
 <RNExpandingButtonBarDelegate>
@@ -31,7 +36,14 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = self.navImgView.frame;
+    CGRect frame = self.titleLabel.frame;
+    frame.origin.x = 40;
+    frame.size.width = 400;
+    self.titleLabel.frame = frame;
+    
+    [self setTitle:@"360度鉴赏"];
+    
+    frame = self.navImgView.frame;
     frame.size.width = 480;
     self.navImgView.frame = frame;
     
@@ -69,13 +81,67 @@
     
 }
 
+
 - (void)btnPressed:(UIButton *)sender
 {
     int index = sender.tag;
     NSLog(@"index:%d",index);
     [_expandingBar hideButtonsAnimated:YES];
+    
+    [[ConfigData shareInstance] setNeedRotation:NO];
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+                                       withObject:(id)UIInterfaceOrientationPortrait];
+    }
+    [UIViewController attemptRotationToDeviceOrientation];
+
+    
+    switch (index) {
+        case 0:
+        {
+            TestDrivingViewController * testDriving = [[TestDrivingViewController alloc] init];
+            [self.navigationController pushViewController:testDriving animated:YES];
+            testDriving.isLandscape = YES;
+        }
+            break;
+        case 1:
+        {
+            
+            BookingCarViewController * bookingCar = [[BookingCarViewController alloc] init];
+            [self.navigationController pushViewController:bookingCar animated:YES];
+            bookingCar.isLandscape = YES;
+        }
+            break;
+        case 2:
+        {
+            CalculatorViewController * calcutor = [[CalculatorViewController alloc] init];
+            [self.navigationController pushViewController:calcutor animated:YES];
+            calcutor.isLandscape = YES;
+        }
+            break;
+        case 3:
+        {
+            DealersLactionViewController * dealersLoction = [[DealersLactionViewController alloc] init];
+            [self.navigationController pushViewController:dealersLoction animated:YES];
+            dealersLoction.isLandscape = YES;
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
+- (void)homeBtnPressed:(UIButton *)sender
+{
+    [[ConfigData shareInstance] setNeedRotation:NO];
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+                                       withObject:(id)UIDeviceOrientationPortrait];
+    }
+    [UIViewController attemptRotationToDeviceOrientation];
+    [super homeBtnPressed:sender];
+}
 
 - (void)backBtnPressed:(UIButton *)sender
 {
@@ -86,10 +152,7 @@
     }
     
     [UIViewController attemptRotationToDeviceOrientation];
-    
-    
     [super backBtnPressed:sender];
-    
 }
 
 - (NSUInteger)supportedInterfaceOrientations

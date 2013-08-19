@@ -17,6 +17,7 @@
 }
 
 @property(nonatomic,assign)CGRect childFrame;
+@property(nonatomic,assign)BOOL isLandscape;//是否被置为横屏显示
 @property(nonatomic,strong)UIImageView * navImgView;
 @property(nonatomic,strong)UIButton * homeBtn;
 
@@ -27,5 +28,6 @@
 - (void)showAlertView:(NSString *)title message:(NSString *)msg;
 - (void)setTitle:(NSString *)title;
 - (void)backBtnPressed:(UIButton *)sender;
+- (void)homeBtnPressed:(UIButton *)sender;
 
 @end

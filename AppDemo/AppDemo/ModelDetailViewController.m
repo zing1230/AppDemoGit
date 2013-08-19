@@ -16,7 +16,10 @@
 
 
 @interface ModelDetailViewController ()
+{
+    MPMoviePlayerController * moviePlayer;
 
+}
 @end
 
 @implementation ModelDetailViewController
@@ -33,20 +36,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    int offsetY = 0;
+        [self setTitle:@"车型展厅"];
     
     int originX = 15;
     
-    UIButton * carNameBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX, 140, 85, 35)];
-    //    [carNameBtn setBackgroundImage:<#(UIImage *)#> forState:<#(UIControlState)#>];
-    [carNameBtn setBackgroundColor:[UIColor redColor]];
+    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, 107)];
+    imgView.image = [UIImage imageNamed:@"image_car_bg.png"];
+    [self.view addSubview:imgView];
+    
+    
+    UIButton * carNameBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX, 150, 71, 23)];
+    [carNameBtn setBackgroundImage:[UIImage imageNamed:@"image_carName.png"] forState:UIControlStateNormal];
+    [carNameBtn setBackgroundColor:[UIColor clearColor]];
     [carNameBtn addTarget:self action:@selector(carNameBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:carNameBtn];
     
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 190, 78, 16)];
+    imgView.image = [UIImage imageNamed:@"tianlai_2-3.png"];
+    [self.view addSubview:imgView];
+
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(185, 150, 108, 20)];
+    imgView.image = [UIImage imageNamed:@"tianlai_2-4.png"];
+    [self.view addSubview:imgView];
+
     
     for (int i = 0; i < 3; i ++) {
-        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(190 + 40 * i, 170, 34, 34)];
-        NSString * imgName = [NSString stringWithFormat:@"icon_%d.png",i + 1];
+        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(180 + 40 * i, 180, 28, 28)];
+        NSString * imgName = [NSString stringWithFormat:@"tianlai_icon_%d.png",i];
         [menuBtn setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
         menuBtn.tag = i;
         [menuBtn addTarget:self action:@selector(menuBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -65,15 +81,15 @@
     line.backgroundColor = [UIColor darkGrayColor];
     [self.view addSubview:line];
     
+    
     UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(originX, 228, SCREEN_WIDTH - originX * 2, 100)];
-    scrollView.backgroundColor = [UIColor redColor];
+    scrollView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollView];
     
     int contentWidth = 0;
-    for (int i = 0; i < 4; i ++) {
+    for (int i = 0; i < 3; i ++) {
         UIButton * functionBtn = [[UIButton alloc] initWithFrame:CGRectMake(2 + 100 * i, 4, 95, 95)];
-        //        NSString * imgName = [NSString stringWithFormat:@"icon_%d.png",i + 1];
-        NSString * imgName = @"image_car.png";
+        NSString * imgName = [NSString stringWithFormat:@"tianlai_%d.png",i];
         [functionBtn setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
         functionBtn.tag = i;
         [functionBtn addTarget:self action:@selector(functionBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,8 +100,8 @@
     
     
     for (int i = 0; i < 3; i ++) {
-        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX + 120 * i, 343, 50, 50)];
-        NSString * imgName = [NSString stringWithFormat:@"icon_%d.png",i + 1];
+        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX + 120 * i, 345, 46, 46)];
+        NSString * imgName = [NSString stringWithFormat:@"tianlai_2_1_%d.png",i + 1];
         [menuBtn setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
         menuBtn.tag = i;
         [menuBtn addTarget:self action:@selector(menu_BtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -100,8 +116,8 @@
     [self.view addSubview:label];
     
     for (int i = 0; i < 2; i ++) {
-        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(205 + 60 * i, 413, 40, 40)];
-        NSString * imgName = [NSString stringWithFormat:@"icon_%d.png",i + 1];
+        UIButton * menuBtn = [[UIButton alloc] initWithFrame:CGRectMake(205 + 50 * i, 413, 37, 37)];
+        NSString * imgName = [NSString stringWithFormat:@"tianlai_2_2_%d.png",i + 1];
         [menuBtn setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
         menuBtn.tag = i;
         [menuBtn addTarget:self action:@selector(menuBtnsPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -112,7 +128,47 @@
 
 - (void)functionBtnPressed:(UIButton *)btn
 {
+    NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"dangerous.mov"];
+    NSURL * mediaURL = [[NSURL alloc]initFileURLWithPath:path];
     
+    if (!moviePlayer) {
+        moviePlayer = [[MPMoviePlayerController alloc] init];
+        moviePlayer.view.frame = CGRectMake(0,-20, SCREEN_WIDTH, SCREEN_HEIGHT + 20);
+        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+        [moviePlayer setFullscreen:YES];
+    }
+    [moviePlayer setContentURL:mediaURL];
+	[moviePlayer play];
+
+    [self.view addSubview:moviePlayer.view];
+    [self addEventListener];
+}
+
+- (void)addEventListener
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resultSetUpdateComplete:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resultSetUpdateComplete:) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resultSetUpdateComplete:) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+
+}
+
+- (void)resultSetUpdateComplete:(NSNotification *)notif
+{
+//    NSString *object = [notif object];
+    NSString *eventName = [notif name];
+    if (eventName == nil)
+        return;
+    if ([eventName isEqualToString:MPMoviePlayerPlaybackDidFinishNotification]) {
+        [moviePlayer stop];
+        [moviePlayer.view removeFromSuperview];
+    }else if([eventName isEqualToString:MPMoviePlayerWillEnterFullscreenNotification]){
+        
+        
+    }else if([eventName isEqualToString:MPMoviePlayerWillExitFullscreenNotification]){
+
+    }
 }
 
 

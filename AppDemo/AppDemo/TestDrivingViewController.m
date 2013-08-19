@@ -41,6 +41,12 @@
     [self.view addSubview:commitBtn];
 }
 
+//- (void)backBtnPressed:(UIButton *)sender
+//{
+//
+//    [super backBtnPressed:sender];
+//}
+
 - (void)commitBtnPressed:(id)sender
 {
     UIAlertView * alerView = [[UIAlertView alloc] initWithTitle:nil
@@ -53,7 +59,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self backBtnPressed:nil];
+//        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
