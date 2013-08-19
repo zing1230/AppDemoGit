@@ -99,25 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDemo/CustomKeywordView.m"
-         timestampString = "398338691.688184"
+         timestampString = "398596846.825658"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "-moveToLeft"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "AppDemo/ModelDetailViewController.m"
-         timestampString = "398590118.51357"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
-         landmarkName = "-functionBtnPressed:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

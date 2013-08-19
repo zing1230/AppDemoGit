@@ -104,14 +104,15 @@
 		65A14BF217C1FF9A00BC785E /* tianlai_icon_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BEF17C1FF9900BC785E /* tianlai_icon_0.png */; };
 		65A14BF317C1FF9A00BC785E /* tianlai_icon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF017C1FF9900BC785E /* tianlai_icon_1.png */; };
 		65A14BF417C1FF9A00BC785E /* tianlai_icon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF117C1FF9A00BC785E /* tianlai_icon_2.png */; };
-		65A14BF817C2006600BC785E /* tianlai_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF517C2006500BC785E /* tianlai_0.png */; };
+		65A14BF817C2006600BC785E /* tianlai_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF517C2006500BC785E /* tianlai_2.png */; };
 		65A14BF917C2006600BC785E /* tianlai_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF617C2006500BC785E /* tianlai_1.png */; };
-		65A14BFA17C2006600BC785E /* tianlai_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF717C2006600BC785E /* tianlai_2.png */; };
+		65A14BFA17C2006600BC785E /* tianlai_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BF717C2006600BC785E /* tianlai_0.png */; };
 		65A14C0017C200D000BC785E /* tianlai_2_1_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BFB17C200CC00BC785E /* tianlai_2_1_1.png */; };
 		65A14C0117C200D000BC785E /* tianlai_2_1_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BFC17C200CD00BC785E /* tianlai_2_1_2.png */; };
 		65A14C0217C200D000BC785E /* tianlai_2_2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BFD17C200CE00BC785E /* tianlai_2_2_1.png */; };
 		65A14C0317C200D000BC785E /* tianlai_2_1_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BFE17C200CE00BC785E /* tianlai_2_1_3.png */; };
 		65A14C0417C200D000BC785E /* tianlai_2_2_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BFF17C200CF00BC785E /* tianlai_2_2_2.png */; };
+		65A14C0617C2040C00BC785E /* dealers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14C0517C2040700BC785E /* dealers_bg.png */; };
 		65F023A517997504002216D2 /* leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F023A417997504002216D2 /* leftside_shadow_bg@2x.png */; };
 		65F3D11917BA3D3E003D220F /* calculator_2_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11817BA3D3E003D220F /* calculator_2_bg.png */; };
 		65F3D12417BA3DC8003D220F /* keyword_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D11A17BA3DBE003D220F /* keyword_1.png */; };
@@ -132,7 +133,6 @@
 		65F3D13B17BA7661003D220F /* ConfigData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D13A17BA7660003D220F /* ConfigData.m */; };
 		65F3D14117BB10A0003D220F /* Show360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D14017BB10A0003D220F /* Show360ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		65F3D14517BB345E003D220F /* input_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14317BB345E003D220F /* input_bg.png */; };
-		65F3D14917BB5793003D220F /* dealers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14817BB5793003D220F /* dealers_bg.png */; };
 		65F3D14C17BB58E2003D220F /* image_point_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14A17BB58E2003D220F /* image_point_selected.png */; };
 		65F3D14D17BB58E2003D220F /* image_point_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14B17BB58E2003D220F /* image_point_normal.png */; };
 		65F3D14F17BB9F63003D220F /* car_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14E17BB9F63003D220F /* car_360.png */; };
@@ -285,14 +285,15 @@
 		65A14BEF17C1FF9900BC785E /* tianlai_icon_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_icon_0.png; sourceTree = "<group>"; };
 		65A14BF017C1FF9900BC785E /* tianlai_icon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_icon_1.png; sourceTree = "<group>"; };
 		65A14BF117C1FF9A00BC785E /* tianlai_icon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_icon_2.png; sourceTree = "<group>"; };
-		65A14BF517C2006500BC785E /* tianlai_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_0.png; sourceTree = "<group>"; };
+		65A14BF517C2006500BC785E /* tianlai_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2.png; sourceTree = "<group>"; };
 		65A14BF617C2006500BC785E /* tianlai_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_1.png; sourceTree = "<group>"; };
-		65A14BF717C2006600BC785E /* tianlai_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2.png; sourceTree = "<group>"; };
+		65A14BF717C2006600BC785E /* tianlai_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_0.png; sourceTree = "<group>"; };
 		65A14BFB17C200CC00BC785E /* tianlai_2_1_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2_1_1.png; sourceTree = "<group>"; };
 		65A14BFC17C200CD00BC785E /* tianlai_2_1_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2_1_2.png; sourceTree = "<group>"; };
 		65A14BFD17C200CE00BC785E /* tianlai_2_2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2_2_1.png; sourceTree = "<group>"; };
 		65A14BFE17C200CE00BC785E /* tianlai_2_1_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2_1_3.png; sourceTree = "<group>"; };
 		65A14BFF17C200CF00BC785E /* tianlai_2_2_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_2_2_2.png; sourceTree = "<group>"; };
+		65A14C0517C2040700BC785E /* dealers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_bg.png; sourceTree = "<group>"; };
 		65F023A417997504002216D2 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
 		65F3D11817BA3D3E003D220F /* calculator_2_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator_2_bg.png; sourceTree = "<group>"; };
 		65F3D11A17BA3DBE003D220F /* keyword_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_1.png; sourceTree = "<group>"; };
@@ -316,7 +317,6 @@
 		65F3D13F17BB10A0003D220F /* Show360ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show360ViewController.h; sourceTree = "<group>"; };
 		65F3D14017BB10A0003D220F /* Show360ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show360ViewController.m; sourceTree = "<group>"; };
 		65F3D14317BB345E003D220F /* input_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_bg.png; sourceTree = "<group>"; };
-		65F3D14817BB5793003D220F /* dealers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_bg.png; sourceTree = "<group>"; };
 		65F3D14A17BB58E2003D220F /* image_point_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_point_selected.png; sourceTree = "<group>"; };
 		65F3D14B17BB58E2003D220F /* image_point_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_point_normal.png; sourceTree = "<group>"; };
 		65F3D14E17BB9F63003D220F /* car_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_360.png; sourceTree = "<group>"; };
@@ -603,9 +603,9 @@
 				65A14BFE17C200CE00BC785E /* tianlai_2_1_3.png */,
 				65A14BFD17C200CE00BC785E /* tianlai_2_2_1.png */,
 				65A14BFF17C200CF00BC785E /* tianlai_2_2_2.png */,
-				65A14BF517C2006500BC785E /* tianlai_0.png */,
+				65A14BF517C2006500BC785E /* tianlai_2.png */,
 				65A14BF617C2006500BC785E /* tianlai_1.png */,
-				65A14BF717C2006600BC785E /* tianlai_2.png */,
+				65A14BF717C2006600BC785E /* tianlai_0.png */,
 				65A14BEF17C1FF9900BC785E /* tianlai_icon_0.png */,
 				65A14BF017C1FF9900BC785E /* tianlai_icon_1.png */,
 				65A14BF117C1FF9A00BC785E /* tianlai_icon_2.png */,
@@ -617,9 +617,9 @@
 				657C965717BCFEC800BF1553 /* image_input_tip.png */,
 				65F3D14A17BB58E2003D220F /* image_point_selected.png */,
 				65F3D14B17BB58E2003D220F /* image_point_normal.png */,
-				65F3D14817BB5793003D220F /* dealers_bg.png */,
 				65F3D14317BB345E003D220F /* input_bg.png */,
 				65F3D13417BA662D003D220F /* image_open_btn.png */,
+				65A14C0517C2040700BC785E /* dealers_bg.png */,
 				65F3D13017BA4025003D220F /* dealers_1.png */,
 				65F3D12E17BA4006003D220F /* dealers_2.png */,
 				65FAEC0417B910570026C485 /* image_car.png */,
@@ -769,7 +769,6 @@
 				65F3D13117BA4025003D220F /* dealers_1.png in Resources */,
 				65F3D13517BA662F003D220F /* image_open_btn.png in Resources */,
 				65F3D14517BB345E003D220F /* input_bg.png in Resources */,
-				65F3D14917BB5793003D220F /* dealers_bg.png in Resources */,
 				65F3D14C17BB58E2003D220F /* image_point_selected.png in Resources */,
 				65F3D14D17BB58E2003D220F /* image_point_normal.png in Resources */,
 				65F3D14F17BB9F63003D220F /* car_360.png in Resources */,
@@ -783,14 +782,15 @@
 				65A14BF217C1FF9A00BC785E /* tianlai_icon_0.png in Resources */,
 				65A14BF317C1FF9A00BC785E /* tianlai_icon_1.png in Resources */,
 				65A14BF417C1FF9A00BC785E /* tianlai_icon_2.png in Resources */,
-				65A14BF817C2006600BC785E /* tianlai_0.png in Resources */,
+				65A14BF817C2006600BC785E /* tianlai_2.png in Resources */,
 				65A14BF917C2006600BC785E /* tianlai_1.png in Resources */,
-				65A14BFA17C2006600BC785E /* tianlai_2.png in Resources */,
+				65A14BFA17C2006600BC785E /* tianlai_0.png in Resources */,
 				65A14C0017C200D000BC785E /* tianlai_2_1_1.png in Resources */,
 				65A14C0117C200D000BC785E /* tianlai_2_1_2.png in Resources */,
 				65A14C0217C200D000BC785E /* tianlai_2_2_1.png in Resources */,
 				65A14C0317C200D000BC785E /* tianlai_2_1_3.png in Resources */,
 				65A14C0417C200D000BC785E /* tianlai_2_2_2.png in Resources */,
+				65A14C0617C2040C00BC785E /* dealers_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

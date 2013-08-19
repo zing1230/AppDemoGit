@@ -13,6 +13,7 @@
 #import "TestDrivingViewController.h"
 #import "BookingCarViewController.h"
 #import "SpecialOffersViewController.h"
+#import "CarDetailViewController.h"
 
 
 @interface ModelDetailViewController ()
@@ -128,20 +129,43 @@
 
 - (void)functionBtnPressed:(UIButton *)btn
 {
-    NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"dangerous.mov"];
-    NSURL * mediaURL = [[NSURL alloc]initFileURLWithPath:path];
-    
-    if (!moviePlayer) {
-        moviePlayer = [[MPMoviePlayerController alloc] init];
-        moviePlayer.view.frame = CGRectMake(0,-20, SCREEN_WIDTH, SCREEN_HEIGHT + 20);
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        [moviePlayer setFullscreen:YES];
-    }
-    [moviePlayer setContentURL:mediaURL];
-	[moviePlayer play];
+    int index = btn.tag;
+    switch (index) {
+        case 0:
+        {
+            CarDetailViewController * carDetail = [[CarDetailViewController alloc] init];
+            [self.navigationController pushViewController:carDetail animated:YES];
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"dangerous.mov"];
+            NSURL * mediaURL = [[NSURL alloc]initFileURLWithPath:path];
+            
+            if (!moviePlayer) {
+                moviePlayer = [[MPMoviePlayerController alloc] init];
+                moviePlayer.view.frame = CGRectMake(0,-20, SCREEN_WIDTH, SCREEN_HEIGHT + 20);
+                moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+                [moviePlayer setFullscreen:YES];
+            }
+            [moviePlayer setContentURL:mediaURL];
+            [moviePlayer play];
+            
+            [self.view addSubview:moviePlayer.view];
+            [self addEventListener];
 
-    [self.view addSubview:moviePlayer.view];
-    [self addEventListener];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)addEventListener
@@ -151,7 +175,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resultSetUpdateComplete:) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resultSetUpdateComplete:) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-
 }
 
 - (void)resultSetUpdateComplete:(NSNotification *)notif
@@ -174,7 +197,7 @@
 
 - (void)carNameBtnPressed:(UIButton *)btn
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

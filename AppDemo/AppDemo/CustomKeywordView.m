@@ -34,8 +34,8 @@
     }
     
     UIImage * image = [UIImage imageNamed:imgName];
-    float width = image.size.width * 0.35f;
-    float height = image.size.height * 0.35f;
+    float width = image.size.width * 0.3f;
+    float height = image.size.height * 0.3f;
     
     _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
     _keywordImgView.frame = _imgViewFrame;
@@ -96,7 +96,14 @@
 {
     NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
     int x =  [self genertateRandomNumberStartNum:7 endNum:11];
-    int y =  [self genertateRandomNumberStartNum:7 endNum:11];
+    
+    int y = 1;
+    if (self.tag == 2 || self.tag == 3) {
+        y =  [self genertateRandomNumberStartNum:6 endNum:9];
+    }else{
+        y =  [self genertateRandomNumberStartNum:7 endNum:11];
+    }
+    
     
     [UIView animateWithDuration:x animations:^{
         if (_isContinue) {
@@ -114,7 +121,12 @@
 {
     NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
     int x =  [self genertateRandomNumberStartNum:7 endNum:11];
-    int y =  [self genertateRandomNumberStartNum:7 endNum:11];
+    int y = 1;
+    if (self.tag == 2 || self.tag == 3) {
+        y =  [self genertateRandomNumberStartNum:6 endNum:9];
+    }else{
+        y =  [self genertateRandomNumberStartNum:7 endNum:11];
+    }
     
     [UIView animateWithDuration:x animations:^{
         if (_isContinue) {
