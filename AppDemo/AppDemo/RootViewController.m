@@ -128,13 +128,13 @@ static NSArray * speakerKeywords;
     
     for (int i = 0; i < 5; i ++) {
         if (i < 3) {
-            offsetW += 20;
+            offsetW += 30;
         }else{
-            offsetW -= 20;
+            offsetW -= 30;
         }
         
         CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-        keywordView.frame = CGRectMake(10, originY + 51 * i, 90 + offsetW, 50);
+        keywordView.frame = CGRectMake(10, originY + 51 * i, 70 + offsetW, 50);
         [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
         
         [keywordView startAnimation];

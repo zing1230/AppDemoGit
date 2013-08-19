@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];    
     self.view.backgroundColor = RGBACOLOR(65,65,65,1);
-
+    self.isLandscape = NO;
     _childFrame = CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_BAR_HEIGHT);
 
     _navImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAV_BAR_HEIGHT)];
@@ -78,6 +78,16 @@
 
 - (void)backBtnPressed:(UIButton *)sender
 {
+    if (self.isLandscape) {
+        [[ConfigData shareInstance] setNeedRotation:YES];
+        if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+            [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+                                           withObject:(id)UIInterfaceOrientationLandscapeLeft];
+        }
+        [UIViewController attemptRotationToDeviceOrientation];
+        
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

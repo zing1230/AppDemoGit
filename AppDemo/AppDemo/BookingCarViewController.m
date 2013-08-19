@@ -55,7 +55,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+//        [self.navigationController popViewControllerAnimated:YES];
+        [self backBtnPressed:nil];
     }
 }
 
