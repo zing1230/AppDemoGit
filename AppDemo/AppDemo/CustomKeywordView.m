@@ -48,7 +48,7 @@
 - (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum
 {
     int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
-//    NSLog(@"x:%d",x);
+    //    NSLog(@"x:%d",x);
     return x;
 }
 
@@ -92,51 +92,93 @@
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToLeft) object:nil];
 }
 
-- (void)moveToLeft
+- (void)createWithBlock:(CreatTimeDurationWithAlpha)block
 {
-    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    int x =  [self genertateRandomNumberStartNum:7 endNum:11];
+//    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
+    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
     
     int y = 1;
+    float alpha = 0;
+    int min,max;
     if (self.tag == 2 || self.tag == 3) {
-        y =  [self genertateRandomNumberStartNum:6 endNum:9];
+        min = 6;
+        max = 8;
+        y = [self genertateRandomNumberStartNum:min endNum:max];
     }else{
-        y =  [self genertateRandomNumberStartNum:7 endNum:11];
+        min = 7;
+        max = 11;
+        y = [self genertateRandomNumberStartNum:7 endNum:11];
     }
+
+    if (y > (max + min) * 1.0f / 2.0f) alpha = 1.0f;
+    else alpha = 0.5f;
     
+    block(duration,y,alpha);
+    return;
+}
+
+- (void)moveToLeft
+{
+//    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
     
-    [UIView animateWithDuration:x animations:^{
-        if (_isContinue) {
-            CGRect frame = _keywordImgView.frame;
-            frame.origin.x = 0;
-            _keywordImgView.frame = frame;
-            _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
-        }
+    //    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
+    //    int y = 1;
+    //    float alpha = 0;
+    //    if (self.tag == 2 || self.tag == 3) {
+    //        y = [self genertateRandomNumberStartNum:5 endNum:8];
+    //        if (y > 6.5f) alpha = 1.0f;
+    //        else alpha = 0.5f;
+    //    }else{
+    //        y = [self genertateRandomNumberStartNum:7 endNum:11];
+    //        if (y > 9.0f) alpha = 1.0f;
+    //        else alpha = 0.5f;
+    //    }
+    
+    [self createWithBlock:^(NSTimeInterval duration, NSTimeInterval y, float alpha) {
+        [UIView animateWithDuration:duration animations:^{
+            if (_isContinue) {
+                CGRect frame = _keywordImgView.frame;
+                frame.origin.x = 0;
+                _keywordImgView.frame = frame;
+                _keywordImgView.alpha = alpha;
+                _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
+            }
+        }];
+        [self performSelector:@selector(moveToRight) withObject:nil afterDelay:duration];
     }];
-    [self performSelector:@selector(moveToRight) withObject:nil afterDelay:x];
-    
 }
 
 - (void)moveToRight
 {
-    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    int x =  [self genertateRandomNumberStartNum:7 endNum:11];
-    int y = 1;
-    if (self.tag == 2 || self.tag == 3) {
-        y =  [self genertateRandomNumberStartNum:6 endNum:9];
-    }else{
-        y =  [self genertateRandomNumberStartNum:7 endNum:11];
-    }
+    //    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
+    //    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
+    //    int y = 1;
+    //    float alpha = 0;
+    //    if (self.tag == 2 || self.tag == 3) {
+    //        y = [self genertateRandomNumberStartNum:5 endNum:8];
+    //        if (y > 6.5f) alpha = 1.0f;
+    //        else alpha = 0.5f;
+    //    }else{
+    //        y = [self genertateRandomNumberStartNum:7 endNum:11];
+    //        if (y > 9.0f) alpha = 1.0f;
+    //        else alpha = 0.5f;
+    //    }
     
-    [UIView animateWithDuration:x animations:^{
-        if (_isContinue) {
-            CGRect frame = _keywordImgView.frame;
-            frame.origin.x = CGRectGetWidth(self.frame) - CGRectGetWidth(_keywordImgView.frame);
-            _keywordImgView.frame = frame;
-            _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
-        }
+    [self createWithBlock:^(NSTimeInterval duration, NSTimeInterval y, float alpha) {
+        
+        [UIView animateWithDuration:duration animations:^{
+            if (_isContinue) {
+                CGRect frame = _keywordImgView.frame;
+                frame.origin.x = CGRectGetWidth(self.frame) - CGRectGetWidth(_keywordImgView.frame);
+                _keywordImgView.frame = frame;
+                _keywordImgView.alpha = alpha;
+                _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
+            }
+        }];
+        [self performSelector:@selector(moveToLeft) withObject:nil afterDelay:duration];
     }];
-    [self performSelector:@selector(moveToLeft) withObject:nil afterDelay:x];
+    
+    
 }
 
 /*

@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDemo/CustomInputTextView.m"
-         timestampString = "398176878.210049"
+         timestampString = "398697864.415425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "121"
+         endingLineNumber = "121"
          landmarkName = "-endAnimation"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDemo/CustomInputTextView.m"
-         timestampString = "398176878.210049"
+         timestampString = "398697864.415425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
          landmarkName = "-backBtnPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -95,16 +95,16 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "AppDemo/CustomKeywordView.m"
-         timestampString = "398596846.825658"
+         filePath = "AppDemo/RootViewController.m"
+         timestampString = "398699888.749601"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
-         landmarkName = "-moveToLeft"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
+         landmarkName = "-keywordViewTaped:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -53,8 +53,6 @@
     return self;
 }
 
-
-
 #pragma mark UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -74,7 +72,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
+    NSLog(@"textField.text:%@",textField.text);
+
     if ([textField.text isEqualToString:@"买车"]) {
         if (!_tipImgView) {
             _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
@@ -99,8 +98,10 @@
 {
     [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
     
+    NSString * txt =  [txtField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
     if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
-        [_delegate inputTextViewCommit:txtField.text];
+        [_delegate inputTextViewCommit:txt];
     }
     
 }

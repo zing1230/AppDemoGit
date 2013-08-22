@@ -55,6 +55,8 @@
 		65690EAE17982195000E8E05 /* iFlyMSC.m in Sources */ = {isa = PBXBuildFile; fileRef = 65690EAD17982195000E8E05 /* iFlyMSC.m */; };
 		657C965817BCFEC900BF1553 /* image_input_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 657C965717BCFEC800BF1553 /* image_input_tip.png */; };
 		657C965A17BCFF9500BF1553 /* image_error_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 657C965917BCFF9500BF1553 /* image_error_tip.png */; };
+		658D2CF917C62CC900C59F4F /* image_floating_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 658D2CF817C62CC900C59F4F /* image_floating_bg.png */; };
+		658D2CFC17C6304800C59F4F /* CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D2CFB17C6304700C59F4F /* CustomPageControl.m */; };
 		659708BB17B5F75700C6260F /* icon_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B517B5F75600C6260F /* icon_1@2x.png */; };
 		659708BC17B5F75700C6260F /* icon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B617B5F75600C6260F /* icon_2@2x.png */; };
 		659708BD17B5F75700C6260F /* icon_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B717B5F75600C6260F /* icon_3@2x.png */; };
@@ -225,6 +227,9 @@
 		65690EAD17982195000E8E05 /* iFlyMSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFlyMSC.m; sourceTree = "<group>"; };
 		657C965717BCFEC800BF1553 /* image_input_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_input_tip.png; sourceTree = "<group>"; };
 		657C965917BCFF9500BF1553 /* image_error_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_error_tip.png; sourceTree = "<group>"; };
+		658D2CF817C62CC900C59F4F /* image_floating_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_floating_bg.png; sourceTree = "<group>"; };
+		658D2CFA17C6304600C59F4F /* CustomPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPageControl.h; sourceTree = "<group>"; };
+		658D2CFB17C6304700C59F4F /* CustomPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPageControl.m; sourceTree = "<group>"; };
 		659708B517B5F75600C6260F /* icon_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_1@2x.png"; sourceTree = "<group>"; };
 		659708B617B5F75600C6260F /* icon_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_2@2x.png"; sourceTree = "<group>"; };
 		659708B717B5F75600C6260F /* icon_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_3@2x.png"; sourceTree = "<group>"; };
@@ -425,6 +430,8 @@
 				659708CE17B627CA00C6260F /* BookingCarViewController.m */,
 				659708D017B6286E00C6260F /* DealersLactionViewController.h */,
 				659708D117B6286E00C6260F /* DealersLactionViewController.m */,
+				658D2CFA17C6304600C59F4F /* CustomPageControl.h */,
+				658D2CFB17C6304700C59F4F /* CustomPageControl.m */,
 				659708D317B6290200C6260F /* CalculatorViewController.h */,
 				659708D417B6290200C6260F /* CalculatorViewController.m */,
 				659708D617B629B200C6260F /* CarModelsViewController.h */,
@@ -598,6 +605,7 @@
 		65FAEBE517B901300026C485 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				658D2CF817C62CC900C59F4F /* image_floating_bg.png */,
 				65A14BFB17C200CC00BC785E /* tianlai_2_1_1.png */,
 				65A14BFC17C200CD00BC785E /* tianlai_2_1_2.png */,
 				65A14BFE17C200CE00BC785E /* tianlai_2_1_3.png */,
@@ -791,6 +799,7 @@
 				65A14C0317C200D000BC785E /* tianlai_2_1_3.png in Resources */,
 				65A14C0417C200D000BC785E /* tianlai_2_2_2.png in Resources */,
 				65A14C0617C2040C00BC785E /* dealers_bg.png in Resources */,
+				658D2CF917C62CC900C59F4F /* image_floating_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +843,7 @@
 				65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */,
 				65F3D13B17BA7661003D220F /* ConfigData.m in Sources */,
 				65F3D14117BB10A0003D220F /* Show360ViewController.m in Sources */,
+				658D2CFC17C6304800C59F4F /* CustomPageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

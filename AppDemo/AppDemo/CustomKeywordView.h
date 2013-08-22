@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+typedef void(^CreatTimeDurationWithAlpha)(NSTimeInterval duration, NSTimeInterval y,float alpha);
+
 @protocol CustomKeywordViewDelegate;
 @interface CustomKeywordView : UIView
 

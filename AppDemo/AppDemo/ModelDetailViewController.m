@@ -255,7 +255,7 @@
     switch (index) {
         case 1:
         {
-            
+//            return;
             [[ConfigData shareInstance] setNeedRotation:YES];
             if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
                 [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
@@ -275,8 +275,6 @@
             
         }
             break;
-            //         SpecialOffersViewController * specialOffersViewCtrller = [[SpecialOffersViewController alloc] init];
-            //            [self.navigationController pushViewController:specialOffersViewCtrller animated:YES];
     }
 }
 

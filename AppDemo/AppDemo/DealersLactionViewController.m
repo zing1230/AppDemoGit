@@ -9,9 +9,13 @@
 #import "DealersLactionViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-
+#import "CustomPageControl.h"
 @interface DealersLactionViewController ()
 <MKMapViewDelegate>
+{
+    CustomPageControl *m_pageControl;
+    
+}
 
 @property(nonatomic,strong)UIView * dealersSubView;
 @end
@@ -82,6 +86,20 @@ static MKMapView * mapView;
     [btn setBackgroundColor:[UIColor clearColor]];
     [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgImgView addSubview:btn];
+    
+    
+    m_pageControl =[[CustomPageControl alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, CGRectGetHeight(_dealersSubView.frame) - 130, 300, 60)];
+    m_pageControl.backgroundColor = [UIColor clearColor];
+    m_pageControl.currentPage = 0;
+//    [m_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
+    m_pageControl.hidesForSinglePage = YES;
+    m_pageControl.numberOfPages = 2;
+    
+    [m_pageControl setImagePageStateNormal:[UIImage imageNamed:@"image_point_normal.png"]];
+    [m_pageControl setImagePageStateHighlighted:[UIImage imageNamed:@"image_point_selected.png"]];
+    [_dealersSubView addSubview:m_pageControl];
+
+    
     
 }
 - (void)btnPressed:(UIButton *)sender
