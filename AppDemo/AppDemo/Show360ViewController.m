@@ -12,6 +12,7 @@
 #import "BookingCarViewController.h"
 #import "CalculatorViewController.h"
 #import "DealersLactionViewController.h"
+#import "UIViewController+MMDrawerController.h"
 
 
 @interface Show360ViewController ()
@@ -32,10 +33,24 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+        self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
+
     CGRect frame = self.titleLabel.frame;
     frame.origin.x = 40;
     frame.size.width = 400;
@@ -76,7 +91,7 @@
     [backView addGestureRecognizer:tap];
     
     UIImage * image = [UIImage imageNamed:@"image_floating_bg.png"];
-    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake((480 - 546/2) / 2, (300 - 538/2) / 2, 546/2, 538/2)];
+    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake((480 - 546/2) / 2, (300 - 538/2) / 2 + 22, 546/2 - 10, 538/2 - 10)];
     imgView.image = image;
     [backView addSubview:imgView];
     

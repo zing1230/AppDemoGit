@@ -27,7 +27,7 @@
         [self addSubview:bgimgview];
 
         UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        backBtn.frame = CGRectMake(10, 8, 44, 25);
+        backBtn.frame = CGRectMake(7, 6, 54, 25);
         [backBtn setBackgroundImage:[UIImage imageNamed:@"image_back.png"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
@@ -109,7 +109,7 @@
 
 - (void)backBtnPressed:(id)sender
 {
-    [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
+    [self slideOutTo:kFTAnimationBottom duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
     if ([_delegate respondsToSelector:@selector(inputTextViewRemoved)]) {
         [_delegate inputTextViewRemoved];
     }

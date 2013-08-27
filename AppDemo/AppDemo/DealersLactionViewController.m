@@ -58,21 +58,24 @@ static MKMapView * mapView;
 
 - (void)initDealersView
 {
-    _dealersSubView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, SCREEN_WIDTH, CGRectGetHeight(self.childFrame))];
+    
+    _dealersSubView = [[UIView alloc] initWithFrame:CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, CGRectGetHeight(self.childFrame))];
     [self.view addSubview:_dealersSubView];
     [self.view bringSubviewToFront:self.navImgView];
     _dealersSubView.backgroundColor = [UIColor clearColor];
     
-    
+    UIImageView * shodowImg = [[UIImageView alloc] initWithFrame:CGRectMake(-2, SCREEN_HEIGHT - 170, SCREEN_WIDTH + 2, 150)];
+    shodowImg.image = [UIImage imageNamed:@"dealers_bg_shadow.png"];
+    [_dealersSubView addSubview:shodowImg];
+
     UIImageView * bgimgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 851/2)];
     bgimgview.image = [UIImage imageNamed:@"dealers_bg.png"];
     [_dealersSubView addSubview:bgimgview];
-    
 
-    UIButton * openBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 50) /2, CGRectGetHeight(self.childFrame) - 70, 50, 50)];
+    UIButton * openBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 50) /2, CGRectGetHeight(self.childFrame) - 75, 50, 50)];
     [openBtn setBackgroundImage:[UIImage imageNamed:@"image_open_btn.png"] forState:UIControlStateNormal];
     [openBtn addTarget:self action:@selector(openBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    openBtn.transform = CGAffineTransformMakeRotation(M_PI);
+//    openBtn.transform = CGAffineTransformMakeRotation(M_PI);
 
     [_dealersSubView addSubview:openBtn];
     
@@ -97,7 +100,7 @@ static MKMapView * mapView;
     
     [m_pageControl setImagePageStateNormal:[UIImage imageNamed:@"image_point_normal.png"]];
     [m_pageControl setImagePageStateHighlighted:[UIImage imageNamed:@"image_point_selected.png"]];
-    [_dealersSubView addSubview:m_pageControl];
+//    [_dealersSubView addSubview:m_pageControl];
 
     
     
@@ -130,15 +133,13 @@ static MKMapView * mapView;
         CGRect frame = _dealersSubView.frame;
         
         if (!sender.selected) {
-            frame.origin.y = NAV_BAR_HEIGHT;
-            _dealersSubView.frame = frame;
-            sender.transform = CGAffineTransformMakeRotation(0);
-            
-        }else{
             frame.origin.y = -300;
             _dealersSubView.frame = frame;
             sender.transform = CGAffineTransformMakeRotation(M_PI);
-            
+        }else{
+            frame.origin.y = NAV_BAR_HEIGHT;
+            _dealersSubView.frame = frame;
+            sender.transform = CGAffineTransformMakeRotation(0);
         }
         
     } completion:^(BOOL finished) {

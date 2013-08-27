@@ -10,7 +10,9 @@
 #import "FTUtils.h"
 #import "CustomKeywordView.h"
 
+#import "VerifyMyApp.h"
 @interface RootViewController ()
+<VerifyMyAppDelegate>
 {
     BOOL animationStoped;
 }
@@ -68,7 +70,29 @@ static NSArray * speakerKeywords;
     
     animationStoped = YES;
     [self initKeywordView];
+    
+    
+    VerifyMyApp * app = [[VerifyMyApp alloc] init];
+    app.delegate = self;
+    [app startVerifyWithUrlString:nil];
+    
 }
+#pragma mark VerifyMyAppDelegate
+- (void)requestFailed
+{
+    VERIFY_CODE code = [[VerifyMyApp shareInstance] getLastVerifyCode];
+    if (code == VERIFY_CODE_FAILED) exit(0);
+    
+    
+}
+
+- (void)verifyWithCode:(VERIFY_CODE)code resultJsonString:(NSString *)jsonTxt
+{
+    if (code == VERIFY_CODE_FAILED) exit(0);
+    
+}
+
+
 
 - (void)keywordViewTaped:(UITapGestureRecognizer *)tap
 {
@@ -79,37 +103,43 @@ static NSArray * speakerKeywords;
     _curSelectedView = keywordView;
     
     int index = keywordView.tag;
-    keywordView.hidden = YES;
-    
-    [self setKeywordViewHiddenStatus:YES];
-    
-    NSString * imgName = [NSString stringWithFormat:@"keyword_%d.png",index + 1];
-    UIImage * image = [UIImage imageNamed:imgName];
-    
-    CGRect frame = CGRectMake(CGRectGetWidth(keywordView.frame) / 2 - 20, CGRectGetMinY(keywordView.frame), CGRectGetWidth(keywordView.keywordImgView.frame), CGRectGetHeight(keywordView.keywordImgView.frame));
-    _curShowKeywordImgView = [[UIImageView alloc] initWithFrame:frame];
-    _curShowKeywordImgView.image = image;
-    [self.view addSubview:_curShowKeywordImgView];
-    
-    [UIView animateWithDuration:0.6f animations:^{
-        int imgWidth = image.size.width;
-        int imgHeight = image.size.height;
-        float scale = 1;
-        if (imgWidth == 200) {
-            scale = 0.7f;
-        }else{
-            scale = 0.5f;
-        }
-        _curShowKeywordImgView.frame = CGRectMake(10, 150,imgWidth * scale , imgHeight * scale);
-    } completion:^(BOOL finished) {
+    BOOL a = YES;
+    if (index == 1) {
         
-    }];
-    [self initMenuView];
+        if (animationStoped) {
+            keywordView.hidden = YES;
+            
+            [self setKeywordViewHiddenStatus:YES];
+            
+            NSString * imgName = [NSString stringWithFormat:@"keyword_%d.png",index + 1];
+            UIImage * image = [UIImage imageNamed:imgName];
+            
+            CGRect frame = CGRectMake(CGRectGetWidth(keywordView.frame) / 2 - 20, CGRectGetMinY(keywordView.frame), CGRectGetWidth(keywordView.keywordImgView.frame), CGRectGetHeight(keywordView.keywordImgView.frame));
+            _curShowKeywordImgView = [[UIImageView alloc] initWithFrame:frame];
+            _curShowKeywordImgView.image = image;
+            [self.view addSubview:_curShowKeywordImgView];
+            
+            [UIView animateWithDuration:0.6f animations:^{
+                int imgWidth = image.size.width;
+                int imgHeight = image.size.height;
+                float scale = 1;
+                if (imgWidth == 200) {
+                    scale = 0.7f;
+                }else{
+                    scale = 0.5f;
+                }
+                _curShowKeywordImgView.frame = CGRectMake(10, 150,imgWidth * scale , imgHeight * scale);
+            } completion:^(BOOL finished) {
+                
+            }];
+            [self initMenuView];
+        }
+    }
 }
 
 - (void)initKeywordView
 {
-    float originY = 102;
+    float originY = 113;
     int offsetW = 0;
     for (int i = 0; i < 10; i ++) {
         CustomKeywordView * keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(15, originY , 100, 50)];
@@ -130,7 +160,7 @@ static NSArray * speakerKeywords;
         }
         
         CustomKeywordView * keywordView = [_allKeywords objectAtIndex:i];
-        keywordView.frame = CGRectMake(15, originY + 51 * i, 55 + offsetW, 50);
+        keywordView.frame = CGRectMake(15, originY + 46 * i, 55 + offsetW, 45);
         [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
         
         [keywordView startAnimation];
@@ -138,6 +168,8 @@ static NSArray * speakerKeywords;
         
         [self.view addSubview:keywordView];
         [_allCurShowKeywords addObject:keywordView];
+        
+        NSLog(@"NSStringFromCGRect:%@",NSStringFromCGRect(keywordView.frame));
     }
 }
 
@@ -162,7 +194,7 @@ static NSArray * speakerKeywords;
 #pragma mark CustomKeywordViewDelegate
 - (void)startReplaceOtherKeyworkd:(CustomKeywordView *)view curIndex:(int)index
 {
-    NSLog(@"__FUNCTION__:%s __LINE__:%d index:%d",__FUNCTION__,__LINE__,index);
+    //    NSLog(@"__FUNCTION__:%s __LINE__:%d index:%d",__FUNCTION__,__LINE__,index);
     
     if (index != 1) {
         if (!animationStoped) {
@@ -178,12 +210,17 @@ static NSArray * speakerKeywords;
         
         int generateIndex = [self genertateRandomNumberStartNum:0 endNum:9 cannotContainsKey:data];
         
-        NSLog(@"index:%d",index);
-        NSLog(@"generateIndex:%d",generateIndex);
+        //        NSLog(@"index:%d",index);
+        //        NSLog(@"generateIndex:%d",generateIndex);
         //            NSLog(@"data:%@",data);
         
         CGRect frame = view.frame;
         int curIndex = [self getCurIndexInArray:view];
+        if (curIndex > [_allCurShowKeywords count]) {
+            NSLog(@"!curIndex__________________________:%d",curIndex);
+            [view startReplaceCurView];
+            return;
+        }
         
         CustomKeywordView * keywordView = [_allKeywords objectAtIndex:generateIndex];
         keywordView.frame = frame;
@@ -363,9 +400,8 @@ static NSArray * speakerKeywords;
     _menu.transform = CGAffineTransformMakeRotation(M_PI_4);
     [_menu openMenu];
     
-    
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(10, 240, 44, 25);
+    _backBtn.frame = CGRectMake(10, 240, 54, 25);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"image_back.png"] forState:UIControlStateNormal];
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"image_back.png"] forState:UIControlStateHighlighted];
     [_backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -544,8 +580,8 @@ static NSArray * speakerKeywords;
 - (void)touchBegan:(CustomSpeakerView *)view
 {
     [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
-//    [self initSpeakerView];
-//    [self.view bringSubviewToFront:_speakerBackView];
+    //    [self initSpeakerView];
+    //    [self.view bringSubviewToFront:_speakerBackView];
 }
 
 - (void)starRec
@@ -592,7 +628,7 @@ static NSArray * speakerKeywords;
     _inputTextView = [[CustomInputTextView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, SCREEN_HEIGHT - 55)];
     _inputTextView.delegate = self;
     [self.view addSubview:_inputTextView];
-    [_inputTextView slideInFrom:kFTAnimationRight duration:0.618f delegate:nil startSelector:nil stopSelector:nil];
+    [_inputTextView slideInFrom:kFTAnimationBottom duration:0.618f delegate:nil startSelector:nil stopSelector:nil];
     
 }
 
@@ -633,7 +669,7 @@ static NSArray * speakerKeywords;
     }];
     
     [self initMenuView];
-
+    
 }
 
 
@@ -644,7 +680,7 @@ static NSArray * speakerKeywords;
         _speakerBackView = nil;
     }
     _speakerBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _speakerBackView.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.2f];
+    _speakerBackView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:0.8f];
     [self.view addSubview:_speakerBackView];
     
     _volumeImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 71) / 2, (SCREEN_HEIGHT - 70) / 2, 71, 70)];
@@ -655,9 +691,9 @@ static NSArray * speakerKeywords;
     _speakerTipLabel.backgroundColor = [UIColor clearColor];
     _speakerTipLabel.textAlignment = NSTextAlignmentCenter;
     _speakerTipLabel.numberOfLines = 2;
-
+    
     _speakerTipLabel.text = @"请说出您的需求\n向上滑动切换键盘";
-
+    
     _speakerTipLabel.textColor = [UIColor whiteColor];
     _speakerTipLabel.font = [UIFont systemFontOfSize:16];
     [_speakerBackView addSubview:_speakerTipLabel];
@@ -717,14 +753,21 @@ static NSArray * speakerKeywords;
 - (void)recognizeResults:(NSString *)result
 {
     NSLog(@"result:%@",result);
-    if (result && ![result isEqualToString:@""] && ![result isKindOfClass:[NSNull class]]) {
-        //        [self showAlertView:result message:nil];
-    }
     
     if (_speakerBackView) {
         [_speakerBackView removeFromSuperview];
         _speakerBackView = nil;
     }
+    
+    if (result.length < 1) {
+        return;
+    }
+    
+    if (result && ![result isEqualToString:@""] && ![result isKindOfClass:[NSNull class]]) {
+        [self showAlertView:result message:nil];
+    }
+    
+    
     
     if ([speakerKeywords containsObject:result]) {
         [self initShowResultView:result];

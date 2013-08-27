@@ -40,7 +40,7 @@
     [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:backBtn];
 
-    _homeBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 8, 16, 18)];
+    _homeBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 8, 20, 20)];
     [_homeBtn setBackgroundImage:[UIImage imageNamed:@"image_home_btn.png"] forState:UIControlStateNormal];
     [_homeBtn addTarget:self action:@selector(homeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:_homeBtn];

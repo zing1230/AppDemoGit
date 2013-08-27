@@ -162,6 +162,8 @@ static iFlyMSC * _instance;
             result = [result substringToIndex:(length - 1)];
         }
         NSLog(@"TXT:%@",result);
+    }else{
+//        return;
     }
     
     NSUserDefaults * userDefault = [NSUserDefaults standardUserDefaults];

@@ -43,6 +43,9 @@
     _keywordImgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_keywordImgView];
     
+    NSLog(@"_imgViewFrame:%@",NSStringFromCGRect(_imgViewFrame));
+
+    
 }
 
 - (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum
@@ -95,7 +98,7 @@
 - (void)createWithBlock:(CreatTimeDurationWithAlpha)block
 {
 //    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
+    int duration =  [self genertateRandomNumberStartNum:8 endNum:15];
     
     int y = 1;
     float alpha = 0;
@@ -103,11 +106,18 @@
     if (self.tag == 2 || self.tag == 3) {
         min = 6;
         max = 8;
+        if (CGRectGetWidth(self.frame) == 85) {
+            max = 7;
+        }
         y = [self genertateRandomNumberStartNum:min endNum:max];
+
     }else{
         min = 7;
         max = 11;
-        y = [self genertateRandomNumberStartNum:7 endNum:11];
+        if (CGRectGetWidth(self.frame) == 85) {
+            max = 10;
+        }
+        y = [self genertateRandomNumberStartNum:min endNum:max];
     }
 
     if (y > (max + min) * 1.0f / 2.0f) alpha = 1.0f;
@@ -119,21 +129,6 @@
 
 - (void)moveToLeft
 {
-//    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    
-    //    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
-    //    int y = 1;
-    //    float alpha = 0;
-    //    if (self.tag == 2 || self.tag == 3) {
-    //        y = [self genertateRandomNumberStartNum:5 endNum:8];
-    //        if (y > 6.5f) alpha = 1.0f;
-    //        else alpha = 0.5f;
-    //    }else{
-    //        y = [self genertateRandomNumberStartNum:7 endNum:11];
-    //        if (y > 9.0f) alpha = 1.0f;
-    //        else alpha = 0.5f;
-    //    }
-    
     [self createWithBlock:^(NSTimeInterval duration, NSTimeInterval y, float alpha) {
         [UIView animateWithDuration:duration animations:^{
             if (_isContinue) {
@@ -150,20 +145,6 @@
 
 - (void)moveToRight
 {
-    //    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    //    int duration =  [self genertateRandomNumberStartNum:7 endNum:15];
-    //    int y = 1;
-    //    float alpha = 0;
-    //    if (self.tag == 2 || self.tag == 3) {
-    //        y = [self genertateRandomNumberStartNum:5 endNum:8];
-    //        if (y > 6.5f) alpha = 1.0f;
-    //        else alpha = 0.5f;
-    //    }else{
-    //        y = [self genertateRandomNumberStartNum:7 endNum:11];
-    //        if (y > 9.0f) alpha = 1.0f;
-    //        else alpha = 0.5f;
-    //    }
-    
     [self createWithBlock:^(NSTimeInterval duration, NSTimeInterval y, float alpha) {
         
         [UIView animateWithDuration:duration animations:^{
