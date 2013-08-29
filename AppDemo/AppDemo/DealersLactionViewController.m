@@ -80,7 +80,7 @@ static MKMapView * mapView;
     [_dealersSubView addSubview:openBtn];
     
     
-    UIImageView * bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 566/2)];
+    UIImageView * bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 627/2)];
     bgImgView.userInteractionEnabled = YES;
     bgImgView.image = [UIImage imageNamed:@"dealers_2.png"];
     [_dealersSubView addSubview:bgImgView];
@@ -112,13 +112,11 @@ static MKMapView * mapView;
     CGRect frame = imgView.frame;
     if (!sender.selected) {
         imgView.image = [UIImage imageNamed:@"dealers_1.png"];
-        frame.origin.y -= .5f;
         frame.size.height = 627/2;
         
     }else{
         imgView.image = [UIImage imageNamed:@"dealers_2.png"];
-        frame.origin.y += .5f;
-        frame.size.height = 566/2;
+        frame.size.height = 627/2;
     }
     imgView.frame = frame;
     

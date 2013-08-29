@@ -35,7 +35,6 @@
 		652ED48D17B3BAF400731375 /* image_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED48817B3BAF100731375 /* image_1.png */; };
 		652ED48E17B3BAF400731375 /* image_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED48917B3BAF200731375 /* image_2.png */; };
 		652ED48F17B3BAF400731375 /* image_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED48A17B3BAF200731375 /* image_3.png */; };
-		652ED49017B3BAF400731375 /* image_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED48B17B3BAF200731375 /* image_4.png */; };
 		652ED49117B3BAF400731375 /* image_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED48C17B3BAF300731375 /* image_5.png */; };
 		652ED49D17B3BC8100731375 /* image_bg_round.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED49C17B3BC8100731375 /* image_bg_round.png */; };
 		652ED4A517B3D37E00731375 /* image_volume_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED4A017B3D37C00731375 /* image_volume_1.png */; };
@@ -67,6 +66,10 @@
 		658D2CF917C62CC900C59F4F /* image_floating_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 658D2CF817C62CC900C59F4F /* image_floating_bg.png */; };
 		658D2CFC17C6304800C59F4F /* CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D2CFB17C6304700C59F4F /* CustomPageControl.m */; };
 		658D2D0F17C79EDD00C59F4F /* dealers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 658D2D0E17C79ED600C59F4F /* dealers_bg.png */; };
+		659306A117CE1A8B002105C1 /* specil_offers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A017CE1A89002105C1 /* specil_offers_bg.png */; };
+		659306A317CE1BC1002105C1 /* image_carName.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A217CE1BBE002105C1 /* image_carName.png */; };
+		659306A617CE1E76002105C1 /* dealers_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A417CE1E70002105C1 /* dealers_1.png */; };
+		659306A717CE1E76002105C1 /* dealers_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A517CE1E72002105C1 /* dealers_2.png */; };
 		659708BB17B5F75700C6260F /* icon_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B517B5F75600C6260F /* icon_1@2x.png */; };
 		659708BC17B5F75700C6260F /* icon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B617B5F75600C6260F /* icon_2@2x.png */; };
 		659708BD17B5F75700C6260F /* icon_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B717B5F75600C6260F /* icon_3@2x.png */; };
@@ -109,7 +112,6 @@
 		65A14BE217C1B52900BC785E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A14BE117C1B52900BC785E /* CoreMedia.framework */; };
 		65A14BE417C1B5AE00BC785E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A14BE317C1B5AE00BC785E /* MediaPlayer.framework */; };
 		65A14BE817C1FCB100BC785E /* image_car_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BE717C1FCB100BC785E /* image_car_bg.png */; };
-		65A14BEA17C1FCDA00BC785E /* image_carName.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BE917C1FCDA00BC785E /* image_carName.png */; };
 		65A14BEC17C1FEB400BC785E /* tianlai_2-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BEB17C1FEB400BC785E /* tianlai_2-3.png */; };
 		65A14BEE17C1FF2600BC785E /* tianlai_2-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BED17C1FF2600BC785E /* tianlai_2-4.png */; };
 		65A14BF217C1FF9A00BC785E /* tianlai_icon_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A14BEF17C1FF9900BC785E /* tianlai_icon_0.png */; };
@@ -135,8 +137,6 @@
 		65F3D12A17BA3DC8003D220F /* keyword_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12017BA3DC3003D220F /* keyword_7.png */; };
 		65F3D12B17BA3DC8003D220F /* keyword_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12117BA3DC4003D220F /* keyword_8.png */; };
 		65F3D12C17BA3DC8003D220F /* keyword_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12217BA3DC5003D220F /* keyword_2.png */; };
-		65F3D12F17BA4006003D220F /* dealers_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12E17BA4006003D220F /* dealers_2.png */; };
-		65F3D13117BA4025003D220F /* dealers_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D13017BA4025003D220F /* dealers_1.png */; };
 		65F3D13317BA641B003D220F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F3D13217BA641B003D220F /* MapKit.framework */; };
 		65F3D13517BA662F003D220F /* image_open_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D13417BA662D003D220F /* image_open_btn.png */; };
 		65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D13717BA6EA0003D220F /* ModelDetailViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -146,7 +146,12 @@
 		65F3D14C17BB58E2003D220F /* image_point_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14A17BB58E2003D220F /* image_point_selected.png */; };
 		65F3D14D17BB58E2003D220F /* image_point_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14B17BB58E2003D220F /* image_point_normal.png */; };
 		65F3D14F17BB9F63003D220F /* car_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14E17BB9F63003D220F /* car_360.png */; };
-		65F62ED017B8CF3800866543 /* CustomKeywordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F62ECF17B8CF3800866543 /* CustomKeywordView.m */; };
+		65F4B70617CF6F6900552A88 /* image_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F4B70517CF6F6800552A88 /* image_4.png */; };
+		65F4B70817CF6FB900552A88 /* cloud_menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F4B70717CF6FB900552A88 /* cloud_menu_bg.png */; };
+		65F4B70B17CF714800552A88 /* CustomKeywordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4B70A17CF714700552A88 /* CustomKeywordView.m */; };
+		65F4B70D17CF7AF000552A88 /* image_buy_car_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F4B70C17CF7AEF00552A88 /* image_buy_car_tip.png */; };
+		65F4B71117CF83FD00552A88 /* image_cloction.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F4B71017CF83FD00552A88 /* image_cloction.png */; };
+		65F62ED017B8CF3800866543 /* CustomKeywordCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F62ECF17B8CF3800866543 /* CustomKeywordCellView.m */; };
 		65FAEBE717B901590026C485 /* msg_alert_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBE617B901590026C485 /* msg_alert_bg.png */; };
 		65FAEBE917B902540026C485 /* image_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBE817B902540026C485 /* image_back.png */; };
 		65FAEBEB17B902E20026C485 /* booking_car_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBEA17B902E20026C485 /* booking_car_bg.png */; };
@@ -154,7 +159,6 @@
 		65FAEBEF17B9039F0026C485 /* iamge_open_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBEE17B9039F0026C485 /* iamge_open_btn@2x.png */; };
 		65FAEBF117B903BB0026C485 /* iamge_open_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBF017B903BA0026C485 /* iamge_open_btn.png */; };
 		65FAEBF417B9047B0026C485 /* calculator_1_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBF217B9047B0026C485 /* calculator_1_bg.png */; };
-		65FAEBF717B907A60026C485 /* specil_offers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBF617B907A60026C485 /* specil_offers_bg.png */; };
 		65FAEBFC17B90FBD0026C485 /* image_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBFA17B90FBD0026C485 /* image_left_arrow.png */; };
 		65FAEBFD17B90FBD0026C485 /* image_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBFB17B90FBD0026C485 /* image_right_arrow.png */; };
 		65FAEBFF17B90FE20026C485 /* image_engine.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FAEBFE17B90FE20026C485 /* image_engine.png */; };
@@ -212,7 +216,6 @@
 		652ED48817B3BAF100731375 /* image_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_1.png; sourceTree = "<group>"; };
 		652ED48917B3BAF200731375 /* image_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_2.png; sourceTree = "<group>"; };
 		652ED48A17B3BAF200731375 /* image_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_3.png; sourceTree = "<group>"; };
-		652ED48B17B3BAF200731375 /* image_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_4.png; sourceTree = "<group>"; };
 		652ED48C17B3BAF300731375 /* image_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_5.png; sourceTree = "<group>"; };
 		652ED49C17B3BC8100731375 /* image_bg_round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_bg_round.png; sourceTree = "<group>"; };
 		652ED4A017B3D37C00731375 /* image_volume_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_volume_1.png; sourceTree = "<group>"; };
@@ -256,6 +259,10 @@
 		658D2CFA17C6304600C59F4F /* CustomPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPageControl.h; sourceTree = "<group>"; };
 		658D2CFB17C6304700C59F4F /* CustomPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPageControl.m; sourceTree = "<group>"; };
 		658D2D0E17C79ED600C59F4F /* dealers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_bg.png; sourceTree = "<group>"; };
+		659306A017CE1A89002105C1 /* specil_offers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specil_offers_bg.png; sourceTree = "<group>"; };
+		659306A217CE1BBE002105C1 /* image_carName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_carName.png; sourceTree = "<group>"; };
+		659306A417CE1E70002105C1 /* dealers_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_1.png; sourceTree = "<group>"; };
+		659306A517CE1E72002105C1 /* dealers_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_2.png; sourceTree = "<group>"; };
 		659708B517B5F75600C6260F /* icon_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_1@2x.png"; sourceTree = "<group>"; };
 		659708B617B5F75600C6260F /* icon_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_2@2x.png"; sourceTree = "<group>"; };
 		659708B717B5F75600C6260F /* icon_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_3@2x.png"; sourceTree = "<group>"; };
@@ -309,7 +316,6 @@
 		65A14BE117C1B52900BC785E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		65A14BE317C1B5AE00BC785E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		65A14BE717C1FCB100BC785E /* image_car_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_car_bg.png; sourceTree = "<group>"; };
-		65A14BE917C1FCDA00BC785E /* image_carName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_carName.png; sourceTree = "<group>"; };
 		65A14BEB17C1FEB400BC785E /* tianlai_2-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tianlai_2-3.png"; sourceTree = "<group>"; };
 		65A14BED17C1FF2600BC785E /* tianlai_2-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tianlai_2-4.png"; sourceTree = "<group>"; };
 		65A14BEF17C1FF9900BC785E /* tianlai_icon_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianlai_icon_0.png; sourceTree = "<group>"; };
@@ -335,8 +341,6 @@
 		65F3D12017BA3DC3003D220F /* keyword_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_7.png; sourceTree = "<group>"; };
 		65F3D12117BA3DC4003D220F /* keyword_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_8.png; sourceTree = "<group>"; };
 		65F3D12217BA3DC5003D220F /* keyword_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyword_2.png; sourceTree = "<group>"; };
-		65F3D12E17BA4006003D220F /* dealers_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_2.png; sourceTree = "<group>"; };
-		65F3D13017BA4025003D220F /* dealers_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_1.png; sourceTree = "<group>"; };
 		65F3D13217BA641B003D220F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		65F3D13417BA662D003D220F /* image_open_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_open_btn.png; sourceTree = "<group>"; };
 		65F3D13617BA6E9F003D220F /* ModelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDetailViewController.h; sourceTree = "<group>"; };
@@ -349,8 +353,14 @@
 		65F3D14A17BB58E2003D220F /* image_point_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_point_selected.png; sourceTree = "<group>"; };
 		65F3D14B17BB58E2003D220F /* image_point_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_point_normal.png; sourceTree = "<group>"; };
 		65F3D14E17BB9F63003D220F /* car_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_360.png; sourceTree = "<group>"; };
-		65F62ECE17B8CF3800866543 /* CustomKeywordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomKeywordView.h; sourceTree = "<group>"; };
-		65F62ECF17B8CF3800866543 /* CustomKeywordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomKeywordView.m; sourceTree = "<group>"; };
+		65F4B70517CF6F6800552A88 /* image_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_4.png; sourceTree = "<group>"; };
+		65F4B70717CF6FB900552A88 /* cloud_menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud_menu_bg.png; sourceTree = "<group>"; };
+		65F4B70917CF714700552A88 /* CustomKeywordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomKeywordView.h; sourceTree = "<group>"; };
+		65F4B70A17CF714700552A88 /* CustomKeywordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomKeywordView.m; sourceTree = "<group>"; };
+		65F4B70C17CF7AEF00552A88 /* image_buy_car_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_buy_car_tip.png; sourceTree = "<group>"; };
+		65F4B71017CF83FD00552A88 /* image_cloction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_cloction.png; sourceTree = "<group>"; };
+		65F62ECE17B8CF3800866543 /* CustomKeywordCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomKeywordCellView.h; sourceTree = "<group>"; };
+		65F62ECF17B8CF3800866543 /* CustomKeywordCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomKeywordCellView.m; sourceTree = "<group>"; };
 		65FAEBE617B901590026C485 /* msg_alert_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_alert_bg.png; sourceTree = "<group>"; };
 		65FAEBE817B902540026C485 /* image_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_back.png; sourceTree = "<group>"; };
 		65FAEBEA17B902E20026C485 /* booking_car_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = booking_car_bg.png; sourceTree = "<group>"; };
@@ -358,7 +368,6 @@
 		65FAEBEE17B9039F0026C485 /* iamge_open_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iamge_open_btn@2x.png"; sourceTree = "<group>"; };
 		65FAEBF017B903BA0026C485 /* iamge_open_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iamge_open_btn.png; sourceTree = "<group>"; };
 		65FAEBF217B9047B0026C485 /* calculator_1_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator_1_bg.png; sourceTree = "<group>"; };
-		65FAEBF617B907A60026C485 /* specil_offers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specil_offers_bg.png; sourceTree = "<group>"; };
 		65FAEBFA17B90FBD0026C485 /* image_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_left_arrow.png; sourceTree = "<group>"; };
 		65FAEBFB17B90FBD0026C485 /* image_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_right_arrow.png; sourceTree = "<group>"; };
 		65FAEBFE17B90FE20026C485 /* image_engine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_engine.png; sourceTree = "<group>"; };
@@ -434,10 +443,12 @@
 				397136091797AA3E00B09C64 /* AppDelegate.m */,
 				397136161797AAD000B09C64 /* RootViewController.h */,
 				397136171797AAD000B09C64 /* RootViewController.m */,
+				65F4B70917CF714700552A88 /* CustomKeywordView.h */,
+				65F4B70A17CF714700552A88 /* CustomKeywordView.m */,
+				65F62ECE17B8CF3800866543 /* CustomKeywordCellView.h */,
+				65F62ECF17B8CF3800866543 /* CustomKeywordCellView.m */,
 				659708C417B614C500C6260F /* CustomSpeakerView.h */,
 				659708C517B614C500C6260F /* CustomSpeakerView.m */,
-				65F62ECE17B8CF3800866543 /* CustomKeywordView.h */,
-				65F62ECF17B8CF3800866543 /* CustomKeywordView.m */,
 				659708C717B6191100C6260F /* CustomInputTextView.h */,
 				659708C817B6191100C6260F /* CustomInputTextView.m */,
 				652ED44C17B26D6200731375 /* LeftSideViewController.h */,
@@ -593,10 +604,11 @@
 				652ED4A317B3D37D00731375 /* image_volume_4.png */,
 				652ED4A417B3D37D00731375 /* image_volume_5.png */,
 				65FAEBE817B902540026C485 /* image_back.png */,
+				65F4B71017CF83FD00552A88 /* image_cloction.png */,
 				652ED48817B3BAF100731375 /* image_1.png */,
 				652ED48917B3BAF200731375 /* image_2.png */,
 				652ED48A17B3BAF200731375 /* image_3.png */,
-				652ED48B17B3BAF200731375 /* image_4.png */,
+				65F4B70517CF6F6800552A88 /* image_4.png */,
 				652ED48C17B3BAF300731375 /* image_5.png */,
 				652ED49C17B3BC8100731375 /* image_bg_round.png */,
 				652ED48617B3B9C300731375 /* image_pull_back.png */,
@@ -652,6 +664,8 @@
 		65FAEBE517B901300026C485 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				65F4B70C17CF7AEF00552A88 /* image_buy_car_tip.png */,
+				65F4B70717CF6FB900552A88 /* cloud_menu_bg.png */,
 				658D2CF817C62CC900C59F4F /* image_floating_bg.png */,
 				65A14BFB17C200CC00BC785E /* tianlai_2_1_1.png */,
 				65A14BFC17C200CD00BC785E /* tianlai_2_1_2.png */,
@@ -666,7 +680,7 @@
 				65A14BF117C1FF9A00BC785E /* tianlai_icon_2.png */,
 				65A14BEB17C1FEB400BC785E /* tianlai_2-3.png */,
 				65A14BED17C1FF2600BC785E /* tianlai_2-4.png */,
-				65A14BE917C1FCDA00BC785E /* image_carName.png */,
+				659306A217CE1BBE002105C1 /* image_carName.png */,
 				65A14BE717C1FCB100BC785E /* image_car_bg.png */,
 				657C965917BCFF9500BF1553 /* image_error_tip.png */,
 				657C965717BCFEC800BF1553 /* image_input_tip.png */,
@@ -676,8 +690,8 @@
 				65F3D13417BA662D003D220F /* image_open_btn.png */,
 				65847E3117C7A1060095C82C /* dealers_bg_shadow.png */,
 				658D2D0E17C79ED600C59F4F /* dealers_bg.png */,
-				65F3D13017BA4025003D220F /* dealers_1.png */,
-				65F3D12E17BA4006003D220F /* dealers_2.png */,
+				659306A417CE1E70002105C1 /* dealers_1.png */,
+				659306A517CE1E72002105C1 /* dealers_2.png */,
 				65FAEC0417B910570026C485 /* image_car.png */,
 				65FAEC0217B910440026C485 /* image_show_type.png */,
 				65F3D14E17BB9F63003D220F /* car_360.png */,
@@ -685,7 +699,7 @@
 				65FAEBFE17B90FE20026C485 /* image_engine.png */,
 				65FAEBFA17B90FBD0026C485 /* image_left_arrow.png */,
 				65FAEBFB17B90FBD0026C485 /* image_right_arrow.png */,
-				65FAEBF617B907A60026C485 /* specil_offers_bg.png */,
+				659306A017CE1A89002105C1 /* specil_offers_bg.png */,
 				65FAEBF217B9047B0026C485 /* calculator_1_bg.png */,
 				65F3D11817BA3D3E003D220F /* calculator_2_bg.png */,
 				65FAEBEC17B903330026C485 /* test_driving_bg.png */,
@@ -758,7 +772,6 @@
 				652ED48D17B3BAF400731375 /* image_1.png in Resources */,
 				652ED48E17B3BAF400731375 /* image_2.png in Resources */,
 				652ED48F17B3BAF400731375 /* image_3.png in Resources */,
-				652ED49017B3BAF400731375 /* image_4.png in Resources */,
 				652ED49117B3BAF400731375 /* image_5.png in Resources */,
 				652ED49D17B3BC8100731375 /* image_bg_round.png in Resources */,
 				652ED4A517B3D37E00731375 /* image_volume_1.png in Resources */,
@@ -802,7 +815,6 @@
 				65FAEBEF17B9039F0026C485 /* iamge_open_btn@2x.png in Resources */,
 				65FAEBF117B903BB0026C485 /* iamge_open_btn.png in Resources */,
 				65FAEBF417B9047B0026C485 /* calculator_1_bg.png in Resources */,
-				65FAEBF717B907A60026C485 /* specil_offers_bg.png in Resources */,
 				65FAEBFC17B90FBD0026C485 /* image_left_arrow.png in Resources */,
 				65FAEBFD17B90FBD0026C485 /* image_right_arrow.png in Resources */,
 				65FAEBFF17B90FE20026C485 /* image_engine.png in Resources */,
@@ -819,8 +831,6 @@
 				65F3D12A17BA3DC8003D220F /* keyword_7.png in Resources */,
 				65F3D12B17BA3DC8003D220F /* keyword_8.png in Resources */,
 				65F3D12C17BA3DC8003D220F /* keyword_2.png in Resources */,
-				65F3D12F17BA4006003D220F /* dealers_2.png in Resources */,
-				65F3D13117BA4025003D220F /* dealers_1.png in Resources */,
 				65F3D13517BA662F003D220F /* image_open_btn.png in Resources */,
 				65F3D14517BB345E003D220F /* input_bg.png in Resources */,
 				65F3D14C17BB58E2003D220F /* image_point_selected.png in Resources */,
@@ -830,7 +840,6 @@
 				657C965A17BCFF9500BF1553 /* image_error_tip.png in Resources */,
 				65A14BE017C1B45B00BC785E /* dangerous.mov in Resources */,
 				65A14BE817C1FCB100BC785E /* image_car_bg.png in Resources */,
-				65A14BEA17C1FCDA00BC785E /* image_carName.png in Resources */,
 				65A14BEC17C1FEB400BC785E /* tianlai_2-3.png in Resources */,
 				65A14BEE17C1FF2600BC785E /* tianlai_2-4.png in Resources */,
 				65A14BF217C1FF9A00BC785E /* tianlai_icon_0.png in Resources */,
@@ -849,6 +858,14 @@
 				65847E3217C7A1060095C82C /* dealers_bg_shadow.png in Resources */,
 				65847E6F17CB641C0095C82C /* keyword_10.png in Resources */,
 				65BC6D4117CB8B46004D767E /* image_home_btn.png in Resources */,
+				659306A117CE1A8B002105C1 /* specil_offers_bg.png in Resources */,
+				659306A317CE1BC1002105C1 /* image_carName.png in Resources */,
+				659306A617CE1E76002105C1 /* dealers_1.png in Resources */,
+				659306A717CE1E76002105C1 /* dealers_2.png in Resources */,
+				65F4B70617CF6F6900552A88 /* image_4.png in Resources */,
+				65F4B70817CF6FB900552A88 /* cloud_menu_bg.png in Resources */,
+				65F4B70D17CF7AF000552A88 /* image_buy_car_tip.png in Resources */,
+				65F4B71117CF83FD00552A88 /* image_cloction.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,7 +904,7 @@
 				659708D817B629B400C6260F /* CarModelsViewController.m in Sources */,
 				659708DB17B62A7C00C6260F /* SpecialOffersViewController.m in Sources */,
 				6597090717B6360B00C6260F /* RNExpandingButtonBar.m in Sources */,
-				65F62ED017B8CF3800866543 /* CustomKeywordView.m in Sources */,
+				65F62ED017B8CF3800866543 /* CustomKeywordCellView.m in Sources */,
 				65FAEC0817B912E10026C485 /* CarDetailViewController.m in Sources */,
 				65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */,
 				65F3D13B17BA7661003D220F /* ConfigData.m in Sources */,
@@ -900,6 +917,7 @@
 				65847E4717C7B4FD0095C82C /* SBJsonParser.m in Sources */,
 				65847E4817C7B4FD0095C82C /* SBJsonWriter.m in Sources */,
 				65847E6B17C7B5760095C82C /* VerifyMyApp.m in Sources */,
+				65F4B70B17CF714800552A88 /* CustomKeywordView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

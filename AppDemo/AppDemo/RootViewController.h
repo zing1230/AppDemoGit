@@ -23,14 +23,16 @@
 #import "QuadCurveMenu.h"
 #import "CustomSpeakerView.h"
 #import "CustomInputTextView.h"
+
 #import "CustomKeywordView.h"
 
+#import "CustomKeywordCellView.h"
 
 
 @interface RootViewController : UIViewController
 <iFlyMSCDelegate,QuadCurveMenuDelegate,
 CustomSpeakerViewDelegate,InputTextViewDelegate,
-CustomKeywordViewDelegate>
+CustomKeywordCellViewDelegate,CustomKeywordViewDelegate>
 
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;

@@ -11,6 +11,8 @@
 
 
 @property (nonatomic,strong) UIImageView * tipImgView;
+@property (nonatomic,strong) NSTimer * timer;
+
 @end
 
 
@@ -49,6 +51,8 @@
         [txtField becomeFirstResponder];
         
         [self addSubview:txtField];
+        
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(checkInputText) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -57,7 +61,22 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSLog(@"string:%@",textField.text);
-    if ([textField.text isEqualToString:@"买车"]) {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"textField.text:%@",textField.text);
+
+    [self commitBtnPressed:nil];
+    
+    return YES;
+    
+}
+
+- (void)checkInputText
+{
+    if ([txtField.text isEqualToString:@"买车"]) {
         if (!_tipImgView) {
             _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 102)];
             _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
@@ -67,30 +86,6 @@
     }else{
         [_tipImgView removeFromSuperview];
     }
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    NSLog(@"textField.text:%@",textField.text);
-
-    if ([textField.text isEqualToString:@"买车"]) {
-        if (!_tipImgView) {
-            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
-            _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
-        }
-        [self addSubview:_tipImgView];
-        
-    }else{
-        [_tipImgView removeFromSuperview];
-    }
-    [txtField resignFirstResponder];
-    
-    
-    [self commitBtnPressed:nil];
-    
-    return YES;
-    
 }
 
 

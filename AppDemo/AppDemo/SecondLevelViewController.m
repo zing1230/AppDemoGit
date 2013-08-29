@@ -40,6 +40,11 @@
     [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:backBtn];
 
+    _cloctionBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 8, 20, 20)];
+    [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloction.png"] forState:UIControlStateNormal];
+//    [_cloctionBtn addTarget:self action:@selector(homeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_navImgView addSubview:_cloctionBtn];
+    
     _homeBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 8, 20, 20)];
     [_homeBtn setBackgroundImage:[UIImage imageNamed:@"image_home_btn.png"] forState:UIControlStateNormal];
     [_homeBtn addTarget:self action:@selector(homeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -48,7 +53,6 @@
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 2, 170, 30)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = RGBACOLOR(230, 230, 230,.9f);
-//    titleLabel.font = [UIFont fontWithName:@"CourierNewPSMT" size:18];
         titleLabel.font = [UIFont fontWithName:@"AricLMT" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [_navImgView addSubview:titleLabel];
@@ -58,7 +62,21 @@
     
     _bgScrollView = [[UIScrollView alloc] initWithFrame:_childFrame];
     _bgScrollView.backgroundColor = [UIColor clearColor];
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
+}
+
 
 - (void)setTitle:(NSString *)title
 {

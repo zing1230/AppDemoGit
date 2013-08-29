@@ -12,7 +12,6 @@
 #import "BookingCarViewController.h"
 #import "CalculatorViewController.h"
 #import "DealersLactionViewController.h"
-#import "UIViewController+MMDrawerController.h"
 
 
 @interface Show360ViewController ()
@@ -33,17 +32,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-        self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
-}
 
 - (void)viewDidLoad
 {
@@ -62,10 +50,13 @@
     frame.size.width = 480;
     self.navImgView.frame = frame;
     
+    frame = self.cloctionBtn.frame;
+    frame.origin.x = 420;
+    self.cloctionBtn.frame = frame;
+    
     CGRect tframe = self.homeBtn.frame;
     tframe.origin.x = 450;
     self.homeBtn.frame = tframe;
-    
     
     self.bgImgView.frame = CGRectMake(0, 0, 480, 285);
     self.bgImgView.image = [UIImage imageNamed:@"car_360.png"];
