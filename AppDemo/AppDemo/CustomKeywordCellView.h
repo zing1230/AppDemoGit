@@ -18,7 +18,7 @@
 @end
 
 
-typedef void(^CreatTimeDurationWithAlpha)(NSTimeInterval duration, int y,float alpha);
+typedef void(^CreatTimeDurationWithAlpha)(int scale,float alpha);
 
 @protocol CustomKeywordCellViewDelegate;
 @interface CustomKeywordCellView : UIView

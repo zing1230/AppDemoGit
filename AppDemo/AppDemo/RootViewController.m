@@ -15,14 +15,11 @@
 <VerifyMyAppDelegate>
 {
     BOOL animationStoped;
-    UIView * cloudFunctionView;
+    CustomFunctionView * cloudFunctionView;
     
 }
 @property (nonatomic,strong) CustomSpeakerView * speakerView;
 @property (nonatomic,strong) CustomInputTextView * inputTextView;
-
-@property (nonatomic,strong) NSMutableArray * allCurShowKeywords;
-@property (nonatomic,strong) NSMutableArray * allKeywords;
 
 @property (nonatomic,strong) CustomKeywordView * keywordView;
 
@@ -67,8 +64,6 @@ static NSArray * speakerKeywords;
     _speakerView.delegate = self;
     [self.view addSubview:_speakerView];
     
-    _allCurShowKeywords = [[NSMutableArray alloc] init];
-    _allKeywords = [[NSMutableArray alloc] init];
     
     _keywordView = [[CustomKeywordView alloc] initWithFrame:CGRectMake(0, 105, 180, 240)];
     _keywordView.delegate = self;
@@ -77,7 +72,6 @@ static NSArray * speakerKeywords;
     
     
     animationStoped = YES;
-//    [self initKeywordView];
     
     VerifyMyApp * app = [[VerifyMyApp alloc] init];
     app.delegate = self;
@@ -122,7 +116,7 @@ static NSArray * speakerKeywords;
         [view setKeywordViewHiddenStatus:YES];
         [self initMenuView];
         [self.view bringSubviewToFront:_speakerView];
- 
+        
     }
 }
 
@@ -135,222 +129,8 @@ static NSArray * speakerKeywords;
 
 - (void)verifyWithCode:(VERIFY_CODE)code resultJsonString:(NSString *)jsonTxt
 {
-    if (code == VERIFY_CODE_FAILED) exit(0);    
+    if (code == VERIFY_CODE_FAILED) exit(0);
 }
-
-//- (void)keywordViewTaped:(UITapGestureRecognizer *)tap
-//{
-//    CustomKeywordCellView * keywordView = (CustomKeywordCellView *)[tap view];
-//    if (_curSelectedView) {
-//        _curSelectedView = nil;
-//    }
-//    _curSelectedView = keywordView;
-//    int index = keywordView.tag;
-//    if (index == 1) {
-//        
-//        if (animationStoped) {
-//            keywordView.hidden = YES;
-//            
-//            [self setKeywordViewHiddenStatus:YES];
-//            
-//            NSString * imgName = [NSString stringWithFormat:@"keyword_%d.png",index + 1];
-//            UIImage * image = [UIImage imageNamed:imgName];
-//            
-//            CGRect frame = CGRectMake(CGRectGetMinX(keywordView.keywordImgView.frame), CGRectGetMinY(keywordView.frame), CGRectGetWidth(keywordView.keywordImgView.frame), CGRectGetHeight(keywordView.keywordImgView.frame));
-//            
-//            _curShowKeywordImgView = [[UIImageView alloc] initWithFrame:frame];
-//            _curShowKeywordImgView.image = image;
-//            [self.view addSubview:_curShowKeywordImgView];
-//            
-//            [UIView animateWithDuration:0.6f animations:^{
-//                int imgWidth = image.size.width;
-//                int imgHeight = image.size.height;
-//                float scale = 1;
-//                if (imgWidth == 200) {
-//                    scale = 0.7f;
-//                }else{
-//                    scale = 0.5f;
-//                }
-//                _curShowKeywordImgView.frame = CGRectMake(10, 150,imgWidth * scale , imgHeight * scale);
-//            } completion:^(BOOL finished) {
-//                
-//            }];
-//            [self initMenuView];
-//            [self.view bringSubviewToFront:_speakerView];
-//            
-//        }
-//    }
-//}
-//
-//- (void)initKeywordView
-//{
-//    float originY = 105;
-//    int offsetW = 0;
-//    for (int i = 0; i < 10; i ++) {
-//        CustomKeywordCellView * keywordView = [[CustomKeywordCellView alloc] initWithFrame:CGRectMake(15, originY , 100, 50)];
-//        keywordView.delegate = self;
-//        keywordView.tag = i;
-//        keywordView.backgroundColor = [UIColor clearColor];
-//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
-//        [keywordView addGestureRecognizer:tap];
-//        [_allKeywords addObject:keywordView];
-//    }
-//    
-//    for (int i = 0; i < 5; i ++) {
-//        
-//        if (i < 3) {
-//            offsetW += 30;
-//        }else {
-//            offsetW -= 30;
-//        }
-//        
-//        CustomKeywordCellView * keywordView = [_allKeywords objectAtIndex:i];
-//        keywordView.frame = CGRectMake(15, originY + 46 * i ,  55 + offsetW, 45 + 25);
-//        [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",i + 1]];
-//        
-//        [keywordView startAnimation];
-//        [keywordView startReplaceCurView];
-//        
-//        [self.view addSubview:keywordView];
-//        [_allCurShowKeywords addObject:keywordView];
-//        
-//        if (i == 1) {
-//            [self.view bringSubviewToFront:keywordView];
-//        }
-//        NSLog(@"NSStringFromCGRect:%@",NSStringFromCGRect(keywordView.frame));
-//    }
-//    [self.view bringSubviewToFront:[_allCurShowKeywords objectAtIndex:1]];
-//}
-//
-//#pragma mark setKeywordViewHiddenStatus
-//- (void)setKeywordViewHiddenStatus:(BOOL)status
-//{
-//    if (status) {
-//        for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
-//            CustomKeywordCellView * keywordView = [_allCurShowKeywords objectAtIndex:i];
-//            [keywordView stopReplaceCurView];
-//            [keywordView slideOutTo:kFTAnimationLeft inView:self.view duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
-////            [keywordView stopAnimation];
-//        }
-//    }else{
-//        for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
-//            CustomKeywordCellView * keywordView = [_allCurShowKeywords objectAtIndex:i];
-//            [keywordView startReplaceCurView];
-//            [keywordView slideInFrom:kFTAnimationLeft inView:self.viewToAnimate.superview duration:1.2f delegate:nil startSelector:nil stopSelector:nil];
-////            [keywordView startAnimation];
-//        }
-//    }
-//}
-//
-//#pragma mark CustomKeywordCellViewDelegate
-//- (void)startReplaceOtherKeyworkd:(CustomKeywordCellView *)view curIndex:(int)index
-//{
-//    //    NSLog(@"__FUNCTION__:%s __LINE__:%d index:%d",__FUNCTION__,__LINE__,index);
-//    if (index != 1) {
-//        if (!animationStoped) {
-//            NSLog(@"123123123__________________________");
-//            [view startReplaceCurView];
-//            return;
-//        }
-//        
-//        NSMutableArray * data = [[NSMutableArray alloc] init];
-//        for (CustomKeywordCellView * keyview in _allCurShowKeywords) {
-//            [data addObject:[NSNumber numberWithInt:keyview.tag]];
-//        }
-//        
-//        int generateIndex = [self genertateRandomNumberStartNum:0 endNum:9 cannotContainsKey:data];
-//                
-//        CGRect frame = view.frame;
-//        int curIndex = [self getCurIndexInArray:view];
-//        if (curIndex > [_allCurShowKeywords count]) {
-//            NSLog(@"!curIndex__________________________:%d",curIndex);
-//            [view startReplaceCurView];
-//            return;
-//        }
-//        
-//        CustomKeywordCellView * keywordView = [_allKeywords objectAtIndex:generateIndex];
-//        keywordView.frame = frame;
-//        
-//        [keywordView setImageName:[NSString stringWithFormat:@"keyword_%d.png",keywordView.tag + 1]];
-//        
-//        keywordView.keywordImgView.alpha = 0;
-//        
-//        [self.view addSubview:keywordView];
-//        
-//        [UIView animateWithDuration:1.0f animations:^{
-//            view.keywordImgView.alpha = 0;
-//            animationStoped = NO;
-//        } completion:^(BOOL finished) {
-//            [view stopAnimation];
-//            [view removeFromSuperview];
-//            view.keywordImgView.alpha = 1;
-//        }];
-//        
-//        [self.view bringSubviewToFront:[_allCurShowKeywords objectAtIndex:1]];
-//        
-//        if (_speakerBackView) {
-//            [self.view bringSubviewToFront:_speakerBackView];
-//        }
-//        
-//        if (cloudFunctionView) {
-//            [self.view bringSubviewToFront:cloudFunctionView];
-//        }
-//        
-//        [self performSelector:@selector(startAnimation:) withObject:keywordView afterDelay:0.5f];
-//
-//        NSLog(@"__FUNCTION__:%s __LINE__:%d curIndex:%d",__FUNCTION__,__LINE__,curIndex);
-//        [_allCurShowKeywords replaceObjectAtIndex:curIndex withObject:keywordView];
-//        NSLog(@"__FUNCTION__:%s __LINE__:%d ",__FUNCTION__,__LINE__);
-//    }
-//}
-//
-//- (void)startAnimation:(CustomKeywordCellView *)keywordView
-//{
-//    [UIView animateWithDuration:1.0f animations:^{
-//        keywordView.keywordImgView.alpha = 1.0f;
-////        [keywordView startAnimation];
-//    } completion:^(BOOL finished) {
-//        [keywordView startAnimation];
-//        [keywordView startReplaceCurView];
-//        animationStoped = YES;
-//    }];
-//}
-//
-//- (int)getCurIndexInArray:(CustomKeywordCellView *)view
-//{
-//    int i = 0;
-//    for (CustomKeywordCellView * keywordView in _allCurShowKeywords) {
-//        if (keywordView == view) {
-//            return i;
-//        }
-//        i++;
-//    }
-//    //    for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
-//    //        CustomKeywordCellView * keywordView = [_allCurShowKeywords objectAtIndex:i];
-//    //        if (keywordView == view) {
-//    //            return i;
-//    //        }
-//    //    }
-//    //    return 0;
-//}
-//
-//- (int)genertateRandomNumberStartNum:(int)startNum endNum:(int)endNum cannotContainsKey:(NSArray *)contaisKey
-//{
-//    if (startNum > endNum) {
-//        return endNum;
-//    }
-//    for (int i = startNum; i < endNum; i ++) {
-//        int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
-//        NSLog(@"x:%d",x);
-//        NSNumber * number = [NSNumber numberWithInt:x];
-//        if (![contaisKey containsObject:number]) {
-//            return x;
-//        }else{
-//            i = i - 1; //发现有重复则-1
-//        }
-//    }
-//    return startNum;
-//}
 
 - (void)initTitleView
 {
@@ -401,28 +181,15 @@ static NSArray * speakerKeywords;
         cloudFunctionView = nil;
     }
     
-    cloudFunctionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
-    cloudFunctionView.backgroundColor = [UIColor clearColor];
-    cloudFunctionView.layer.opaque = NO;
-    UIImage * img = [UIImage imageNamed:@"cloud_menu_bg.png"];
-    UIImageView * imgView = [[UIImageView alloc] initWithImage:img];
-    imgView.frame = CGRectMake(-2, 38, 324, 744/2);
-    [cloudFunctionView addSubview:imgView];
+    cloudFunctionView = [[CustomFunctionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
     [self.view addSubview:cloudFunctionView];
     
     [UIView animateWithDuration:0.618f animations:^{
         cloudFunctionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }];
-    
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cloudFunctionTaped:)];
-    [cloudFunctionView addGestureRecognizer:tap];
 }
 
-- (void)cloudFunctionTaped:(UITapGestureRecognizer *)tap
-{
-        [cloudFunctionView removeFromSuperview];
-        cloudFunctionView = nil;
-}
+
 
 - (void)openLeftViewBtnPressed:(UIButton *)sender
 {
@@ -498,7 +265,7 @@ static NSArray * speakerKeywords;
     }
     
     if (_buyCarImgView) {
-        [UIView animateWithDuration:0.6f animations:^{
+        [UIView animateWithDuration:0.3f animations:^{
             _buyCarImgView.alpha = 0;
         } completion:^(BOOL finished) {
             [_buyCarImgView removeFromSuperview];
@@ -507,7 +274,7 @@ static NSArray * speakerKeywords;
     }
     _curSelectedView.hidden = NO;
     
-    [UIView animateWithDuration:0.6f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         CGRect frame = CGRectMake(CGRectGetMinX(_curSelectedView.frame), CGRectGetMinY(_curSelectedView.frame) + CGRectGetMinY(_keywordView.frame), CGRectGetWidth(_curSelectedView.keywordImgView.frame), CGRectGetHeight(_curSelectedView.keywordImgView.frame));
         
         
@@ -518,7 +285,7 @@ static NSArray * speakerKeywords;
         _curShowKeywordImgView = nil;
     }];
     
-//    [self setKeywordViewHiddenStatus:NO];
+    //    [self setKeywordViewHiddenStatus:NO];
     [_keywordView setKeywordViewHiddenStatus:NO];
 }
 
@@ -540,12 +307,12 @@ static NSArray * speakerKeywords;
 {
     NSLog(@"Select the index : %d",idx);
     //    [self backBtnPressed:_backBtn];
-    [UIView animateWithDuration:0.6f animations:^{
-        _backBtn.alpha = 0;
-    } completion:^(BOOL finished) {
-        [_backBtn removeFromSuperview];
-        [self resetViewStatus];
-    }];
+    //    [UIView animateWithDuration:0.6f animations:^{
+    //        _backBtn.alpha = 0;
+    //    } completion:^(BOOL finished) {
+    //        [_backBtn removeFromSuperview];
+    //        [self resetViewStatus];
+    //    }];
     //    return;
     switch (idx) {
         case 0:
@@ -655,13 +422,6 @@ static NSArray * speakerKeywords;
 #pragma mark CustomSpeakerViewDelegate
 - (void)touchBegan:(CustomSpeakerView *)view
 {
-    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
-    //    [self initSpeakerView];
-    //    [self.view bringSubviewToFront:_speakerBackView];
-}
-
-- (void)starRec
-{
     [_backBtn removeFromSuperview];
     [self resetViewStatus];
     [self noResultViewTaped:nil];
@@ -670,6 +430,15 @@ static NSArray * speakerKeywords;
         [_buyCarTipView removeFromSuperview];
         _buyCarTipView = nil;
     }
+    
+    
+    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
+    //    [self initSpeakerView];
+    //    [self.view bringSubviewToFront:_speakerBackView];
+}
+
+- (void)starRec
+{
     
     [_iflyMSC startRecongnizer];
     [self initSpeakerView];
@@ -709,7 +478,6 @@ static NSArray * speakerKeywords;
         _inputTextView = nil;
     }
     
-//    [self setKeywordViewHiddenStatus:YES];
     [_keywordView setKeywordViewHiddenStatus:YES];
     _inputTextView = [[CustomInputTextView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, SCREEN_HEIGHT - 55)];
     _inputTextView.delegate = self;
@@ -721,8 +489,7 @@ static NSArray * speakerKeywords;
 #pragma mark InputTextViewDelegate
 - (void)inputTextViewRemoved
 {
-//    [self setKeywordViewHiddenStatus:NO];
-        [_keywordView setKeywordViewHiddenStatus:YES];
+    [_keywordView setKeywordViewHiddenStatus:NO];
 }
 
 - (void)inputTextViewCommit:(NSString *)inputTxt
@@ -747,12 +514,12 @@ static NSArray * speakerKeywords;
     _buyCarTipView.userInteractionEnabled = YES;
     _buyCarTipView.image = image;
     [self.view addSubview:_buyCarTipView];
-
+    
     UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(5, 15, 120, 80)];
     [btn addTarget:self action:@selector(keywordBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     btn.backgroundColor = [UIColor clearColor];
     [_buyCarTipView addSubview:btn];
-
+    
 }
 
 - (void)keywordBtnPressed:(UIButton *)btn
@@ -760,7 +527,7 @@ static NSArray * speakerKeywords;
     [_buyCarTipView removeFromSuperview];
     [self initBuyCarView];
     [self.view bringSubviewToFront:_speakerView];
-
+    
 }
 
 - (void)initBuyCarView
@@ -888,8 +655,7 @@ static NSArray * speakerKeywords;
         [self initShowResultView:result];
         
     }else{
-//        [self setKeywordViewHiddenStatus:YES];
-            [_keywordView setKeywordViewHiddenStatus:YES];
+        [_keywordView setKeywordViewHiddenStatus:YES];
         [self initResultNoneView];
     }
     [self.view bringSubviewToFront:_speakerView];
@@ -919,8 +685,7 @@ static NSArray * speakerKeywords;
 
 - (void)noResultViewTaped:(UITapGestureRecognizer *)tap
 {
-//    [self setKeywordViewHiddenStatus:NO];
-        [_keywordView setKeywordViewHiddenStatus:NO];
+    [_keywordView setKeywordViewHiddenStatus:NO];
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 0;
     } completion:^(BOOL finished) {
@@ -932,11 +697,9 @@ static NSArray * speakerKeywords;
 - (void)initShowResultView:(NSString *)result
 {
     
-//    [self setKeywordViewHiddenStatus:YES];
-        [_keywordView setKeywordViewHiddenStatus:YES];
+    [_keywordView setKeywordViewHiddenStatus:YES];
     if ([result isEqualToString:@"买车"]) {
-                [self initTipMenuView];
-//        [self initBuyCarView];
+        [self initTipMenuView];
     }else{
         
     }

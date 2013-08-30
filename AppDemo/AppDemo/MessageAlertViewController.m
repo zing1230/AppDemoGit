@@ -28,10 +28,16 @@
     [super viewDidLoad];
     [self setTitle:@"消息提醒"];
     
-    self.bgImgView.frame = CGRectMake(0, SCREEN_HEIGHT - 425, 320, 425);
+    
+    self.bgScrollView.frame = CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_BAR_HEIGHT);
+    
+    self.bgImgView.frame = CGRectMake(0, 0, 320, 512);
     self.bgImgView.image = [UIImage imageNamed:@"msg_alert_bg.png"];
-    [self.view addSubview:self.bgImgView];
-	// Do any additional setup after loading the view.
+    
+    [self.bgScrollView addSubview:self.bgImgView];
+    [self.bgScrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 512)];
+    [self.view addSubview:self.bgScrollView];
+
 }
 
 

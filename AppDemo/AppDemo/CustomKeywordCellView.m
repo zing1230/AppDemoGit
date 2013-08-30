@@ -77,19 +77,9 @@ static float interval = 0.1f;
 
 - (void)startAnimation
 {
-//    int x =  [self genertateRandomNumberStartNum:1 endNum:10];
-//    if (x % 2 == 0) {
-//        [self moveToLeft];
-//    }else{
-//        [self moveToRight];
-//    }
-    
     if (_timer) [_timer invalidate];
     _timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(startMove) userInfo:nil repeats:YES];
-    [_timer fire];
-    if (self.tag != 1) {
-        [self startScaleAndChangeAlpha];
-    }else{
+    if (self.tag == 1) {
         _keywordImgView.transform = CGAffineTransformMakeScale(1.3f,1.3f);
     }
 }
@@ -97,10 +87,6 @@ static float interval = 0.1f;
 - (void)stopAnimation
 {
     if (_timer) [_timer invalidate];
-    
-//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(startReplace) object:nil];
-//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToRight) object:nil];
-//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveToLeft) object:nil];
 }
 
 
@@ -108,6 +94,8 @@ static float interval = 0.1f;
 {
     int x =  [self genertateRandomNumberStartNum:15 endNum:30];
     [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
+   
+    [self startScaleAndChangeAlpha:x / 2];
 }
 
 - (void)doDelegate
@@ -124,9 +112,7 @@ static float interval = 0.1f;
 
 - (void)createWithBlock:(CreatTimeDurationWithAlpha)block
 {
-    //    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);
-    int duration =  [self genertateRandomNumberStartNum:8 endNum:15];
-    
+    //    NSLog(@"__FUNCTION__:%s  __LINE__:%d ",__FUNCTION__,__LINE__);    
     int y = 1;
     float alpha = 0;
     int min,max;
@@ -150,74 +136,17 @@ static float interval = 0.1f;
     if (y > (max + min) * 1.0f / 2.0f) alpha = 1.0f;
     else alpha = 0.5f;
     
-    block(duration,y,alpha);
+    block(y,alpha);
     return;
 }
 
-
-
-//- (void)createWithBlock:(CreatTimeDurationWithAlpha)block
-//{
-//    int duration =  [self genertateRandomNumberStartNum:8 endNum:20];
-//    
-//    int y = 1;
-//    float alpha = 0;
-//    
-//    if ((CGRectGetWidth(self.frame) == 85 && self.tag == 2) || (CGRectGetWidth(self.frame) == 85 &&self.tag == 3))
-//    {
-//        y = 5;
-//    }else if(CGRectGetWidth(self.frame) == 85){
-//        y = 7;
-//    }else{
-//        y = [self genertateRandomNumberStartNum:6 endNum:8];
-//    }
-//    
-//    int temp = [self genertateRandomNumberStartNum:7 endNum:12];
-//    
-//    if (temp > 10) alpha = 1.0f;
-//    else alpha = temp * 1.0 / 10.0f;
-//    
-//    block(duration,y,alpha);
-//    return;
-//}
-
-- (void)moveToLeft
+- (void)startScaleAndChangeAlpha:(NSTimeInterval)duration
 {
-    [self createWithBlock:^(NSTimeInterval duration, int y, float alpha) {
-        [UIView animateWithDuration:duration animations:^{
-            CGRect frame = _keywordImgView.frame;
-            frame.origin.x = 0;
-            _keywordImgView.frame = frame;
-            _keywordImgView.alpha = alpha;
-            _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
-        }];
-        [self performSelector:@selector(moveToRight) withObject:nil afterDelay:duration];
-    }];
-}
 
-- (void)moveToRight
-{
-    [self createWithBlock:^(NSTimeInterval duration, int y, float alpha) {
-        
-        [UIView animateWithDuration:duration animations:^{
-            CGRect frame = _keywordImgView.frame;
-            frame.origin.x = CGRectGetWidth(self.frame) - CGRectGetWidth(_keywordImgView.frame);
-            _keywordImgView.frame = frame;
-            _keywordImgView.alpha = alpha;
-            _keywordImgView.transform = CGAffineTransformMakeScale(y * 1.0f/ 10.0f, y * 1.0f/ 10.0f);
-        }];
-        [self performSelector:@selector(moveToLeft) withObject:nil afterDelay:duration];
-    }];
-}
-
-
-- (void)startScaleAndChangeAlpha
-{
-    [self createWithBlock:^(NSTimeInterval duration, int y, float alpha) {
-        NSLog(@"duration:%f   alpha:%.2f . y:%d",duration,alpha,y);
+    [self createWithBlock:^(int scale, float alpha) {
         [UIView animateWithDuration:duration animations:^{
             _keywordImgView.alpha = alpha;
-            _keywordImgView.transform = CGAffineTransformMakeScale((y * 1.0f)/ 10.0f, (y * 1.0f)/ 10.0f);
+            _keywordImgView.transform = CGAffineTransformMakeScale((scale * 1.0f)/ 10.0f, (scale * 1.0f)/ 10.0f);
         }];
     }];
     

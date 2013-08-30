@@ -40,9 +40,9 @@
     [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:backBtn];
 
-    _cloctionBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 8, 20, 20)];
-    [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloction.png"] forState:UIControlStateNormal];
-//    [_cloctionBtn addTarget:self action:@selector(homeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    _cloctionBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 9, 19, 19)];
+    [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
+    [_cloctionBtn addTarget:self action:@selector(cloctionBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:_cloctionBtn];
     
     _homeBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 8, 20, 20)];
@@ -92,6 +92,17 @@
                                                cancelButtonTitle:@"取消"
                                                otherButtonTitles:nil];
     [alertView show];
+}
+
+- (void)cloctionBtnPressed:(UIButton *)sender
+{
+    if (!sender.selected) {
+        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_uncloction.png"] forState:UIControlStateNormal];
+    }else{
+        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
+
+    }
+    sender.selected = !sender.selected;
 }
 
 - (void)backBtnPressed:(UIButton *)sender

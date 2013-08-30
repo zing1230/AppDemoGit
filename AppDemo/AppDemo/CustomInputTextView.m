@@ -98,7 +98,7 @@
     if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
         [_delegate inputTextViewCommit:txt];
     }
-    
+            [_timer invalidate];
 }
 
 
@@ -108,6 +108,7 @@
     if ([_delegate respondsToSelector:@selector(inputTextViewRemoved)]) {
         [_delegate inputTextViewRemoved];
     }
+    [_timer invalidate];
     
 }
 
