@@ -83,6 +83,11 @@
     titleLabel.text = title;
 }
 
+- (void)showToastWithMessage:(NSString *)message showTime:(float)interval
+{
+    TipLabel * tip = [[TipLabel alloc] init];
+    [tip showToastWithMessage:message showTime:interval];
+}
 
 - (void)showAlertView:(NSString *)title message:(NSString *)msg
 {
@@ -98,9 +103,10 @@
 {
     if (!sender.selected) {
         [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_uncloction.png"] forState:UIControlStateNormal];
+        [self showToastWithMessage:@"收藏成功" showTime:1.0f];
     }else{
         [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
-
+        [self showToastWithMessage:@"已取消收藏" showTime:1.0f];
     }
     sender.selected = !sender.selected;
 }

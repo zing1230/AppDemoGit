@@ -10,6 +10,7 @@
 #import "FTUtils.h"
 #import "ConfigData.h"
 #import "UIViewController+MMDrawerController.h"
+#import "TipLabel.h"
 
 @interface SecondLevelViewController : UIViewController
 <UIAlertViewDelegate>
@@ -30,5 +31,6 @@
 - (void)setTitle:(NSString *)title;
 - (void)backBtnPressed:(UIButton *)sender;
 - (void)homeBtnPressed:(UIButton *)sender;
+- (void)showToastWithMessage:(NSString *)message showTime:(float)interval;
 
 @end

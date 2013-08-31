@@ -26,7 +26,7 @@
 
 
 
-#define AppDele ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define APP_DELEGATE ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define FILENAME(filename)  [[NSBundle mainBundle] pathForAuxiliaryExecutable:filename]
 
 #endif

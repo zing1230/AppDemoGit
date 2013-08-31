@@ -18,12 +18,14 @@
         self.backgroundColor = [UIColor clearColor];
         UIImage * img = [UIImage imageNamed:@"cloud_menu_bg.png"];
         UIImageView * imgView = [[UIImageView alloc] initWithImage:img];
-        imgView.frame = CGRectMake(-2, 38, 324, 744/2);
+        imgView.frame = CGRectMake(0, 38, 320, 744/2);
         [self addSubview:imgView];
         
-        UIButton * tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 105, 177, 76, 76)];
+        UIButton * tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 103, 177, 76, 76)];
         [tempBtn setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_gray.png"] forState:UIControlStateNormal];
-        [tempBtn addTarget:self action:@selector(tempBtnPressed:) forControlEvents:UIControlEventTouchDown];
+        [tempBtn setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_gray.png"] forState:UIControlStateHighlighted];
+
+        [tempBtn addTarget:self action:@selector(tempBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:tempBtn];
         
     }
@@ -33,19 +35,24 @@
 - (void)tempBtnPressed:(UIButton *)sender
 {
     if (!sender.selected) {
-        [UIView animateWithDuration:0.4f animations:^{
-            sender.alpha = 0;
+        [UIView animateWithDuration:0.2f animations:^{
+            sender.alpha = 0.8f;
         } completion:^(BOOL finished) {
-            [sender setBackgroundImage:[UIImage imageNamed:@"icon_1@2x.png"] forState:UIControlStateNormal];
+            [sender setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_red.png"] forState:UIControlStateNormal];
+            [sender setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_red.png"] forState:UIControlStateHighlighted];
+            
             [UIView animateWithDuration:0.3f animations:^{
                 sender.alpha = 1;
             }];
         }];
     }else{
         [UIView animateWithDuration:0.4f animations:^{
-            sender.alpha = 0;
+            sender.alpha = 0.6f;
         } completion:^(BOOL finished) {
             [sender setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_gray.png"] forState:UIControlStateNormal];
+            [sender setBackgroundImage:[UIImage imageNamed:@"cloud_menu_1_gray.png"] forState:UIControlStateHighlighted];
+
+            
             [UIView animateWithDuration:0.3f animations:^{
                 sender.alpha = 1;
             }];

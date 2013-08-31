@@ -92,10 +92,13 @@ static float interval = 0.1f;
 
 - (void)startReplaceCurView
 {
-    int x =  [self genertateRandomNumberStartNum:15 endNum:30];
-    [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
-   
-    [self startScaleAndChangeAlpha:x / 2];
+    if (self.tag != 1) {
+        int x =  [self genertateRandomNumberStartNum:15 endNum:30];
+        [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
+        
+        [self startScaleAndChangeAlpha:x / 2];
+        
+    }
 }
 
 - (void)doDelegate
