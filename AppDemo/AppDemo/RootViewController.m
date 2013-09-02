@@ -646,10 +646,8 @@ static NSArray * speakerKeywords;
     }
     
     if (result && ![result isEqualToString:@""] && ![result isKindOfClass:[NSNull class]]) {
-        [self showAlertView:result message:nil];
+//        [self showAlertView:result message:nil];
     }
-    
-    
     
     if ([speakerKeywords containsObject:result]) {
         [self initShowResultView:result];
