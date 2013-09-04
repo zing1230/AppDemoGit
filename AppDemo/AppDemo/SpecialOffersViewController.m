@@ -31,11 +31,11 @@
     
     self.bgScrollView.frame = CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_BAR_HEIGHT);
     
-    self.bgImgView.frame = CGRectMake(0, 0, 320, 600);
-    self.bgImgView.image = [UIImage imageNamed:@"specil_offers_bg.png"];
+    self.bgImgView.frame = CGRectMake(0, 0, 320, 1230/2);
+    self.bgImgView.image = [UIImage imageNamed:@"specil_offers_bg.jpg"];
 
     [self.bgScrollView addSubview:self.bgImgView];
-    [self.bgScrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 600)];
+    [self.bgScrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 1230/2)];
     [self.view addSubview:self.bgScrollView];
 }
 

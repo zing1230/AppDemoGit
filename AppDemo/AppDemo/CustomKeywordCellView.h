@@ -41,5 +41,5 @@ typedef void(^CreatTimeDurationWithAlpha)(int scale,float alpha);
 @optional
 
 - (void)startReplaceOtherKeyworkd:(CustomKeywordCellView *)view curIndex:(int)index;
-- (void)keywordViewTaped:(UITapGestureRecognizer *)tap;
+- (void)keywordViewCellTouched:(CustomKeywordCellView *)keywordCell;
 @end

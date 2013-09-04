@@ -57,7 +57,6 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
     NSLog(@"touchesEnded");
        _tipLabel.text = @"点按并说出您的需求";
     if ([_delegate respondsToSelector:@selector(touchEnded:)]) {

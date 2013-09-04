@@ -27,7 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
+        self.userInteractionEnabled = YES;
         _allCurShowKeywords = [[NSMutableArray alloc] init];
         _allKeywords = [[NSMutableArray alloc] init];
         
@@ -38,6 +38,7 @@
     return self;
 }
 
+
 - (void)initKeywordView
 {
     float originY = 0;
@@ -47,8 +48,8 @@
         keywordView.delegate = self;
         keywordView.tag = i;
         keywordView.backgroundColor = [UIColor clearColor];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
-        [keywordView addGestureRecognizer:tap];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keywordViewTaped:)];
+//        [keywordView addGestureRecognizer:tap];
         [_allKeywords addObject:keywordView];
     }
     
@@ -89,6 +90,15 @@
 }
 
 #pragma mark CustomKeywordCellViewDelegate
+- (void)keywordViewCellTouched:(CustomKeywordCellView *)keywordCell
+{
+    if ([_delegate respondsToSelector:@selector(keywordTaped:keywordView:)])
+    {
+        [_delegate keywordTaped:keywordCell keywordView:self];
+    }
+}
+
+
 - (void)startReplaceOtherKeyworkd:(CustomKeywordCellView *)view curIndex:(int)index
 {
     //    NSLog(@"__FUNCTION__:%s __LINE__:%d index:%d",__FUNCTION__,__LINE__,index);

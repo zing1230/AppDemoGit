@@ -14,10 +14,10 @@
 @interface RootViewController ()
 <VerifyMyAppDelegate>
 {
-    BOOL animationStoped;
     CustomFunctionView * cloudFunctionView;
     
 }
+@property (nonatomic,strong) UIImageView * titleImgView;
 @property (nonatomic,strong) CustomSpeakerView * speakerView;
 @property (nonatomic,strong) CustomInputTextView * inputTextView;
 
@@ -70,13 +70,14 @@ static NSArray * speakerKeywords;
     _keywordView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_keywordView];
     
-    
-    animationStoped = YES;
-    
     VerifyMyApp * app = [[VerifyMyApp alloc] init];
     app.delegate = self;
     [app startVerifyWithUrlString:nil];
     
+    
+//    [self initResultNoneView];
+//    [self initTipMenuView];
+
 }
 
 #pragma mark CustomKeywordViewDelegate
@@ -134,29 +135,30 @@ static NSArray * speakerKeywords;
 
 - (void)initTitleView
 {
-    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
-    imgView.backgroundColor = RGBACOLOR(224,47,62,1);
-    [self.view addSubview:imgView];
+    _titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
+    _titleImgView.backgroundColor = RGBACOLOR(224,47,62,1);
+    _titleImgView.userInteractionEnabled = YES;
+    [self.view addSubview:_titleImgView];
     
     UIImageView * weatherImg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 130, 45)];
     weatherImg.image = [UIImage imageNamed:@"image_weather.png"];
-    [self.view addSubview:weatherImg];
+    [_titleImgView addSubview:weatherImg];
     
     float width = 27,height = 21;
     UIButton * msgBtn = [[UIButton alloc] initWithFrame:CGRectMake(220, 15, width, height)];
     [msgBtn setBackgroundImage:[UIImage imageNamed:@"image_msg_box.png"] forState:UIControlStateNormal];
     [msgBtn addTarget:self action:@selector(msgBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:msgBtn];
+    [_titleImgView addSubview:msgBtn];
     
     UIButton * settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(msgBtn.frame)+ 5, 15, width, height)];
     [settingBtn setBackgroundImage:[UIImage imageNamed:@"image_setting_icon.png"] forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(settingBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:settingBtn];
+    [_titleImgView addSubview:settingBtn];
     
     UIButton * functionBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(settingBtn.frame) + 5, 15, width, height)];
     [functionBtn setBackgroundImage:[UIImage imageNamed:@"image_more_icon.png"] forState:UIControlStateNormal];
     [functionBtn addTarget:self action:@selector(functionBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:functionBtn];
+    [_titleImgView addSubview:functionBtn];
     
     UIButton * openLeftViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(290, 210, 18, 22)];
     [openLeftViewBtn setBackgroundImage:[UIImage imageNamed:@"image_pull_back.png"] forState:UIControlStateNormal];
@@ -179,6 +181,17 @@ static NSArray * speakerKeywords;
     if (cloudFunctionView) {
         [cloudFunctionView removeFromSuperview];
         cloudFunctionView = nil;
+    }
+    
+    if (_noResultView) {
+        [_noResultView removeFromSuperview];
+        _noResultView = nil;
+        
+        [_keywordView setKeywordViewHiddenStatus:NO];
+    }
+    if (_inputTextView) {
+        [_inputTextView backBtnPressed:nil];
+        _inputTextView = nil;
     }
     
     cloudFunctionView = [[CustomFunctionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
@@ -236,12 +249,15 @@ static NSArray * speakerKeywords;
     
     
     NSArray *menus = [NSArray arrayWithObjects:item1, item2, item3, item4,item5,item6,nil];
+   
+    
     _menu = [[QuadCurveMenu alloc] initWithFrame:self.view.bounds menus:menus];
     _menu.delegate = self;
     [self.view addSubview:_menu];
     
     _menu.transform = CGAffineTransformMakeRotation(M_PI_4);
     [_menu openMenu];
+    _menu.backgroundColor = [UIColor clearColor];
     
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(10, 240, 54, 25);
@@ -251,7 +267,7 @@ static NSArray * speakerKeywords;
     [self.view addSubview:_backBtn];
     
     _backBtn.alpha = 0;
-    
+    [self.view bringSubviewToFront:_titleImgView];
     [UIView animateWithDuration:0.6f animations:^{
         _backBtn.alpha = 1;
     }];
@@ -490,6 +506,7 @@ static NSArray * speakerKeywords;
 - (void)inputTextViewRemoved
 {
     [_keywordView setKeywordViewHiddenStatus:NO];
+    _inputTextView = nil;
 }
 
 - (void)inputTextViewCommit:(NSString *)inputTxt
@@ -500,7 +517,9 @@ static NSArray * speakerKeywords;
         [self initResultNoneView];
     }
     [self.view bringSubviewToFront:_speakerView];
+    _inputTextView = nil;
 }
+
 
 - (void)initTipMenuView
 {
@@ -520,6 +539,13 @@ static NSArray * speakerKeywords;
     btn.backgroundColor = [UIColor clearColor];
     [_buyCarTipView addSubview:btn];
     
+    for (int i = 0; i < 3; i ++) {
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 100 + 30 * i, 100, 25)];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(tipBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+        btn.backgroundColor = [UIColor clearColor];
+        [_buyCarTipView addSubview:btn];
+    }
 }
 
 - (void)keywordBtnPressed:(UIButton *)btn
@@ -527,6 +553,31 @@ static NSArray * speakerKeywords;
     [_buyCarTipView removeFromSuperview];
     [self initBuyCarView];
     [self.view bringSubviewToFront:_speakerView];
+    
+}
+
+- (void)tipBtnPressed:(UIButton *)btn
+{
+    switch (btn.tag) {
+        case 0:
+        {
+            [self enterIntoDealersViewCtrller];
+        }
+            break;
+        case 1:
+        {
+            [self enterIntoSpecialOffersViewCtrller];
+        }
+            break;
+        case 2:
+        {
+            [self enterIntoCalculatorViewCtrller];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
@@ -672,13 +723,27 @@ static NSArray * speakerKeywords;
         UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 102, 202)];
         noResultImgView.image = [UIImage imageNamed:@"image_error_tip.png"];
         [_noResultView addSubview:noResultImgView];
+        
+        UIButton * buycarBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 240, 60, 30)];
+        [buycarBtn addTarget:self action:@selector(buyCarBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_noResultView addSubview:buycarBtn];
+        
     }
     
     [self.view addSubview:_noResultView];
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 1;
     }];
-    
+    [self.view bringSubviewToFront:_titleImgView];
+
+}
+
+- (void)buyCarBtnPressed:(UIButton *)btn
+{
+    [_noResultView removeFromSuperview];
+
+    [self initBuyCarView];
+    [self.view bringSubviewToFront:_speakerView];
 }
 
 - (void)noResultViewTaped:(UITapGestureRecognizer *)tap

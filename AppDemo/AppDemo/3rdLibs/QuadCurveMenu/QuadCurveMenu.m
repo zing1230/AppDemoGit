@@ -94,10 +94,10 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    self.expanding = !self.isExpanding;
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    self.expanding = !self.isExpanding;
+//}
 
 - (void)openMenu
 {

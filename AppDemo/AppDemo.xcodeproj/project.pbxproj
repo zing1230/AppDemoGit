@@ -51,6 +51,8 @@
 		652ED4BC17B47F0000731375 /* icon_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED4B617B47F0000731375 /* icon_4.png */; };
 		652ED4BD17B47F0000731375 /* icon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED4B717B47F0000731375 /* icon_5.png */; };
 		652ED4BE17B47F0000731375 /* icon_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 652ED4B817B47F0000731375 /* icon_6.png */; };
+		655CEFD217D4AF160064BE2A /* specil_offers_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655CEFD117D4AF160064BE2A /* specil_offers_bg.jpg */; };
+		655CEFD417D4AFB60064BE2A /* icon_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655CEFD317D4AFB50064BE2A /* icon_5@2x.png */; };
 		65690EAE17982195000E8E05 /* iFlyMSC.m in Sources */ = {isa = PBXBuildFile; fileRef = 65690EAD17982195000E8E05 /* iFlyMSC.m */; };
 		657C965817BCFEC900BF1553 /* image_input_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 657C965717BCFEC800BF1553 /* image_input_tip.png */; };
 		657C965A17BCFF9500BF1553 /* image_error_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 657C965917BCFF9500BF1553 /* image_error_tip.png */; };
@@ -66,7 +68,6 @@
 		658D2CF917C62CC900C59F4F /* image_floating_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 658D2CF817C62CC900C59F4F /* image_floating_bg.png */; };
 		658D2CFC17C6304800C59F4F /* CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D2CFB17C6304700C59F4F /* CustomPageControl.m */; };
 		658D2D0F17C79EDD00C59F4F /* dealers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 658D2D0E17C79ED600C59F4F /* dealers_bg.png */; };
-		659306A117CE1A8B002105C1 /* specil_offers_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A017CE1A89002105C1 /* specil_offers_bg.png */; };
 		659306A317CE1BC1002105C1 /* image_carName.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A217CE1BBE002105C1 /* image_carName.png */; };
 		659306A617CE1E76002105C1 /* dealers_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A417CE1E70002105C1 /* dealers_1.png */; };
 		659306A717CE1E76002105C1 /* dealers_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 659306A517CE1E72002105C1 /* dealers_2.png */; };
@@ -74,7 +75,6 @@
 		659708BC17B5F75700C6260F /* icon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B617B5F75600C6260F /* icon_2@2x.png */; };
 		659708BD17B5F75700C6260F /* icon_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B717B5F75600C6260F /* icon_3@2x.png */; };
 		659708BE17B5F75700C6260F /* icon_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B817B5F75600C6260F /* icon_4@2x.png */; };
-		659708BF17B5F75700C6260F /* icon_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708B917B5F75600C6260F /* icon_5@2x.png */; };
 		659708C017B5F75700C6260F /* icon_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659708BA17B5F75700C6260F /* icon_6@2x.png */; };
 		659708C617B614C500C6260F /* CustomSpeakerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659708C517B614C500C6260F /* CustomSpeakerView.m */; };
 		659708C917B6191100C6260F /* CustomInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659708C817B6191100C6260F /* CustomInputTextView.m */; };
@@ -239,6 +239,8 @@
 		652ED4B617B47F0000731375 /* icon_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_4.png; sourceTree = "<group>"; };
 		652ED4B717B47F0000731375 /* icon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_5.png; sourceTree = "<group>"; };
 		652ED4B817B47F0000731375 /* icon_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_6.png; sourceTree = "<group>"; };
+		655CEFD117D4AF160064BE2A /* specil_offers_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = specil_offers_bg.jpg; sourceTree = "<group>"; };
+		655CEFD317D4AFB50064BE2A /* icon_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_5@2x.png"; sourceTree = "<group>"; };
 		65690EAC17982195000E8E05 /* iFlyMSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFlyMSC.h; sourceTree = "<group>"; };
 		65690EAD17982195000E8E05 /* iFlyMSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFlyMSC.m; sourceTree = "<group>"; };
 		657C965717BCFEC800BF1553 /* image_input_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_input_tip.png; sourceTree = "<group>"; };
@@ -264,7 +266,6 @@
 		658D2CFA17C6304600C59F4F /* CustomPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPageControl.h; sourceTree = "<group>"; };
 		658D2CFB17C6304700C59F4F /* CustomPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPageControl.m; sourceTree = "<group>"; };
 		658D2D0E17C79ED600C59F4F /* dealers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_bg.png; sourceTree = "<group>"; };
-		659306A017CE1A89002105C1 /* specil_offers_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specil_offers_bg.png; sourceTree = "<group>"; };
 		659306A217CE1BBE002105C1 /* image_carName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_carName.png; sourceTree = "<group>"; };
 		659306A417CE1E70002105C1 /* dealers_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_1.png; sourceTree = "<group>"; };
 		659306A517CE1E72002105C1 /* dealers_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealers_2.png; sourceTree = "<group>"; };
@@ -272,7 +273,6 @@
 		659708B617B5F75600C6260F /* icon_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_2@2x.png"; sourceTree = "<group>"; };
 		659708B717B5F75600C6260F /* icon_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_3@2x.png"; sourceTree = "<group>"; };
 		659708B817B5F75600C6260F /* icon_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_4@2x.png"; sourceTree = "<group>"; };
-		659708B917B5F75600C6260F /* icon_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_5@2x.png"; sourceTree = "<group>"; };
 		659708BA17B5F75700C6260F /* icon_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_6@2x.png"; sourceTree = "<group>"; };
 		659708C417B614C500C6260F /* CustomSpeakerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSpeakerView.h; sourceTree = "<group>"; };
 		659708C517B614C500C6260F /* CustomSpeakerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSpeakerView.m; sourceTree = "<group>"; };
@@ -605,7 +605,7 @@
 				659708B617B5F75600C6260F /* icon_2@2x.png */,
 				659708B717B5F75600C6260F /* icon_3@2x.png */,
 				659708B817B5F75600C6260F /* icon_4@2x.png */,
-				659708B917B5F75600C6260F /* icon_5@2x.png */,
+				655CEFD317D4AFB50064BE2A /* icon_5@2x.png */,
 				659708BA17B5F75700C6260F /* icon_6@2x.png */,
 				652ED4B317B47F0000731375 /* icon_1.png */,
 				652ED4B417B47F0000731375 /* icon_2.png */,
@@ -719,7 +719,7 @@
 				65FAEBFE17B90FE20026C485 /* image_engine.png */,
 				65FAEBFA17B90FBD0026C485 /* image_left_arrow.png */,
 				65FAEBFB17B90FBD0026C485 /* image_right_arrow.png */,
-				659306A017CE1A89002105C1 /* specil_offers_bg.png */,
+				655CEFD117D4AF160064BE2A /* specil_offers_bg.jpg */,
 				65FAEBF217B9047B0026C485 /* calculator_1_bg.png */,
 				65F3D11817BA3D3E003D220F /* calculator_2_bg.png */,
 				65FAEBEC17B903330026C485 /* test_driving_bg.png */,
@@ -809,7 +809,6 @@
 				659708BC17B5F75700C6260F /* icon_2@2x.png in Resources */,
 				659708BD17B5F75700C6260F /* icon_3@2x.png in Resources */,
 				659708BE17B5F75700C6260F /* icon_4@2x.png in Resources */,
-				659708BF17B5F75700C6260F /* icon_5@2x.png in Resources */,
 				659708C017B5F75700C6260F /* icon_6@2x.png in Resources */,
 				659708E017B631F600C6260F /* image_commit_btn.png in Resources */,
 				659708E517B634EC00C6260F /* imager_arrow_down.png in Resources */,
@@ -876,7 +875,6 @@
 				65847E3217C7A1060095C82C /* dealers_bg_shadow.png in Resources */,
 				65847E6F17CB641C0095C82C /* keyword_10.png in Resources */,
 				65BC6D4117CB8B46004D767E /* image_home_btn.png in Resources */,
-				659306A117CE1A8B002105C1 /* specil_offers_bg.png in Resources */,
 				659306A317CE1BC1002105C1 /* image_carName.png in Resources */,
 				659306A617CE1E76002105C1 /* dealers_1.png in Resources */,
 				659306A717CE1E76002105C1 /* dealers_2.png in Resources */,
@@ -888,6 +886,8 @@
 				65F4B72117D197AA00552A88 /* cloud_menu_1_gray.png in Resources */,
 				65F4B72217D197AA00552A88 /* cloud_menu_1_red.png in Resources */,
 				65F4B72717D1980A00552A88 /* cloud_menu_bg.png in Resources */,
+				655CEFD217D4AF160064BE2A /* specil_offers_bg.jpg in Resources */,
+				655CEFD417D4AFB60064BE2A /* icon_5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

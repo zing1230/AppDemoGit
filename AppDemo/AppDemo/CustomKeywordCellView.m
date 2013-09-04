@@ -10,7 +10,15 @@
 
 @implementation Keyword
 
-
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+//        self.userInteractionEnabled = YES;
+        
+    }
+    return self;
+}
 
 @end
 
@@ -30,15 +38,17 @@ static float interval = 0.1f;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.userInteractionEnabled = YES;        
         _keywordImgView = [[Keyword alloc] initWithFrame:CGRectZero];
     }
     return self;
 }
 
-- (void)taped:(UITapGestureRecognizer *)tap
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if ([_delegate respondsToSelector:@selector(keywordViewTaped:)]) {
-        [_delegate keywordViewTaped:tap];
+    NSLog(@"tag:%d",self.tag);
+    if ([_delegate respondsToSelector:@selector(keywordViewCellTouched:)]) {
+        [_delegate keywordViewCellTouched:self];
     }
 }
 
@@ -54,6 +64,7 @@ static float interval = 0.1f;
     
     _imgViewFrame = CGRectMake((CGRectGetWidth(self.frame) - width) / 2, (CGRectGetHeight(self.frame) - height) / 2, width, height);
     _keywordImgView.frame = _imgViewFrame;
+    
     _keywordImgView.image = image;
     
     if (self.tag % 2 == 0) {
@@ -64,6 +75,7 @@ static float interval = 0.1f;
         _keywordImgView.offsetY = -0.5f;
         
     }
+    
     _keywordImgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_keywordImgView];
 }
@@ -95,9 +107,7 @@ static float interval = 0.1f;
     if (self.tag != 1) {
         int x =  [self genertateRandomNumberStartNum:15 endNum:30];
         [self performSelector:@selector(doDelegate) withObject:nil afterDelay:x];
-        
         [self startScaleAndChangeAlpha:x / 2];
-        
     }
 }
 
