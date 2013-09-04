@@ -28,5 +28,7 @@
 }
 
 @property(nonatomic,assign) id<InputTextViewDelegate> delegate;
+- (void)backBtnPressed:(id)sender;
+
 
 @end

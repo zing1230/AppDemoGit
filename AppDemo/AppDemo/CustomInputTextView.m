@@ -11,6 +11,8 @@
 
 
 @property (nonatomic,strong) UIImageView * tipImgView;
+@property (nonatomic,strong) NSTimer * timer;
+
 @end
 
 
@@ -27,7 +29,7 @@
         [self addSubview:bgimgview];
 
         UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        backBtn.frame = CGRectMake(10, 8, 44, 25);
+        backBtn.frame = CGRectMake(7, 6, 54, 25);
         [backBtn setBackgroundImage:[UIImage imageNamed:@"image_back.png"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
@@ -49,17 +51,32 @@
         [txtField becomeFirstResponder];
         
         [self addSubview:txtField];
+        
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(checkInputText) userInfo:nil repeats:YES];
     }
     return self;
 }
-
-
 
 #pragma mark UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSLog(@"string:%@",textField.text);
-    if ([textField.text isEqualToString:@"买车"]) {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"textField.text:%@",textField.text);
+
+    [self commitBtnPressed:nil];
+    
+    return YES;
+    
+}
+
+- (void)checkInputText
+{
+    if ([txtField.text isEqualToString:@"买车"]) {
         if (!_tipImgView) {
             _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 102)];
             _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
@@ -69,29 +86,6 @@
     }else{
         [_tipImgView removeFromSuperview];
     }
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    
-    if ([textField.text isEqualToString:@"买车"]) {
-        if (!_tipImgView) {
-            _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 150)];
-            _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
-        }
-        [self addSubview:_tipImgView];
-        
-    }else{
-        [_tipImgView removeFromSuperview];
-    }
-    [txtField resignFirstResponder];
-    
-    
-    [self commitBtnPressed:nil];
-    
-    return YES;
-    
 }
 
 
@@ -99,19 +93,22 @@
 {
     [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
     
-    if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
-        [_delegate inputTextViewCommit:txtField.text];
-    }
+    NSString * txt =  [txtField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
+    if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
+        [_delegate inputTextViewCommit:txt];
+    }
+            [_timer invalidate];
 }
 
 
 - (void)backBtnPressed:(id)sender
 {
-    [self slideOutTo:kFTAnimationRight duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
+    [self slideOutTo:kFTAnimationBottom duration:0.618f delegate:self startSelector:nil stopSelector:@selector(endAnimation)];
     if ([_delegate respondsToSelector:@selector(inputTextViewRemoved)]) {
         [_delegate inputTextViewRemoved];
     }
+    [_timer invalidate];
     
 }
 

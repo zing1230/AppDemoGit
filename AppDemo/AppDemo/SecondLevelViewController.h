@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FTUtils.h"
 #import "ConfigData.h"
+#import "UIViewController+MMDrawerController.h"
+#import "TipLabel.h"
 
 @interface SecondLevelViewController : UIViewController
 <UIAlertViewDelegate>
@@ -20,7 +22,7 @@
 @property(nonatomic,assign)BOOL isLandscape;//是否被置为横屏显示
 @property(nonatomic,strong)UIImageView * navImgView;
 @property(nonatomic,strong)UIButton * homeBtn;
-
+@property(nonatomic,strong)UIButton * cloctionBtn;
 
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIImageView *bgImgView;
@@ -29,5 +31,6 @@
 - (void)setTitle:(NSString *)title;
 - (void)backBtnPressed:(UIButton *)sender;
 - (void)homeBtnPressed:(UIButton *)sender;
+- (void)showToastWithMessage:(NSString *)message showTime:(float)interval;
 
 @end

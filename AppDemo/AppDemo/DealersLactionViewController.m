@@ -9,9 +9,13 @@
 #import "DealersLactionViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-
+#import "CustomPageControl.h"
 @interface DealersLactionViewController ()
 <MKMapViewDelegate>
+{
+    CustomPageControl *m_pageControl;
+    
+}
 
 @property(nonatomic,strong)UIView * dealersSubView;
 @end
@@ -54,26 +58,29 @@ static MKMapView * mapView;
 
 - (void)initDealersView
 {
-    _dealersSubView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, SCREEN_WIDTH, CGRectGetHeight(self.childFrame))];
+    
+    _dealersSubView = [[UIView alloc] initWithFrame:CGRectMake(0, NAV_BAR_HEIGHT, SCREEN_WIDTH, CGRectGetHeight(self.childFrame))];
     [self.view addSubview:_dealersSubView];
     [self.view bringSubviewToFront:self.navImgView];
     _dealersSubView.backgroundColor = [UIColor clearColor];
     
-    
+    UIImageView * shodowImg = [[UIImageView alloc] initWithFrame:CGRectMake(-2, SCREEN_HEIGHT - 170, SCREEN_WIDTH + 2, 150)];
+    shodowImg.image = [UIImage imageNamed:@"dealers_bg_shadow.png"];
+    [_dealersSubView addSubview:shodowImg];
+
     UIImageView * bgimgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 851/2)];
     bgimgview.image = [UIImage imageNamed:@"dealers_bg.png"];
     [_dealersSubView addSubview:bgimgview];
-    
 
-    UIButton * openBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 50) /2, CGRectGetHeight(self.childFrame) - 70, 50, 50)];
+    UIButton * openBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 50) /2, CGRectGetHeight(self.childFrame) - 75, 50, 50)];
     [openBtn setBackgroundImage:[UIImage imageNamed:@"image_open_btn.png"] forState:UIControlStateNormal];
     [openBtn addTarget:self action:@selector(openBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    openBtn.transform = CGAffineTransformMakeRotation(M_PI);
+//    openBtn.transform = CGAffineTransformMakeRotation(M_PI);
 
     [_dealersSubView addSubview:openBtn];
     
     
-    UIImageView * bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 566/2)];
+    UIImageView * bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 627/2)];
     bgImgView.userInteractionEnabled = YES;
     bgImgView.image = [UIImage imageNamed:@"dealers_2.png"];
     [_dealersSubView addSubview:bgImgView];
@@ -83,6 +90,20 @@ static MKMapView * mapView;
     [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgImgView addSubview:btn];
     
+    
+    m_pageControl =[[CustomPageControl alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, CGRectGetHeight(_dealersSubView.frame) - 130, 300, 60)];
+    m_pageControl.backgroundColor = [UIColor clearColor];
+    m_pageControl.currentPage = 0;
+//    [m_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
+    m_pageControl.hidesForSinglePage = YES;
+    m_pageControl.numberOfPages = 2;
+    
+    [m_pageControl setImagePageStateNormal:[UIImage imageNamed:@"image_point_normal.png"]];
+    [m_pageControl setImagePageStateHighlighted:[UIImage imageNamed:@"image_point_selected.png"]];
+//    [_dealersSubView addSubview:m_pageControl];
+
+    
+    
 }
 - (void)btnPressed:(UIButton *)sender
 {
@@ -91,13 +112,11 @@ static MKMapView * mapView;
     CGRect frame = imgView.frame;
     if (!sender.selected) {
         imgView.image = [UIImage imageNamed:@"dealers_1.png"];
-        frame.origin.y -= .5f;
         frame.size.height = 627/2;
         
     }else{
         imgView.image = [UIImage imageNamed:@"dealers_2.png"];
-        frame.origin.y += .5f;
-        frame.size.height = 566/2;
+        frame.size.height = 627/2;
     }
     imgView.frame = frame;
     
@@ -112,15 +131,13 @@ static MKMapView * mapView;
         CGRect frame = _dealersSubView.frame;
         
         if (!sender.selected) {
-            frame.origin.y = NAV_BAR_HEIGHT;
-            _dealersSubView.frame = frame;
-            sender.transform = CGAffineTransformMakeRotation(0);
-            
-        }else{
             frame.origin.y = -300;
             _dealersSubView.frame = frame;
             sender.transform = CGAffineTransformMakeRotation(M_PI);
-            
+        }else{
+            frame.origin.y = NAV_BAR_HEIGHT;
+            _dealersSubView.frame = frame;
+            sender.transform = CGAffineTransformMakeRotation(0);
         }
         
     } completion:^(BOOL finished) {

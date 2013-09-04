@@ -94,10 +94,10 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    self.expanding = !self.isExpanding;
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    self.expanding = !self.isExpanding;
+//}
 
 - (void)openMenu
 {
@@ -119,39 +119,39 @@
     {
         return;
     }
-    // blowup the selected menu button
-    CAAnimationGroup *blowup = [self _blowupAnimationAtPoint:item.center];
-    [item.layer addAnimation:blowup forKey:@"blowup"];
-    item.center = item.startPoint;
-    
-    // shrink other menu buttons
-    for (int i = 0; i < [_menusArray count]; i ++)
-    {
-        QuadCurveMenuItem *otherItem = [_menusArray objectAtIndex:i];
-        CAAnimationGroup *shrink = [self _shrinkAnimationAtPoint:otherItem.center];
-        if (otherItem.tag == item.tag) {
-            continue;
-        }
-        [otherItem.layer addAnimation:shrink forKey:@"shrink"];
-
-        otherItem.center = otherItem.startPoint;
-
-    }
-       
-    _expanding = NO;
-    
-    // rotate "add" button
-    float angle = self.isExpanding ? -M_PI_4 : 0.0f;
-    [UIView animateWithDuration:0.2f animations:^{
-        _addButton.transform = CGAffineTransformMakeRotation(angle);
-        
-    }completion:^(BOOL finished) {
-        for (int i = 0; i < [_menusArray count]; i ++)
-        {
-            QuadCurveMenuItem *otherItem = [_menusArray objectAtIndex:i];
-            otherItem.hidden = YES;
-        }
-    }];
+//    // blowup the selected menu button
+//    CAAnimationGroup *blowup = [self _blowupAnimationAtPoint:item.center];
+//    [item.layer addAnimation:blowup forKey:@"blowup"];
+//    item.center = item.startPoint;
+//    
+//    // shrink other menu buttons
+//    for (int i = 0; i < [_menusArray count]; i ++)
+//    {
+//        QuadCurveMenuItem *otherItem = [_menusArray objectAtIndex:i];
+//        CAAnimationGroup *shrink = [self _shrinkAnimationAtPoint:otherItem.center];
+//        if (otherItem.tag == item.tag) {
+//            continue;
+//        }
+//        [otherItem.layer addAnimation:shrink forKey:@"shrink"];
+//
+//        otherItem.center = otherItem.startPoint;
+//
+//    }
+//       
+//    _expanding = NO;
+//    
+//    // rotate "add" button
+//    float angle = self.isExpanding ? -M_PI_4 : 0.0f;
+//    [UIView animateWithDuration:0.2f animations:^{
+//        _addButton.transform = CGAffineTransformMakeRotation(angle);
+//        
+//    }completion:^(BOOL finished) {
+//        for (int i = 0; i < [_menusArray count]; i ++)
+//        {
+//            QuadCurveMenuItem *otherItem = [_menusArray objectAtIndex:i];
+//            otherItem.hidden = YES;
+//        }
+//    }];
     
     if ([_delegate respondsToSelector:@selector(quadCurveMenu:didSelectIndex:)])
     {

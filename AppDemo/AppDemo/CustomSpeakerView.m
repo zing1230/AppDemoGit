@@ -47,7 +47,7 @@
     CGPoint point = [touch locationInView:self];
     startY = point.y;
     NSLog(@"startY-----------------------:%.0f",startY);
-    _tipLabel.text = @"向上滑动切换键盘";
+//    _tipLabel.text = @"向上滑动切换键盘";
 
     if ([_delegate respondsToSelector:@selector(touchBegan:)]) {
         [_delegate touchBegan:self];
@@ -57,7 +57,6 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
     NSLog(@"touchesEnded");
        _tipLabel.text = @"点按并说出您的需求";
     if ([_delegate respondsToSelector:@selector(touchEnded:)]) {

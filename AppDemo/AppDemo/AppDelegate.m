@@ -17,9 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    //这是在其他帐号上同步的代码...
-    
+        
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     _rootViewCtrller = [[RootViewController alloc] init];
@@ -42,6 +40,8 @@
     
     self.window.backgroundColor =  RGBACOLOR(65,65,65,1);
     [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 

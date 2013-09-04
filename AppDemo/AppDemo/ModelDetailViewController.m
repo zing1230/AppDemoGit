@@ -46,10 +46,10 @@
     [self.view addSubview:imgView];
     
     
-    UIButton * carNameBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX, 150, 71, 23)];
+    UIButton * carNameBtn = [[UIButton alloc] initWithFrame:CGRectMake(originX, 150, 49, 23)];
     [carNameBtn setBackgroundImage:[UIImage imageNamed:@"image_carName.png"] forState:UIControlStateNormal];
     [carNameBtn setBackgroundColor:[UIColor clearColor]];
-    [carNameBtn addTarget:self action:@selector(carNameBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    [carNameBtn addTarget:self action:@selector(carNameBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:carNameBtn];
     
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 190, 78, 16)];
@@ -255,7 +255,7 @@
     switch (index) {
         case 1:
         {
-            
+//            return;
             [[ConfigData shareInstance] setNeedRotation:YES];
             if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
                 [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
@@ -275,8 +275,6 @@
             
         }
             break;
-            //         SpecialOffersViewController * specialOffersViewCtrller = [[SpecialOffersViewController alloc] init];
-            //            [self.navigationController pushViewController:specialOffersViewCtrller animated:YES];
     }
 }
 
