@@ -71,7 +71,7 @@
     CGPoint point = [touch locationInView:self];
     float endY = point.y;
     NSLog(@"endY:%.0f",endY);
-    if ((startY - endY) > 1) {
+    if ((startY - endY) > 5) {
         NSLog(@"touchesMoved");
             _tipLabel.text = @"点按并说出您的需求";
         if ([_delegate respondsToSelector:@selector(touchMoved:)]) {
