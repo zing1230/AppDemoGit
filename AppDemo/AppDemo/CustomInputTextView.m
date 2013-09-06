@@ -79,7 +79,19 @@
     if ([txtField.text isEqualToString:@"买车"]) {
         if (!_tipImgView) {
             _tipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 102)];
+            _tipImgView.userInteractionEnabled = YES;
             _tipImgView.image = [UIImage imageNamed:@"image_input_tip.png"];
+            _tipImgView.backgroundColor = [UIColor clearColor];
+            
+            for (int i = 0; i < 3; i ++) {
+                UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 5 + 30 * i, 100, 25)];
+                btn.tag = i;
+                [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
+                btn.backgroundColor = [UIColor clearColor];
+                [_tipImgView addSubview:btn];
+ 
+            }
+            
         }
         [self addSubview:_tipImgView];
         
@@ -88,6 +100,12 @@
     }
 }
 
+- (void)btnPressed:(UIButton *)sender
+{
+    if ([_delegate respondsToSelector:@selector(tipBtnPressed:)]) {
+        [_delegate tipBtnPressed:sender];
+    }
+}
 
 - (void)commitBtnPressed:(id)sender
 {

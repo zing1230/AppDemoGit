@@ -16,6 +16,7 @@
 
 - (void)inputTextViewRemoved;
 - (void)inputTextViewCommit:(NSString *)inputTxt;
+- (void)tipBtnPressed:(UIButton *)btn;
 
 
 @end

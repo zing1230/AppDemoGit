@@ -33,7 +33,8 @@
 @interface RootViewController : UIViewController
 <iFlyMSCDelegate,QuadCurveMenuDelegate,
 CustomSpeakerViewDelegate,InputTextViewDelegate,
-CustomKeywordCellViewDelegate,CustomKeywordViewDelegate>
+CustomKeywordCellViewDelegate,CustomKeywordViewDelegate,
+CustomFunctionViewDelegate>
 
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;

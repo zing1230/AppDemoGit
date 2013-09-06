@@ -55,7 +55,7 @@ static NSArray * speakerKeywords;
     UIImageView * roundbgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 90, 182, 279)];
     roundbgImg.image = [UIImage imageNamed:@"image_bg_round.png"];
     [self.view addSubview:roundbgImg];
-    //    roundbgImg.transform = CGAffineTransformMakeTranslation(10, 10);
+
     
     _iflyMSC = [iFlyMSC shareInstance];
     _iflyMSC.delegate = self;
@@ -75,9 +75,8 @@ static NSArray * speakerKeywords;
     [app startVerifyWithUrlString:nil];
     
     
-//    [self initResultNoneView];
+//   [self initResultNoneView];
 //    [self initTipMenuView];
-
 }
 
 #pragma mark CustomKeywordViewDelegate
@@ -183,18 +182,18 @@ static NSArray * speakerKeywords;
         cloudFunctionView = nil;
     }
     
-    if (_noResultView) {
-        [_noResultView removeFromSuperview];
-        _noResultView = nil;
-        
-        [_keywordView setKeywordViewHiddenStatus:NO];
-    }
+//    if (_noResultView) {
+//        [_noResultView removeFromSuperview];
+//        _noResultView = nil;
+//        [_keywordView setKeywordViewHiddenStatus:NO];
+//    }
     if (_inputTextView) {
         [_inputTextView backBtnPressed:nil];
         _inputTextView = nil;
     }
     
     cloudFunctionView = [[CustomFunctionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+    cloudFunctionView.delegate= self;
     [self.view addSubview:cloudFunctionView];
     
     [UIView animateWithDuration:0.618f animations:^{
@@ -202,6 +201,26 @@ static NSArray * speakerKeywords;
     }];
 }
 
+#pragma mark CustomFunctionViewDelegate
+- (void)functionSelectedAtIndex:(int)index functionView:(CustomFunctionView *)view
+{
+    switch (index) {
+        case 1:
+        {
+            [self enterIntoDealersViewCtrller];
+        }
+            break;
+        case 4:
+        {
+
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+}
 
 
 - (void)openLeftViewBtnPressed:(UIButton *)sender
