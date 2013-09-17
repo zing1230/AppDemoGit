@@ -18,6 +18,7 @@ static ConfigData * _instance;
         if (!_instance) {
             _instance = [[ConfigData alloc] init];
             [_instance setNeedRotation:NO];
+            _instance.isLongPressed = NO;
         }
     }
     return _instance;

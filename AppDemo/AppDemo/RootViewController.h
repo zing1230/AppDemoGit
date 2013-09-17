@@ -29,6 +29,8 @@
 #import "CustomKeywordCellView.h"
 #import "CustomFunctionView.h"
 
+#import "RightSideViewController.h"
+
 
 @interface RootViewController : UIViewController
 <iFlyMSCDelegate,QuadCurveMenuDelegate,

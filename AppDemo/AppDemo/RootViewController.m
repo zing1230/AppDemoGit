@@ -75,8 +75,23 @@ static NSArray * speakerKeywords;
     [app startVerifyWithUrlString:nil];
     
     
+    RightSideViewController * right = [[RightSideViewController alloc] init];
+    [self.revealSideViewController pushViewController:right onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:NO];
+
+    [right.revealSideViewController popViewControllerAnimated:NO];
+    
+    
 //   [self initResultNoneView];
 //    [self initTipMenuView];
+}
+
+- (void)setCanMoveToOpenRightViewStatus:(BOOL)status
+{
+    if (status)
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
+    else
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+
 }
 
 #pragma mark CustomKeywordViewDelegate
@@ -225,9 +240,13 @@ static NSArray * speakerKeywords;
 
 - (void)openLeftViewBtnPressed:(UIButton *)sender
 {
-    [self.mm_drawerController openDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
-        
-    }];
+//    [self.mm_drawerController openDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
+//        
+//    }];
+    
+    RightSideViewController * right = [[RightSideViewController alloc] init];
+    [self.revealSideViewController pushViewController:right onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:YES];
+    
 }
 
 

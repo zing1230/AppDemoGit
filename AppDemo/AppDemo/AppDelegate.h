@@ -7,17 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "PPRevealSideViewController.h"
+
 @class MLNavigationController;
 @class RootViewController;
 @class RightSideViewController;
 @class LeftSideViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,
+PPRevealSideViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) RootViewController *rootViewCtrller;
 @property (strong, nonatomic) RightSideViewController *rightSideViewCtrller;
 @property (strong, nonatomic) LeftSideViewController *leftSideViewCtrller;
+
+@property (strong, nonatomic) PPRevealSideViewController *revealSideViewController;
+
 
 @end

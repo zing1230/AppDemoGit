@@ -17,32 +17,95 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-        
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+
     _rootViewCtrller = [[RootViewController alloc] init];
     _rightSideViewCtrller = [[RightSideViewController alloc] init];
     _leftSideViewCtrller = [[LeftSideViewController alloc] init];
-    
+        
     self.navController = [[UINavigationController alloc] initWithRootViewController:_rootViewCtrller];
     self.navController.navigationBarHidden = YES;
     
     
-    MMDrawerController * drawerController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:self.navController
-                                             leftDrawerViewController:nil
-                                             rightDrawerViewController:_rightSideViewCtrller];
+//    MMDrawerController * drawerController = [[MMDrawerController alloc]
+//                                             initWithCenterViewController:self.navController
+//                                             leftDrawerViewController:nil
+//                                             rightDrawerViewController:_rightSideViewCtrller];
+//    
+//    [drawerController setMaximumRightDrawerWidth:116];
+//    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+//    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModePanningCenterView | MMCloseDrawerGestureModeTapCenterView];
     
-    [drawerController setMaximumRightDrawerWidth:116];
-    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
-    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [self.window setRootViewController:drawerController];
+    
+    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:self.navController];
+    
+    
+    
+    _revealSideViewController.delegate = self;
+    [_revealSideViewController resetOption:PPRevealSideOptionsBounceAnimations];
+    
+    _revealSideViewController.panInteractionsWhenOpened = PPRevealSideInteractionContentView;
+    _revealSideViewController.panInteractionsWhenClosed = PPRevealSideInteractionContentView;
+
+    [self.window setRootViewController:_revealSideViewController];
     
     self.window.backgroundColor =  RGBACOLOR(65,65,65,1);
     [self.window makeKeyAndVisible];
     
     
     return YES;
+}
+
+#pragma mark - PPRevealSideViewController delegate
+
+- (void) pprevealSideViewController:(PPRevealSideViewController *)controller willPushController:(UIViewController *)pushedController {
+    
+}
+
+- (void) pprevealSideViewController:(PPRevealSideViewController *)controller didPushController:(UIViewController *)pushedController {
+    
+}
+
+- (void) pprevealSideViewController:(PPRevealSideViewController *)controller willPopToController:(UIViewController *)centerController {
+    
+}
+
+- (void) pprevealSideViewController:(PPRevealSideViewController *)controller didPopToController:(UIViewController *)centerController {
+    
+}
+
+- (void) pprevealSideViewController:(PPRevealSideViewController *)controller didChangeCenterController:(UIViewController *)newCenterController {
+    
+}
+
+- (BOOL) pprevealSideViewController:(PPRevealSideViewController *)controller shouldDeactivateDirectionGesture:(UIGestureRecognizer*)gesture forView:(UIView*)view {
+    return NO;
+}
+
+- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController*)controller directionsAllowedForPanningOnView:(UIView*)view {
+    
+    if ([view isKindOfClass:NSClassFromString(@"UIWebBrowserView")]) return PPRevealSideDirectionLeft | PPRevealSideDirectionRight;
+    
+    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
+}
+
+- (void)showAlertView:(NSString *)title message:(NSString *)msg
+{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:title
+                                                         message:msg
+                                                        delegate:nil
+                                               cancelButtonTitle:@"取消"
+                                               otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [self showAlertView:@"handleOpenURL" message:[url description]];
+    if ([[url scheme] isEqualToString:@"com.isoftstone.appdemo://safari"]) {
+        
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -53,7 +116,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

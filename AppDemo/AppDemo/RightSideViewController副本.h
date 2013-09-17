@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "FTUtils.h"
-//#import "UIViewController+MMDrawerController.h"
-#import "GMGridView.h"
-
+#import "UIViewController+MMDrawerController.h"
+#import "CustomCollectionBtn.h"
 
 @interface RightSideViewController : UIViewController
-<UIAlertViewDelegate>
+<UIAlertViewDelegate,CustomCollectionBtnDelegate>
 {
-
-
+    UIButton * willDeleteBtn;
 }
 
 @end
