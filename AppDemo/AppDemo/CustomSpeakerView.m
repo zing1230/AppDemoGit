@@ -75,7 +75,7 @@
 //    self.center = CGPointMake(self.center.x + offsetX, self.center.y + offsetY);
 //    NSLog(@"endY___________________:%.0f",self.center.x);
 
-    NSLog(@"offsetY:%.0f",offsetY);
+//    NSLog(@"offsetY:%.0f",offsetY);
     if (offsetY > 5) {
         NSLog(@"touchesMoved");
             _tipLabel.text = @"点按并说出您的需求";

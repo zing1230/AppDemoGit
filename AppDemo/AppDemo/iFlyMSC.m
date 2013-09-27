@@ -125,10 +125,10 @@ static iFlyMSC * _instance;
     NSLog(@"onError___:%@",text);
 
     isRecongnizer = NO;
-    if (text && ![text isEqualToString:@""] && ![text isKindOfClass:[NSNull class]]) {
+//    if (text && ![text isEqualToString:@""] && ![text isKindOfClass:[NSNull class]]) {
         if (delegate && [delegate respondsToSelector:@selector(errorOfSpeech:)])
             [delegate errorOfSpeech:error];
-    }
+//    }
 }
 
 - (BOOL)validateLastString:(NSString *)txt

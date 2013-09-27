@@ -145,7 +145,7 @@
             break;
         case 2:
         {
-            NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"dangerous.mov"];
+            NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mov_bbb.mp4"];
             NSURL * mediaURL = [[NSURL alloc]initFileURLWithPath:path];
             
             if (!moviePlayer) {

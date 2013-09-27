@@ -24,6 +24,25 @@ static ConfigData * _instance;
     return _instance;
 }
 
+- (NetworkStatus)getNetworkStatus
+{
+    Reachability * reachbility = [Reachability reachabilityForInternetConnection];
+    NetworkStatus status = [reachbility currentReachabilityStatus];
+    switch (status) {
+        case NotReachable:
+            NSLog(@"当前网络不可用");
+            break;
+        case ReachableViaWWAN:
+            NSLog(@"使用3G网络");
+            break;
+        case ReachableViaWiFi:
+            NSLog(@"使用WiFi网络");
+            break;
+    }
+    return status;
+}
+
+
 - (void)setNeedRotation:(BOOL)status;
 {
     _needRotation = status;

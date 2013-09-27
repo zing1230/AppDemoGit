@@ -493,10 +493,11 @@ static NSArray * speakerKeywords;
 
 - (void)starRec
 {
-    
-    [_iflyMSC startRecongnizer];
-    [self initSpeakerView];
-    [self.view bringSubviewToFront:_speakerBackView];
+    if ([[ConfigData shareInstance] getNetworkStatus] != NotReachable) {
+        [_iflyMSC startRecongnizer];
+        [self initSpeakerView];
+        [self.view bringSubviewToFront:_speakerBackView];
+    }
 }
 
 - (void)touchEnded:(CustomSpeakerView *)view
@@ -708,9 +709,7 @@ static NSArray * speakerKeywords;
 - (void)errorOfSpeech:(IFlySpeechError *)error
 {
     NSLog(@"errorString___:%@",[error description]);
-    if (error.errorCode == 10118) {
-        
-    }else{
+    if (error.errorCode != 0) {
         [self showAlertView:@"失败" message:[error errorDesc]];
     }
     

@@ -183,7 +183,7 @@
     }
     for (int i = startNum; i < endNum; i ++) {
         int x = (int)(startNum + (arc4random() % (endNum - startNum + 1)));
-        NSLog(@"x:%d",x);
+//        NSLog(@"x:%d",x);
         NSNumber * number = [NSNumber numberWithInt:x];
         if (![contaisKey containsObject:number]) {
             return x;
@@ -196,6 +196,10 @@
 
 - (void)setKeywordViewHiddenStatus:(BOOL)status
 {
+    if (self.curHidenStatus == status) {
+        return;
+    }
+    
     if (status) {
         [self slideOutTo:kFTAnimationLeft inView:self.superview duration:0.6f delegate:nil startSelector:nil stopSelector:nil];
         for (int i = 0; i < [_allCurShowKeywords count]; i ++) {
@@ -211,6 +215,8 @@
             //            [keywordView startAnimation];
         }
     }
+    
+    self.curHidenStatus = status;
 }
 
 
