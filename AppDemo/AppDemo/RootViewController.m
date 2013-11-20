@@ -15,7 +15,7 @@
 <VerifyMyAppDelegate>
 {
     CustomFunctionView * cloudFunctionView;
-    
+    RightSideViewController * rightSideViewCtrller;
 }
 @property (nonatomic,strong) UIImageView * titleImgView;
 @property (nonatomic,strong) CustomSpeakerView * speakerView;
@@ -74,24 +74,27 @@ static NSArray * speakerKeywords;
     app.delegate = self;
     [app startVerifyWithUrlString:nil];
     
+    rightSideViewCtrller = [[RightSideViewController alloc] init];
+    [self.revealSideViewController pushViewController:rightSideViewCtrller onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:NO];
+    [rightSideViewCtrller.revealSideViewController popViewControllerAnimated:NO];
     
-    RightSideViewController * right = [[RightSideViewController alloc] init];
-    [self.revealSideViewController pushViewController:right onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:NO];
+}
 
-    [right.revealSideViewController popViewControllerAnimated:NO];
-    
-    
-//   [self initResultNoneView];
-//    [self initTipMenuView];
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.view bringSubviewToFront:_menu];
+    [self.view bringSubviewToFront:_backBtn];
 }
 
 - (void)setCanMoveToOpenRightViewStatus:(BOOL)status
 {
-    if (status)
-    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
-    else
-    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+    if (status) {
+        [self.revealSideViewController changeOffset:320-116 forDirection:PPRevealSideDirectionRight];
 
+    }else{
+        [self.revealSideViewController changeOffset:320 forDirection:PPRevealSideDirectionRight];
+
+    }
 }
 
 #pragma mark CustomKeywordViewDelegate
@@ -497,6 +500,7 @@ static NSArray * speakerKeywords;
         [_iflyMSC startRecongnizer];
         [self initSpeakerView];
         [self.view bringSubviewToFront:_speakerBackView];
+        [self setCanMoveToOpenRightViewStatus:NO];
     }
 }
 
@@ -553,7 +557,7 @@ static NSArray * speakerKeywords;
     if ([inputTxt isEqualToString:@"买车"]) {
         [self initBuyCarView];
     }else{
-        [self initResultNoneView];
+        [self initResultNoneView:inputTxt];
     }
     [self.view bringSubviewToFront:_speakerView];
     _inputTextView = nil;
@@ -701,7 +705,6 @@ static NSArray * speakerKeywords;
 - (void)endOfSpeech
 {
     //    _speakerTipLabel.text = @"结束识别";
-    
     NSLog(@"endOfSpeech");
 }
 
@@ -712,11 +715,12 @@ static NSArray * speakerKeywords;
     if (error.errorCode != 0) {
         [self showAlertView:@"失败" message:[error errorDesc]];
     }
-    
     if (_speakerBackView) {
         [_speakerBackView removeFromSuperview];
         _speakerBackView = nil;
     }
+    [self setCanMoveToOpenRightViewStatus:YES];
+
 }
 
 //识别信息
@@ -742,32 +746,46 @@ static NSArray * speakerKeywords;
         
     }else{
         [_keywordView setKeywordViewHiddenStatus:YES];
-        [self initResultNoneView];
+        [self initResultNoneView:result];
     }
     [self.view bringSubviewToFront:_speakerView];
     
-    
+    [self setCanMoveToOpenRightViewStatus:YES];
+
 }
 
-- (void)initResultNoneView
+- (void)initResultNoneView:(NSString *)errTxt
 {
     if (!_noResultView) {
         _noResultView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         _noResultView.backgroundColor = [UIColor colorWithWhite:0.3f alpha:0.3f];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noResultViewTaped:)];
         [_noResultView addGestureRecognizer:tap];
+
+        UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 150, 187)];
         
-        UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 102, 202)];
-        noResultImgView.image = [UIImage imageNamed:@"image_error_tip.png"];
+        UILabel * errorTxt = [[UILabel alloc] initWithFrame:CGRectMake(13, 20 + 125, 120, 30)];
+        errorTxt.tag = 999;
+        errorTxt.backgroundColor = [UIColor clearColor];
+        errorTxt.text = errTxt;
+        errorTxt.font = [UIFont systemFontOfSize:17];
+        errorTxt.textColor = [UIColor whiteColor];
+        [_noResultView addSubview:errorTxt];
+        
+        noResultImgView.image = [UIImage imageNamed:@"image_error_tip_1.png"];
         [_noResultView addSubview:noResultImgView];
         
-        UIButton * buycarBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 240, 60, 30)];
+        UIButton * buycarBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 230, 60, 30)];
+        [buycarBtn setBackgroundColor:[UIColor clearColor]];
         [buycarBtn addTarget:self action:@selector(buyCarBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_noResultView addSubview:buycarBtn];
         
     }
     
     [self.view addSubview:_noResultView];
+    UILabel * errorTxt = (UILabel *)[_noResultView viewWithTag:999];
+    errorTxt.text = [NSString stringWithFormat:@"\"%@\"",errTxt];
+    
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 1;
     }];
@@ -796,7 +814,6 @@ static NSArray * speakerKeywords;
 
 - (void)initShowResultView:(NSString *)result
 {
-    
     [_keywordView setKeywordViewHiddenStatus:YES];
     if ([result isEqualToString:@"买车"]) {
         [self initTipMenuView];

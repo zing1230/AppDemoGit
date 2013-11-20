@@ -42,4 +42,7 @@ CustomFunctionViewDelegate>
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;
 @property(nonatomic,strong) UIImageView * viewToAnimate;
+
+- (void)setCanMoveToOpenRightViewStatus:(BOOL)status;
+
 @end

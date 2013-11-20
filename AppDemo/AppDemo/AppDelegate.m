@@ -37,10 +37,8 @@
 //    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
 //    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModePanningCenterView | MMCloseDrawerGestureModeTapCenterView];
     
-    
+
     _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:self.navController];
-    
-    
     
     _revealSideViewController.delegate = self;
     [_revealSideViewController resetOption:PPRevealSideOptionsBounceAnimations];
@@ -52,7 +50,7 @@
     
     self.window.backgroundColor =  RGBACOLOR(65,65,65,1);
     [self.window makeKeyAndVisible];
-    
+//    [_rootViewCtrller setCanMoveToOpenRightViewStatus:NO];
     
     return YES;
 }
@@ -83,11 +81,9 @@
     return NO;
 }
 
-- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController*)controller directionsAllowedForPanningOnView:(UIView*)view {
-    
-    if ([view isKindOfClass:NSClassFromString(@"UIWebBrowserView")]) return PPRevealSideDirectionLeft | PPRevealSideDirectionRight;
-    
-    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
+- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController*)controller directionsAllowedForPanningOnView:(UIView*)view
+{
+    return PPRevealSideDirectionRight;
 }
 
 - (void)showAlertView:(NSString *)title message:(NSString *)msg

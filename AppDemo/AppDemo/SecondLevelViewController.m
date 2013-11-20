@@ -113,6 +113,7 @@
 
 - (void)backBtnPressed:(UIButton *)sender
 {
+    
     if (self.isLandscape) {
         [[ConfigData shareInstance] setNeedRotation:YES];
         if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {

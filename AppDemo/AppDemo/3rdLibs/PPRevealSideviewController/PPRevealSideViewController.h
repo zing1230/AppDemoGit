@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ConfigData.h"
 // define some macros 
 #ifndef __has_feature
 #define __has_feature(x) 0

@@ -9,6 +9,7 @@
 #import "PPRevealSideViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import "ConfigData.h"
 
 @interface PPRevealSideViewController (Private)
 - (void) setRootViewController:(UIViewController *)controller replaceToOrigin:(BOOL)replace;
