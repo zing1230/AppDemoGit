@@ -84,6 +84,8 @@ static NSArray * speakerKeywords;
 {
     [self.view bringSubviewToFront:_menu];
     [self.view bringSubviewToFront:_backBtn];
+    [self.view bringSubviewToFront:_speakerView];
+
 }
 
 - (void)setCanMoveToOpenRightViewStatus:(BOOL)status
@@ -525,9 +527,11 @@ static NSArray * speakerKeywords;
         [_speakerBackView removeFromSuperview];
         _speakerBackView = nil;
     }
-    
-    [_iflyMSC stopRecongnizer];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+
     [_iflyMSC cancelRecongnizer];
+//    [_iflyMSC stopRecongnizer];
+    NSLog(@"__________________________________________");
 }
 
 - (void)initInputTextView

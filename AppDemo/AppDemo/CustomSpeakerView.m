@@ -71,7 +71,6 @@
     float offsetX =  startPoint.x - point.x;
     float offsetY = startPoint.y - point.y;
 
-    
 //    self.center = CGPointMake(self.center.x + offsetX, self.center.y + offsetY);
 //    NSLog(@"endY___________________:%.0f",self.center.x);
 
