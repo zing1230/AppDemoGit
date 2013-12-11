@@ -42,6 +42,7 @@ CustomFunctionViewDelegate>
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;
 @property(nonatomic,strong) UIImageView * viewToAnimate;
+@property(nonatomic,strong) CustomSpeakerView * speakerView;
 
 - (void)setCanMoveToOpenRightViewStatus:(BOOL)status;
 

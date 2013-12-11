@@ -23,17 +23,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
-
+        
         UIImageView * bgimgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 39)];
         bgimgview.image = [UIImage imageNamed:@"input_bg.png"];
         [self addSubview:bgimgview];
-
+        
         UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(7, 6, 54, 25);
         [backBtn setBackgroundImage:[UIImage imageNamed:@"image_back.png"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
-
+        
         UIButton * commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         commitBtn.frame = CGRectMake(265, 15, 44, 15);
         UIFont * font = [UIFont fontWithName:@"CourierNewPSMT" size:18];
@@ -48,7 +48,7 @@
         txtField.returnKeyType = UIReturnKeySearch;
         txtField.textColor = [UIColor whiteColor];
         txtField.font = [UIFont systemFontOfSize:14];
-        [txtField becomeFirstResponder];
+        [txtField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.4f];
         
         [self addSubview:txtField];
         
@@ -67,7 +67,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     NSLog(@"textField.text:%@",textField.text);
-
+    
     [self commitBtnPressed:nil];
     
     return YES;
@@ -89,7 +89,7 @@
                 [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
                 btn.backgroundColor = [UIColor clearColor];
                 [_tipImgView addSubview:btn];
- 
+                
             }
             
         }
@@ -116,7 +116,7 @@
     if ([_delegate respondsToSelector:@selector(inputTextViewCommit:)]) {
         [_delegate inputTextViewCommit:txt];
     }
-            [_timer invalidate];
+    [_timer invalidate];
 }
 
 
@@ -136,12 +136,12 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

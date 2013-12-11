@@ -58,7 +58,7 @@
 #pragma mark - PPRevealSideViewController delegate
 
 - (void) pprevealSideViewController:(PPRevealSideViewController *)controller willPushController:(UIViewController *)pushedController {
-    
+    _rootViewCtrller.speakerView.userInteractionEnabled = NO;
 }
 
 - (void) pprevealSideViewController:(PPRevealSideViewController *)controller didPushController:(UIViewController *)pushedController {
@@ -70,7 +70,7 @@
 }
 
 - (void) pprevealSideViewController:(PPRevealSideViewController *)controller didPopToController:(UIViewController *)centerController {
-    
+    _rootViewCtrller.speakerView.userInteractionEnabled = YES;
 }
 
 - (void) pprevealSideViewController:(PPRevealSideViewController *)controller didChangeCenterController:(UIViewController *)newCenterController {

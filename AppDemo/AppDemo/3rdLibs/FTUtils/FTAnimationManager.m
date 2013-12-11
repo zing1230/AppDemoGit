@@ -527,7 +527,7 @@ NSString *const kFTAnimationWasInteractionEnabledKey = @"kFTAnimationWasInteract
 - (void)animationDidStart:(CAAnimation *)theAnimation {
   UIView *targetView = [theAnimation valueForKey:kFTAnimationTargetViewKey];
   [theAnimation setValue:[NSNumber numberWithBool:targetView.userInteractionEnabled] forKey:kFTAnimationWasInteractionEnabledKey];
-  [targetView setUserInteractionEnabled:NO];
+//  [targetView setUserInteractionEnabled:NO];
   
   if([[theAnimation valueForKey:kFTAnimationType] isEqualToString:kFTAnimationTypeIn]) {
     [targetView setHidden:NO];

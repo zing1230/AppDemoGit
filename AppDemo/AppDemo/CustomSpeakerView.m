@@ -35,7 +35,7 @@
         _tipLabel.text = @"点按并说出您的需求";
         _tipLabel.font = [UIFont fontWithName:@"CourierNewPSMT" size:14];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_tipLabel];
+//        [self addSubview:_tipLabel];
     }
     return self;
 }

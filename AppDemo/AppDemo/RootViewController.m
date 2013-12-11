@@ -18,7 +18,7 @@
     RightSideViewController * rightSideViewCtrller;
 }
 @property (nonatomic,strong) UIImageView * titleImgView;
-@property (nonatomic,strong) CustomSpeakerView * speakerView;
+//@property (nonatomic,strong) CustomSpeakerView * speakerView;
 @property (nonatomic,strong) CustomInputTextView * inputTextView;
 
 @property (nonatomic,strong) CustomKeywordView * keywordView;
@@ -59,6 +59,8 @@ static NSArray * speakerKeywords;
     
     _iflyMSC = [iFlyMSC shareInstance];
     _iflyMSC.delegate = self;
+
+    
     
     _speakerView = [[CustomSpeakerView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 154, SCREEN_HEIGHT - 125, 154, 125)];
     _speakerView.delegate = self;
@@ -92,7 +94,6 @@ static NSArray * speakerKeywords;
 {
     if (status) {
         [self.revealSideViewController changeOffset:320-116 forDirection:PPRevealSideDirectionRight];
-
     }else{
         [self.revealSideViewController changeOffset:320 forDirection:PPRevealSideDirectionRight];
 
@@ -316,7 +317,7 @@ static NSArray * speakerKeywords;
     }];
 }
 
-- (void)resetViewStatus
+- (void)resetViewStatus:(BOOL)HiddenKeyword
 {
     if (_menu) {
         [_menu removeFromSuperview];
@@ -345,7 +346,7 @@ static NSArray * speakerKeywords;
     }];
     
     //    [self setKeywordViewHiddenStatus:NO];
-    [_keywordView setKeywordViewHiddenStatus:NO];
+    [_keywordView setKeywordViewHiddenStatus:HiddenKeyword];
 }
 
 
@@ -357,7 +358,7 @@ static NSArray * speakerKeywords;
         sender.alpha = 0;
     } completion:^(BOOL finished) {
         [sender removeFromSuperview];
-        [self resetViewStatus];
+        [self resetViewStatus:NO];
     }];
 }
 
@@ -365,14 +366,7 @@ static NSArray * speakerKeywords;
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
     NSLog(@"Select the index : %d",idx);
-    //    [self backBtnPressed:_backBtn];
-    //    [UIView animateWithDuration:0.6f animations:^{
-    //        _backBtn.alpha = 0;
-    //    } completion:^(BOOL finished) {
-    //        [_backBtn removeFromSuperview];
-    //        [self resetViewStatus];
-    //    }];
-    //    return;
+
     switch (idx) {
         case 0:
         {
@@ -482,7 +476,8 @@ static NSArray * speakerKeywords;
 - (void)touchBegan:(CustomSpeakerView *)view
 {
     [_backBtn removeFromSuperview];
-    [self resetViewStatus];
+    [self resetViewStatus:YES];
+    
     [self noResultViewTaped:nil];
     
     if (_buyCarTipView) {
@@ -491,9 +486,11 @@ static NSArray * speakerKeywords;
     }
     
     
-    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
-    //    [self initSpeakerView];
-    //    [self.view bringSubviewToFront:_speakerBackView];
+    [self initInputTextView];
+    [self setCanMoveToOpenRightViewStatus:NO];
+
+    
+//    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
 }
 
 - (void)starRec
@@ -508,28 +505,32 @@ static NSArray * speakerKeywords;
 
 - (void)touchEnded:(CustomSpeakerView *)view
 {
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
     
-    [_iflyMSC stopRecongnizer];
-    _speakerTipLabel.text = @"识别中";
+//    [_iflyMSC stopRecongnizer];
+//    _speakerTipLabel.text = @"识别中";
+    
+    
 }
 
 - (void)touchMoved:(CustomSpeakerView *)view
 {
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
-    [self touchCanceled:view];
-    [self initInputTextView];
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//    [self touchCanceled:view];
+//    [self initInputTextView];
 }
 
 - (void)touchCanceled:(CustomSpeakerView *)view
 {
-    if (_speakerBackView) {
-        [_speakerBackView removeFromSuperview];
-        _speakerBackView = nil;
-    }
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
-
-    [_iflyMSC cancelRecongnizer];
+//    [_keywordView setKeywordViewHiddenStatus:NO];
+//    _inputTextView = nil;
+//    if (_speakerBackView) {
+//        [_speakerBackView removeFromSuperview];
+//        _speakerBackView = nil;
+//    }
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//
+//    [_iflyMSC cancelRecongnizer];
 //    [_iflyMSC stopRecongnizer];
     NSLog(@"__________________________________________");
 }
@@ -552,13 +553,23 @@ static NSArray * speakerKeywords;
 #pragma mark InputTextViewDelegate
 - (void)inputTextViewRemoved
 {
+    
+    [self setCanMoveToOpenRightViewStatus:YES];
+    self.speakerView.userInteractionEnabled = YES;
+    
+    
     [_keywordView setKeywordViewHiddenStatus:NO];
     _inputTextView = nil;
 }
 
 - (void)inputTextViewCommit:(NSString *)inputTxt
 {
-    if ([inputTxt isEqualToString:@"买车"]) {
+    //if ([inputTxt isEqualToString:@"买车"]) {
+    [self setCanMoveToOpenRightViewStatus:YES];
+    self.speakerView.userInteractionEnabled = YES;
+    
+    
+    if ([inputTxt rangeOfString:@"买车" options:NSCaseInsensitiveSearch].length > 0) {
         [self initBuyCarView];
     }else{
         [self initResultNoneView:inputTxt];
@@ -807,7 +818,9 @@ static NSArray * speakerKeywords;
 
 - (void)noResultViewTaped:(UITapGestureRecognizer *)tap
 {
-    [_keywordView setKeywordViewHiddenStatus:NO];
+    if (tap) {
+        [_keywordView setKeywordViewHiddenStatus:NO];
+    }
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 0;
     } completion:^(BOOL finished) {

@@ -99,13 +99,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDemo/AppDelegate.m"
-         timestampString = "401036026.031466"
+         timestampString = "407163902.812979"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "106"
          endingLineNumber = "106"
-         landmarkName = "-application:handleOpenURL:"
-         landmarkType = "5">
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -170,6 +170,19 @@
          startingLineNumber = "791"
          endingLineNumber = "791"
          landmarkName = "-tapGesture:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "AppDemo/CustomKeywordCellView.m"
+         timestampString = "407165398.441434"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-touchesEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
