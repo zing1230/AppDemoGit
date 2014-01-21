@@ -191,24 +191,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1046"
             endingLineNumber = "1046"
-            landmarkName = "-gestureRecognizer:shouldReceiveTouch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppDemo/3rdLibs/MMDrawerController/MMDrawerController.m"
-            timestampString = "401029502.294266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
-            landmarkName = "-tapGesture:"
-            landmarkType = "5">
+            landmarkName = "@implementation MMDrawerController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

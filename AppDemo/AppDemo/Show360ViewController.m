@@ -123,10 +123,21 @@
 //    [_expandingBar hideButtonsAnimated:YES];
     
     [[ConfigData shareInstance] setNeedRotation:NO];
+//    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+//        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+//                                       withObject:(id)UIInterfaceOrientationPortrait];
+//    }
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
-                                       withObject:(id)UIInterfaceOrientationPortrait];
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIDeviceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
     }
+
+    
     [UIViewController attemptRotationToDeviceOrientation];
 
     
@@ -169,10 +180,21 @@
 - (void)homeBtnPressed:(UIButton *)sender
 {
     [[ConfigData shareInstance] setNeedRotation:NO];
+//    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+//        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+//                                       withObject:(id)UIDeviceOrientationPortrait];
+//    }
+    
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
-                                       withObject:(id)UIDeviceOrientationPortrait];
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIDeviceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
     }
+    
     [UIViewController attemptRotationToDeviceOrientation];
     [super homeBtnPressed:sender];
 }
@@ -180,10 +202,20 @@
 - (void)backBtnPressed:(UIButton *)sender
 {
     [[ConfigData shareInstance] setNeedRotation:NO];
+//    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+//        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+//                                       withObject:(id)UIDeviceOrientationPortrait];
+//    }
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
-                                       withObject:(id)UIDeviceOrientationPortrait];
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIDeviceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
     }
+
     
     [UIViewController attemptRotationToDeviceOrientation];
     [super backBtnPressed:sender];

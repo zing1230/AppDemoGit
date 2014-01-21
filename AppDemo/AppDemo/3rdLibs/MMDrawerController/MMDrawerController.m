@@ -629,6 +629,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     //NSLog(@"self.topViewController:%@",[self.topViewController description]);
     BOOL status = [[ConfigData shareInstance] getNeedRotation];
 
+    
     if (status)
     {
         return UIInterfaceOrientationMaskLandscapeLeft;
@@ -724,6 +725,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 -(void)setShowsShadow:(BOOL)showsShadow{
     _showsShadow = showsShadow;
     [self updateShadowForCenterView];
+    
 }
 
 -(void)setOpenSide:(MMDrawerSide)openSide{

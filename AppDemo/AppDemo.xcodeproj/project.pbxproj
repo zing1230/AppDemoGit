@@ -66,6 +66,7 @@
 		6565338A17DDED2C00D88886 /* image_floating_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6565338917DDED2B00D88886 /* image_floating_bg.png */; };
 		65679D0217F418DB002EF69E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65679D0017F418DB002EF69E /* icon@2x.png */; };
 		65679D0317F418DB002EF69E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 65679D0117F418DB002EF69E /* icon.png */; };
+		6568FD841877F9970081BE5E /* Show360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D14017BB10A0003D220F /* Show360ViewController.m */; };
 		65690EAE17982195000E8E05 /* iFlyMSC.m in Sources */ = {isa = PBXBuildFile; fileRef = 65690EAD17982195000E8E05 /* iFlyMSC.m */; };
 		656C3C5B17F5CAB50027A60E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656C3C5A17F5CAB50027A60E /* CoreFoundation.framework */; };
 		656C3C5D17F5CDD80027A60E /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656C3C5C17F5CDD80027A60E /* iflyMSC.framework */; };
@@ -160,9 +161,8 @@
 		65F3D12C17BA3DC8003D220F /* keyword_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D12217BA3DC5003D220F /* keyword_2.png */; };
 		65F3D13317BA641B003D220F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F3D13217BA641B003D220F /* MapKit.framework */; };
 		65F3D13517BA662F003D220F /* image_open_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D13417BA662D003D220F /* image_open_btn.png */; };
-		65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D13717BA6EA0003D220F /* ModelDetailViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D13717BA6EA0003D220F /* ModelDetailViewController.m */; };
 		65F3D13B17BA7661003D220F /* ConfigData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D13A17BA7660003D220F /* ConfigData.m */; };
-		65F3D14117BB10A0003D220F /* Show360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F3D14017BB10A0003D220F /* Show360ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		65F3D14517BB345E003D220F /* input_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14317BB345E003D220F /* input_bg.png */; };
 		65F3D14C17BB58E2003D220F /* image_point_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14A17BB58E2003D220F /* image_point_selected.png */; };
 		65F3D14D17BB58E2003D220F /* image_point_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F3D14B17BB58E2003D220F /* image_point_normal.png */; };
@@ -1051,7 +1051,7 @@
 				65FAEC0817B912E10026C485 /* CarDetailViewController.m in Sources */,
 				65F3D13817BA6EA1003D220F /* ModelDetailViewController.m in Sources */,
 				65F3D13B17BA7661003D220F /* ConfigData.m in Sources */,
-				65F3D14117BB10A0003D220F /* Show360ViewController.m in Sources */,
+				6568FD841877F9970081BE5E /* Show360ViewController.m in Sources */,
 				658D2CFC17C6304800C59F4F /* CustomPageControl.m in Sources */,
 				65847E4317C7B4FD0095C82C /* NSObject+SBJSON.m in Sources */,
 				65847E4417C7B4FD0095C82C /* NSString+SBJSON.m in Sources */,
