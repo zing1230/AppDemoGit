@@ -3,3 +3,5 @@ gitHub test
 AppDemo/AppDemo/AppDelegate.m
 
 *.xcuserstate
+
+AppDemo/AppDemo/GlobalConfig.h

@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "FTUtils.h"
-#import "UIViewController+MMDrawerController.h"
+//#import "UIViewController+MMDrawerController.h"
+#import "GMGridView.h"
+
 
 @interface RightSideViewController : UIViewController
+<UIAlertViewDelegate>
+{
+
+
+}
 
 @end

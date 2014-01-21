@@ -15,10 +15,10 @@
 <VerifyMyAppDelegate>
 {
     CustomFunctionView * cloudFunctionView;
-    
+    RightSideViewController * rightSideViewCtrller;
 }
 @property (nonatomic,strong) UIImageView * titleImgView;
-@property (nonatomic,strong) CustomSpeakerView * speakerView;
+//@property (nonatomic,strong) CustomSpeakerView * speakerView;
 @property (nonatomic,strong) CustomInputTextView * inputTextView;
 
 @property (nonatomic,strong) CustomKeywordView * keywordView;
@@ -55,10 +55,12 @@ static NSArray * speakerKeywords;
     UIImageView * roundbgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 90, 182, 279)];
     roundbgImg.image = [UIImage imageNamed:@"image_bg_round.png"];
     [self.view addSubview:roundbgImg];
-    //    roundbgImg.transform = CGAffineTransformMakeTranslation(10, 10);
+
     
     _iflyMSC = [iFlyMSC shareInstance];
     _iflyMSC.delegate = self;
+
+    
     
     _speakerView = [[CustomSpeakerView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 154, SCREEN_HEIGHT - 125, 154, 125)];
     _speakerView.delegate = self;
@@ -74,10 +76,28 @@ static NSArray * speakerKeywords;
     app.delegate = self;
     [app startVerifyWithUrlString:nil];
     
+    rightSideViewCtrller = [[RightSideViewController alloc] init];
+    [self.revealSideViewController pushViewController:rightSideViewCtrller onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:NO];
+    [rightSideViewCtrller.revealSideViewController popViewControllerAnimated:NO];
     
-//    [self initResultNoneView];
-//    [self initTipMenuView];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.view bringSubviewToFront:_menu];
+    [self.view bringSubviewToFront:_backBtn];
+    [self.view bringSubviewToFront:_speakerView];
+
+}
+
+- (void)setCanMoveToOpenRightViewStatus:(BOOL)status
+{
+    if (status) {
+        [self.revealSideViewController changeOffset:320-116 forDirection:PPRevealSideDirectionRight];
+    }else{
+        [self.revealSideViewController changeOffset:320 forDirection:PPRevealSideDirectionRight];
+
+    }
 }
 
 #pragma mark CustomKeywordViewDelegate
@@ -183,18 +203,18 @@ static NSArray * speakerKeywords;
         cloudFunctionView = nil;
     }
     
-    if (_noResultView) {
-        [_noResultView removeFromSuperview];
-        _noResultView = nil;
-        
-        [_keywordView setKeywordViewHiddenStatus:NO];
-    }
+//    if (_noResultView) {
+//        [_noResultView removeFromSuperview];
+//        _noResultView = nil;
+//        [_keywordView setKeywordViewHiddenStatus:NO];
+//    }
     if (_inputTextView) {
         [_inputTextView backBtnPressed:nil];
         _inputTextView = nil;
     }
     
     cloudFunctionView = [[CustomFunctionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+    cloudFunctionView.delegate= self;
     [self.view addSubview:cloudFunctionView];
     
     [UIView animateWithDuration:0.618f animations:^{
@@ -202,13 +222,37 @@ static NSArray * speakerKeywords;
     }];
 }
 
+#pragma mark CustomFunctionViewDelegate
+- (void)functionSelectedAtIndex:(int)index functionView:(CustomFunctionView *)view
+{
+    switch (index) {
+        case 1:
+        {
+            [self enterIntoDealersViewCtrller];
+        }
+            break;
+        case 4:
+        {
+
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+}
 
 
 - (void)openLeftViewBtnPressed:(UIButton *)sender
 {
-    [self.mm_drawerController openDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
-        
-    }];
+//    [self.mm_drawerController openDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
+//        
+//    }];
+    
+    RightSideViewController * right = [[RightSideViewController alloc] init];
+    [self.revealSideViewController pushViewController:right onDirection:PPRevealSideDirectionRight withOffset:320 - 116 animated:YES];
+    
 }
 
 
@@ -273,7 +317,7 @@ static NSArray * speakerKeywords;
     }];
 }
 
-- (void)resetViewStatus
+- (void)resetViewStatus:(BOOL)HiddenKeyword
 {
     if (_menu) {
         [_menu removeFromSuperview];
@@ -302,7 +346,7 @@ static NSArray * speakerKeywords;
     }];
     
     //    [self setKeywordViewHiddenStatus:NO];
-    [_keywordView setKeywordViewHiddenStatus:NO];
+    [_keywordView setKeywordViewHiddenStatus:HiddenKeyword];
 }
 
 
@@ -314,7 +358,7 @@ static NSArray * speakerKeywords;
         sender.alpha = 0;
     } completion:^(BOOL finished) {
         [sender removeFromSuperview];
-        [self resetViewStatus];
+        [self resetViewStatus:NO];
     }];
 }
 
@@ -322,14 +366,7 @@ static NSArray * speakerKeywords;
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
     NSLog(@"Select the index : %d",idx);
-    //    [self backBtnPressed:_backBtn];
-    //    [UIView animateWithDuration:0.6f animations:^{
-    //        _backBtn.alpha = 0;
-    //    } completion:^(BOOL finished) {
-    //        [_backBtn removeFromSuperview];
-    //        [self resetViewStatus];
-    //    }];
-    //    return;
+
     switch (idx) {
         case 0:
         {
@@ -439,7 +476,8 @@ static NSArray * speakerKeywords;
 - (void)touchBegan:(CustomSpeakerView *)view
 {
     [_backBtn removeFromSuperview];
-    [self resetViewStatus];
+    [self resetViewStatus:YES];
+    
     [self noResultViewTaped:nil];
     
     if (_buyCarTipView) {
@@ -448,43 +486,53 @@ static NSArray * speakerKeywords;
     }
     
     
-    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
-    //    [self initSpeakerView];
-    //    [self.view bringSubviewToFront:_speakerBackView];
+    [self initInputTextView];
+    [self setCanMoveToOpenRightViewStatus:NO];
+
+    
+//    [self performSelector:@selector(starRec) withObject:nil afterDelay:0.3f];
 }
 
 - (void)starRec
 {
-    
-    [_iflyMSC startRecongnizer];
-    [self initSpeakerView];
-    [self.view bringSubviewToFront:_speakerBackView];
+    if ([[ConfigData shareInstance] getNetworkStatus] != NotReachable) {
+        [_iflyMSC startRecongnizer];
+        [self initSpeakerView];
+        [self.view bringSubviewToFront:_speakerBackView];
+        [self setCanMoveToOpenRightViewStatus:NO];
+    }
 }
 
 - (void)touchEnded:(CustomSpeakerView *)view
 {
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
     
-    [_iflyMSC stopRecongnizer];
-    _speakerTipLabel.text = @"识别中";
+//    [_iflyMSC stopRecongnizer];
+//    _speakerTipLabel.text = @"识别中";
+    
+    
 }
 
 - (void)touchMoved:(CustomSpeakerView *)view
 {
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
-    [self touchCanceled:view];
-    [self initInputTextView];
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//    [self touchCanceled:view];
+//    [self initInputTextView];
 }
 
 - (void)touchCanceled:(CustomSpeakerView *)view
 {
-    if (_speakerBackView) {
-        [_speakerBackView removeFromSuperview];
-        _speakerBackView = nil;
-    }
-    
-    [_iflyMSC stopRecongnizer];
-    [_iflyMSC cancelRecongnizer];
+//    [_keywordView setKeywordViewHiddenStatus:NO];
+//    _inputTextView = nil;
+//    if (_speakerBackView) {
+//        [_speakerBackView removeFromSuperview];
+//        _speakerBackView = nil;
+//    }
+//    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(starRec) object:nil];
+//
+//    [_iflyMSC cancelRecongnizer];
+//    [_iflyMSC stopRecongnizer];
+    NSLog(@"__________________________________________");
 }
 
 - (void)initInputTextView
@@ -505,16 +553,26 @@ static NSArray * speakerKeywords;
 #pragma mark InputTextViewDelegate
 - (void)inputTextViewRemoved
 {
+    
+    [self setCanMoveToOpenRightViewStatus:YES];
+    self.speakerView.userInteractionEnabled = YES;
+    
+    
     [_keywordView setKeywordViewHiddenStatus:NO];
     _inputTextView = nil;
 }
 
 - (void)inputTextViewCommit:(NSString *)inputTxt
 {
-    if ([inputTxt isEqualToString:@"买车"]) {
+    //if ([inputTxt isEqualToString:@"买车"]) {
+    [self setCanMoveToOpenRightViewStatus:YES];
+    self.speakerView.userInteractionEnabled = YES;
+    
+    
+    if ([inputTxt rangeOfString:@"买车" options:NSCaseInsensitiveSearch].length > 0) {
         [self initBuyCarView];
     }else{
-        [self initResultNoneView];
+        [self initResultNoneView:inputTxt];
     }
     [self.view bringSubviewToFront:_speakerView];
     _inputTextView = nil;
@@ -662,7 +720,6 @@ static NSArray * speakerKeywords;
 - (void)endOfSpeech
 {
     //    _speakerTipLabel.text = @"结束识别";
-    
     NSLog(@"endOfSpeech");
 }
 
@@ -670,16 +727,15 @@ static NSArray * speakerKeywords;
 - (void)errorOfSpeech:(IFlySpeechError *)error
 {
     NSLog(@"errorString___:%@",[error description]);
-    if (error.errorCode == 10118) {
-        
-    }else{
+    if (error.errorCode != 0) {
         [self showAlertView:@"失败" message:[error errorDesc]];
     }
-    
     if (_speakerBackView) {
         [_speakerBackView removeFromSuperview];
         _speakerBackView = nil;
     }
+    [self setCanMoveToOpenRightViewStatus:YES];
+
 }
 
 //识别信息
@@ -705,32 +761,46 @@ static NSArray * speakerKeywords;
         
     }else{
         [_keywordView setKeywordViewHiddenStatus:YES];
-        [self initResultNoneView];
+        [self initResultNoneView:result];
     }
     [self.view bringSubviewToFront:_speakerView];
     
-    
+    [self setCanMoveToOpenRightViewStatus:YES];
+
 }
 
-- (void)initResultNoneView
+- (void)initResultNoneView:(NSString *)errTxt
 {
     if (!_noResultView) {
         _noResultView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         _noResultView.backgroundColor = [UIColor colorWithWhite:0.3f alpha:0.3f];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noResultViewTaped:)];
         [_noResultView addGestureRecognizer:tap];
+
+        UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 150, 187)];
         
-        UIImageView * noResultImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 125, 102, 202)];
-        noResultImgView.image = [UIImage imageNamed:@"image_error_tip.png"];
+        UILabel * errorTxt = [[UILabel alloc] initWithFrame:CGRectMake(13, 20 + 125, 120, 30)];
+        errorTxt.tag = 999;
+        errorTxt.backgroundColor = [UIColor clearColor];
+        errorTxt.text = errTxt;
+        errorTxt.font = [UIFont systemFontOfSize:17];
+        errorTxt.textColor = [UIColor whiteColor];
+        [_noResultView addSubview:errorTxt];
+        
+        noResultImgView.image = [UIImage imageNamed:@"image_error_tip_1.png"];
         [_noResultView addSubview:noResultImgView];
         
-        UIButton * buycarBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 240, 60, 30)];
+        UIButton * buycarBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 230, 60, 30)];
+        [buycarBtn setBackgroundColor:[UIColor clearColor]];
         [buycarBtn addTarget:self action:@selector(buyCarBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_noResultView addSubview:buycarBtn];
         
     }
     
     [self.view addSubview:_noResultView];
+    UILabel * errorTxt = (UILabel *)[_noResultView viewWithTag:999];
+    errorTxt.text = [NSString stringWithFormat:@"\"%@\"",errTxt];
+    
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 1;
     }];
@@ -748,7 +818,9 @@ static NSArray * speakerKeywords;
 
 - (void)noResultViewTaped:(UITapGestureRecognizer *)tap
 {
-    [_keywordView setKeywordViewHiddenStatus:NO];
+    if (tap) {
+        [_keywordView setKeywordViewHiddenStatus:NO];
+    }
     [UIView animateWithDuration:0.6f animations:^{
         _noResultView.alpha = 0;
     } completion:^(BOOL finished) {
@@ -759,7 +831,6 @@ static NSArray * speakerKeywords;
 
 - (void)initShowResultView:(NSString *)result
 {
-    
     [_keywordView setKeywordViewHiddenStatus:YES];
     if ([result isEqualToString:@"买车"]) {
         [self initTipMenuView];

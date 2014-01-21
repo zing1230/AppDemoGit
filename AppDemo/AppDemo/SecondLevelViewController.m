@@ -41,7 +41,7 @@
     [_navImgView addSubview:backBtn];
 
     _cloctionBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 9, 19, 19)];
-    [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
+    [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_uncloction.png"] forState:UIControlStateNormal];
     [_cloctionBtn addTarget:self action:@selector(cloctionBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_navImgView addSubview:_cloctionBtn];
     
@@ -102,10 +102,10 @@
 - (void)cloctionBtnPressed:(UIButton *)sender
 {
     if (!sender.selected) {
-        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_uncloction.png"] forState:UIControlStateNormal];
+        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
         [self showToastWithMessage:@"收藏成功" showTime:1.0f];
     }else{
-        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_cloctioned.png"] forState:UIControlStateNormal];
+        [_cloctionBtn setBackgroundImage:[UIImage imageNamed:@"image_uncloction.png"] forState:UIControlStateNormal];
         [self showToastWithMessage:@"已取消收藏" showTime:1.0f];
     }
     sender.selected = !sender.selected;
@@ -113,6 +113,7 @@
 
 - (void)backBtnPressed:(UIButton *)sender
 {
+    
     if (self.isLandscape) {
         [[ConfigData shareInstance] setNeedRotation:YES];
         if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {

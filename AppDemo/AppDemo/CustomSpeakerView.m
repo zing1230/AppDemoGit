@@ -10,7 +10,7 @@
 
 @interface CustomSpeakerView()
 {
-    float startY;
+    CGPoint startPoint;
 }
 @property (nonatomic,strong) UIImageView * spearkImgView;
 
@@ -35,7 +35,7 @@
         _tipLabel.text = @"点按并说出您的需求";
         _tipLabel.font = [UIFont fontWithName:@"CourierNewPSMT" size:14];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_tipLabel];
+//        [self addSubview:_tipLabel];
     }
     return self;
 }
@@ -44,10 +44,8 @@
 {
     [self popIn:.4 delegate:nil];
     UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-    startY = point.y;
-    NSLog(@"startY-----------------------:%.0f",startY);
-//    _tipLabel.text = @"向上滑动切换键盘";
+    startPoint = [touch locationInView:self];
+    NSLog(@"startY-----------------------:%.0f",startPoint.y);
 
     if ([_delegate respondsToSelector:@selector(touchBegan:)]) {
         [_delegate touchBegan:self];
@@ -69,9 +67,15 @@
         NSLog(@"touchesMoved");
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    float endY = point.y;
-    NSLog(@"endY:%.0f",endY);
-    if ((startY - endY) > 5) {
+    
+    float offsetX =  startPoint.x - point.x;
+    float offsetY = startPoint.y - point.y;
+
+//    self.center = CGPointMake(self.center.x + offsetX, self.center.y + offsetY);
+//    NSLog(@"endY___________________:%.0f",self.center.x);
+
+//    NSLog(@"offsetY:%.0f",offsetY);
+    if (offsetY > 5) {
         NSLog(@"touchesMoved");
             _tipLabel.text = @"点按并说出您的需求";
         if ([_delegate respondsToSelector:@selector(touchMoved:)]) {

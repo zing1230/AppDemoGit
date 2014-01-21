@@ -145,7 +145,7 @@
             break;
         case 2:
         {
-            NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"dangerous.mov"];
+            NSString * path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mov_bbb.mp4"];
             NSURL * mediaURL = [[NSURL alloc]initFileURLWithPath:path];
             
             if (!moviePlayer) {
@@ -257,10 +257,22 @@
         {
 //            return;
             [[ConfigData shareInstance] setNeedRotation:YES];
+//            if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+//                [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
+//                                               withObject:(id)UIInterfaceOrientationLandscapeLeft];
+//            }
+//            [UIViewController attemptRotationToDeviceOrientation];
+
             if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-                [[UIDevice currentDevice] performSelector:@selector(setOrientation:)
-                                               withObject:(id)UIInterfaceOrientationLandscapeLeft];
+                SEL selector = NSSelectorFromString(@"setOrientation:");
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+                [invocation setSelector:selector];
+                [invocation setTarget:[UIDevice currentDevice]];
+                int val = UIInterfaceOrientationLandscapeLeft;
+                [invocation setArgument:&val atIndex:2];
+                [invocation invoke];
             }
+            
             [UIViewController attemptRotationToDeviceOrientation];
             
             Show360ViewController * show360 = [[Show360ViewController alloc] init];

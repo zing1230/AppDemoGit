@@ -7,13 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Reachability.h"
 
 @interface ConfigData : NSObject
 
 @property(nonatomic,assign)BOOL needRotation;
+@property(nonatomic,assign)BOOL isLongPressed;
+
+- (NetworkStatus)getNetworkStatus;
+
 
 - (void)setNeedRotation:(BOOL)status;
 - (BOOL)getNeedRotation;
+
+
 + (id)shareInstance;
 
 @end

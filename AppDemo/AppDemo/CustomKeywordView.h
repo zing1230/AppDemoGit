@@ -17,6 +17,7 @@
 @interface CustomKeywordView : UIView
 
 @property(nonatomic,assign) id <CustomKeywordViewDelegate> delegate;
+@property(nonatomic,assign) BOOL curHidenStatus;
 
 - (void)setKeywordViewHiddenStatus:(BOOL)status;
 

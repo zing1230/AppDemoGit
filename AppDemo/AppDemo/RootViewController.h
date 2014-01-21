@@ -17,6 +17,7 @@
 #import "CarModelsViewController.h"
 #import "SpecialOffersViewController.h"
 
+#import "ConfigData.h"
 #import "iFlyMSC.h"
 #import "UIViewController+MMDrawerController.h"
 #import "FTAnimation.h"
@@ -29,13 +30,20 @@
 #import "CustomKeywordCellView.h"
 #import "CustomFunctionView.h"
 
+#import "RightSideViewController.h"
+
 
 @interface RootViewController : UIViewController
 <iFlyMSCDelegate,QuadCurveMenuDelegate,
 CustomSpeakerViewDelegate,InputTextViewDelegate,
-CustomKeywordCellViewDelegate,CustomKeywordViewDelegate>
+CustomKeywordCellViewDelegate,CustomKeywordViewDelegate,
+CustomFunctionViewDelegate>
 
 
 @property(nonatomic,strong) iFlyMSC * _iflyMSC;
 @property(nonatomic,strong) UIImageView * viewToAnimate;
+@property(nonatomic,strong) CustomSpeakerView * speakerView;
+
+- (void)setCanMoveToOpenRightViewStatus:(BOOL)status;
+
 @end
